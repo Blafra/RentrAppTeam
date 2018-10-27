@@ -6,16 +6,22 @@ public class Question {
     private String text;
     private boolean systemIntroduction;
     private boolean existingSystem;
+    private boolean categoryIndiv;
+    private boolean categoryOrga;
+    private boolean categorySys;
     private boolean branched;
 
 
     //Constructor
-    public Question(int id, String text, boolean systemIntroduction, boolean existingSystem,boolean branched){
+    public Question(int id, String text, boolean systemIntroduction, boolean existingSystem,boolean branched, boolean categoryIndiv, boolean categoryOrga, boolean categorySys){
         this.questionID = id;
         this.text = text;
         this.systemIntroduction = systemIntroduction;
         this.existingSystem = existingSystem;
         this.branched = branched;
+        this.categoryIndiv = categoryIndiv;
+        this.categoryOrga = categoryOrga;
+        this.categorySys = categorySys;
     }
 
     //Getter & Setter
@@ -32,9 +38,6 @@ public class Question {
         this.text = text;
     }
 
-
-    //Weiter Methonden
-
     public boolean isSystemIntroduction() {
         return systemIntroduction;
     }
@@ -49,4 +52,16 @@ public class Question {
         return branched;
     }
 
+    public boolean isCategoryIndiv() {
+        return categoryIndiv;
+    }
+
+    public boolean isCategoryOrga() {
+        return categoryOrga;
+    }
+
+    public boolean isCategorySys() {
+        return categorySys;
+    }
+    //Weiter Methonden
 }

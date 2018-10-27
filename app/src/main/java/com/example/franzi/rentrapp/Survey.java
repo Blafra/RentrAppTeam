@@ -1,9 +1,11 @@
 package com.example.franzi.rentrapp;
 
+import java.util.ArrayList;
+
 public class Survey {
 
     private int surveyID;
-    private String surveyPassword;
+    private String surveyCode;
     private String companyName;
     private String projectName;
     private String systemType;
@@ -11,12 +13,18 @@ public class Survey {
     private Question[] questions;
     private double resultTotal;
     private double[] resultCategories;
-    private boolean configuration[];
-
+    private boolean[] configuration;
+    private ArrayList<SpecificSurvey> specificSurveyList = new ArrayList<>();
 
     //Constructor
-    public Survey(){
-
+    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus, Question[] questions, boolean[] config){
+        this.surveyCode = surveyCode;
+        this.companyName = companyName;
+        this.projectName = projectName;
+        this.systemType = systemType;
+        this.systemStatus = systemStatus;
+        this.questions = questions;
+        this.configuration = config;
     }
 
     //Getter & Setter
@@ -24,12 +32,12 @@ public class Survey {
         return surveyID;
     }
 
-    public String getSurveyPassword() {
-        return surveyPassword;
+    public String getSurveyCode() {
+        return surveyCode;
     }
 
-    public void setSurveyPassword(String surveyPassword) {
-        this.surveyPassword = surveyPassword;
+    public void setSurveyCode(String surveyCode) {
+        this.surveyCode = surveyCode;
     }
 
     public String getCompanyName() {
@@ -96,25 +104,38 @@ public class Survey {
         this.configuration = configuration;
     }
 
+
     //Weiter Methoden
 
-    public void generateID(){
+    public void calcResult(){
+        int listLength = specificSurveyList.size();
+        double [] results = new double[4];                         //Int Array für Ergebnisse (1) Gesammt (2) Individ (3) Orga (4) System
 
+
+        for (SpecificSurvey s : specificSurveyList){
+
+            //Gesamtergebnis und Kategorien aufsummiereun und dann durch Anzahl an specificSurveys teileun um Durchschnittswerte zu erhalten
+
+            results[0] += s.getResultTotal();
+            results[1] += s.getResultCategories()[0];
+            results[2] += s.getResultCategories()[1];
+            results[3] += s.getResultCategories()[2];
+
+        }
+
+        resultTotal = results[0]/listLength;
+        resultCategories[0] = results[1]/listLength;
+        resultCategories[2] = results[2]/listLength;
+        resultCategories[3] = results[3]/listLength;
     }
 
-    public void generateSurvey(){
 
+    public boolean checkCode(String code){
+        if(this.surveyCode==code){
+            return true;
+        }
+        return false;
     }
 
-    public boolean checkPasssword(int id, String passwort){
-        return true;
-    }
 
-    public void checkSurvey(int id){
-
-    }
-
-    public void getSurvey(int id){
-
-    }
 }
