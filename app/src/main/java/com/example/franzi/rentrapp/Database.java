@@ -39,7 +39,7 @@ public class Database {
         }
         return con;
     }
-
+    /*
     public int getCloumnCount (String systemStatus){
         try {
             con = this.getConnection();
@@ -54,17 +54,18 @@ public class Database {
 
         }
     }
-
+    */
     private void closeConnection(){
         try{
             if(con!=null){
                 con.close();
                 con = null;
-            }catch(Exception e){
+            }
+        } catch(Exception e){
                 e.printStackTrace();
             }
         }
-    }
-
-
 }
+
+
+
