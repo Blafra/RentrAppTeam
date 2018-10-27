@@ -15,7 +15,7 @@ public class SpecificSurvey extends Survey{
 
     //Getter & Setter
 
-
+    //Bal
 
     //Weitere Methoden
 
