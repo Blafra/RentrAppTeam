@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                             ss.getAnswerArray()[currentQuestion] = i + 1;
                         }
                     }
-
+                    Toast.makeText(getApplicationContext(),"Gespeichert",Toast.LENGTH_LONG).show();
                     //Get the next Question
                     currentQuestion++;
                     ss.setCurrentQuestionIdx(currentQuestion);
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
                     questionText.setText(questions[currentQuestion].getText());
 
                     ss.calcResult();
+
+
 
                     TextView resultText = (TextView) findViewById(R.id.resultTextView);
                     double resultInt = ss.getResultTotal();
