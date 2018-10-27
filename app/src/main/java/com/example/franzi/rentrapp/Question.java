@@ -8,6 +8,8 @@ public class Question {
     private boolean existingSystem;
     private boolean branched;
 
+
+    //Constructor
     public Question(int id, String text, boolean systemIntroduction, boolean existingSystem,boolean branched){
         this.questionID = id;
         this.text = text;
@@ -16,10 +18,11 @@ public class Question {
         this.branched = branched;
     }
 
+    //Getter & Setter
+
     public int getQuestionID() {
         return questionID;
     }
-
 
     public String getText() {
         return text;
@@ -28,6 +31,9 @@ public class Question {
     public void setText(String text) {
         this.text = text;
     }
+
+
+    //Weiter Methonden
 
     public boolean isSystemIntroduction() {
         return systemIntroduction;

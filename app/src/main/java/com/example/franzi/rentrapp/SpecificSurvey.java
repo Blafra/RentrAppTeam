@@ -8,6 +8,17 @@ public class SpecificSurvey extends Survey{
     double resultTotal;
     double[] resultCategories;
 
+    //Constructor
+    public SpecificSurvey (){
+
+    }
+
+    //Getter & Setter
+
+
+
+    //Weitere Methoden
+
     public void saveResult(){
 
     }
@@ -21,7 +32,7 @@ public class SpecificSurvey extends Survey{
     }
 
     public void tranfResult(){
-        
+
     }
 
 }
