@@ -8,6 +8,7 @@ public class SpecificSurvey{
     private double resultTotal;
     private double[] resultCategories = new double[3];
     private Question[] questionArray;
+    private int currentQuestionIdx = 0;
 
     //Constructor
 
@@ -30,6 +31,16 @@ public class SpecificSurvey{
         this.answerArray = answerArray;
     }
 
+    public int getCurrentQuestionIdx() {
+        return currentQuestionIdx;
+    }
+
+    public void setCurrentQuestionIdx(int currentQuestion) {
+        if(currentQuestion>0) {
+            this.currentQuestionIdx = currentQuestion;
+        }
+    }
+
     //Weitere Methoden
 
     public double getResultTotal(){
@@ -46,7 +57,7 @@ public class SpecificSurvey{
         double[] results = new double[4];                     //Int Array für Ergebnisse (1) Gesammt (2) Individ (3) Orga (4) System
         int[] counter = new int[4];                           //Counter wird für Durchschnittsberechnung mitgeführt
 
-        for(int i=0;i<answerArray.length+1;i++) {
+        for(int i=0;i<currentQuestionIdx;i++) {
 
             //Gesamtergebniss aufsummieren
             results[0] += answerArray[i];

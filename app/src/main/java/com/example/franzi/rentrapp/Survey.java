@@ -105,6 +105,7 @@ public class Survey {
     }
 
 
+
     //Weiter Methoden
 
     public void calcResult(){
