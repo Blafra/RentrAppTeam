@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Survey sv;
     SpecificSurvey ss;
-    Question[] questions = new Question[4];
+    Question[] questions = new Question[6];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

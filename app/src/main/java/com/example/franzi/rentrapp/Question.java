@@ -7,22 +7,22 @@ public class Question implements Parcelable {
 
     private int questionID;
     private String text;
-    private boolean[] questionProperties = new boolean[6];        //(0) System Indroduciton (1) Existing System (2) Categroy Indiv. (3) CategoryOrga (4) Category System (5) Branched
+    private int questionCategory;        //(0) System Indroduciton (1) Existing System (2) Categroy Indiv. (3) CategoryOrga (4) Category System (5) Branched
 
 
     //Test
     //Constructor
-    public Question(int id, String text, boolean[] questionProperties){
+    public Question(int id, String text, int questionCategory){
         this.questionID = id;
         this.text = text;
-        this.questionProperties=questionProperties;
+        this.questionCategory=questionCategory;
     }
 
 
     protected Question(Parcel in) {
         questionID = in.readInt();
         text = in.readString();
-        questionProperties = in.createBooleanArray();
+        questionCategory = in.readInt();
     }
 
 
@@ -52,12 +52,12 @@ public class Question implements Parcelable {
         this.text = text;
     }
 
-    public boolean[] getQuestionProperties() {
-        return questionProperties;
+    public int getquestionCategory() {
+        return questionCategory;
     }
 
-    public void setQuestionProperties(boolean[] questionProperties) {
-        this.questionProperties = questionProperties;
+    public void setquestionCategory(int questionCategory) {
+        this.questionCategory = questionCategory;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Question implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(questionID);
         dest.writeString(text);
-        dest.writeBooleanArray(questionProperties);
+        dest.writeInt(questionCategory);
     }
 
 
