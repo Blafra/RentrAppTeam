@@ -11,7 +11,7 @@ public class Question {
     private boolean categorySys;
     private boolean branched;
 
-
+    //Test
     //Constructor
     public Question(int id, String text, boolean systemIntroduction, boolean existingSystem,boolean branched, boolean categoryIndiv, boolean categoryOrga, boolean categorySys){
         this.questionID = id;
