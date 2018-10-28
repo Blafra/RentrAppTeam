@@ -94,11 +94,10 @@ public class System extends AppCompatActivity implements View.OnClickListener {
 
         //Nächste Seite aufrufen: Individuelles Ergebnis
         if(filledOutCompletely) {
-            Intent intent = new Intent(this, IndividuellesErgebnis.class);
-            intent.putExtra("Specific_Survey4",ss);
+            Intent intent = new Intent(this, ErgebnisIndividuell.class);
+            intent.putExtra("Specific_Survey4", ss);
             startActivity(intent);
             this.finish();
-
         } else{
             Toast.makeText(getApplication().getBaseContext(),"Es sind nicht alle Fragen beantwortet",Toast.LENGTH_SHORT).show();
         }

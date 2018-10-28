@@ -140,7 +140,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnEnd"
         android:layout_width="166dp"
         android:layout_height="48dp"
         android:text="Neue Umfrage"

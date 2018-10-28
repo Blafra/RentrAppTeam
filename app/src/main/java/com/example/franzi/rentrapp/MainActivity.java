@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         boolean[] questionConfig = {true,false,false,false,false,false};
-        questions[0] = new Question(1,"Ich interessiere michh für Computer und IT.", 1);
+        questions[0] = new Question(1,"Ich interessiere mich für Computer und IT.", 1);
         questions[1] = new Question(1,"Ich bin gegenüber neuen Technologien positiv eingestellt.Ich bin gegenüber neuen Technologien positiv eingestellt.", 1);
         questions[2] = new Question(1,"Ich bin gegenüber der Einführung dieses Systems positiv eingestellt.", 1);
         questions[3] = new Question(1,"Ich fühle mich in der Lage das System zielgerichtet zu nutzen.", 1);
