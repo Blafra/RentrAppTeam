@@ -58,71 +58,72 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
          //Speichern der Antwortwerte im Antwortarray
         //Radio Buttons in Liste einfügen
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_5));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_1));
 
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_17_5));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_17_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_17_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_17_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_17_1));
-
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_16_5));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_16_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_16_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_16_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_16_1));
-
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_15_5));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_15_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_15_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_15_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_15_1));
-
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_14_5));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_14_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_14_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_14_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_14_1));
-
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_13_5));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_13_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_13_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_13_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_13_1));
-
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_12_5));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_12_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_12_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_12_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_12_1));
-
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_11_5));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_11_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_11_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_11_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_11_1));
-
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_10_b_5));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_10_b_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_10_b_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_10_b_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_10_b_1));
-
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_9_5));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_9_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_9_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_9_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_9_1));
-
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_8_5));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_8_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_8_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_8_2));
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_8_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_8_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_8_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_8_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_8_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_9_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_9_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_9_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_9_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_9_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_10_b_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_10_b_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_10_b_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_10_b_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_10_b_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_11_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_11_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_11_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_11_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_11_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_12_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_12_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_12_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_12_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_12_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_13_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_13_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_13_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_13_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_13_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_14_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_14_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_14_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_14_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_14_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_15_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_15_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_15_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_15_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_15_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_16_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_16_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_16_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_16_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_16_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_17_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_17_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_17_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_17_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_17_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_5));
 
         //Nächste Seite aufrufen
         MainActivity.saveQuestonResultValues(rbtnList,ss,getApplication());

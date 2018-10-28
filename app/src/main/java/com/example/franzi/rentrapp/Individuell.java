@@ -31,12 +31,12 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
 
         //Fragen ausfüllen
         //TextView in Liste zusammenfassen
-        tvList.add((TextView) findViewById(R.id.tvQ1_7a));
-        tvList.add((TextView) findViewById(R.id.tvQ1_6));
-        tvList.add((TextView) findViewById(R.id.tvQ1_4));
-        tvList.add((TextView) findViewById(R.id.tvQ1_3a));
-        tvList.add((TextView) findViewById(R.id.tvQ1_2));
         tvList.add((TextView) findViewById(R.id.tvQ1_1));
+        tvList.add((TextView) findViewById(R.id.tvQ1_2));
+        tvList.add((TextView) findViewById(R.id.tvQ1_3a));
+        tvList.add((TextView) findViewById(R.id.tvQ1_4));
+        tvList.add((TextView) findViewById(R.id.tvQ1_6));
+        tvList.add((TextView) findViewById(R.id.tvQ1_7a));
 
         //Setzte alle Text Views gleich den noch nicht beantworteten Fragen im Fragenarray
         for(TextView tv : tvList){
@@ -56,30 +56,12 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
 
         //Speichern der Antwortwerte im Antwortarray
         //Radio Buttons in Liste einfügen
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_1));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_5));
 
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_1));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_5));
-
-
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_1));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_5));
-
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_1));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_5));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_5));
 
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_1));
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_2));
@@ -87,11 +69,29 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_4));
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_5));
 
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_1));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_4));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_5));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_5));
 
         MainActivity.saveQuestonResultValues(rbtnList,ss,getApplication());
 
