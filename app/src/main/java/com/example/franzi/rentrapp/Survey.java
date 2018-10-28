@@ -113,14 +113,15 @@ public class Survey {
         double [] results = new double[4];                         //Int Array für Ergebnisse (1) Gesammt (2) Individ (3) Orga (4) System
 
 
-        for (SpecificSurvey s : specificSurveyList){
+        for (SpecificSurvey ss : specificSurveyList){
 
             //Gesamtergebnis und Kategorien aufsummiereun und dann durch Anzahl an specificSurveys teileun um Durchschnittswerte zu erhalten
+            double[] specificResults = ss.calcResult();
 
-            results[0] += s.getResultTotal();
-            results[1] += s.getResultCategories()[0];
-            results[2] += s.getResultCategories()[1];
-            results[3] += s.getResultCategories()[2];
+            results[0] += specificResults[0];
+            results[1] += specificResults[1];
+            results[2] += specificResults[2];
+            results[3] += specificResults[3];
 
         }
 
@@ -136,6 +137,10 @@ public class Survey {
             return true;
         }
         return false;
+    }
+
+    public void addSpecificSurvey (SpecificSurvey ss){
+        specificSurveyList.add(ss);
     }
 
 
