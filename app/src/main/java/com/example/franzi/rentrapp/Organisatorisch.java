@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,6 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
     SpecificSurvey ss;
     ArrayList<TextView> tvList = new ArrayList<>();
     ArrayList<RadioButton> rbtnList = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,11 +125,17 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_4));
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_5));
 
-        //Nächste Seite aufrufen
-        MainActivity.saveQuestonResultValues(rbtnList,ss,getApplication());
+        //Ergebnisse spiecher und überprüfen ob alles Ausgefüllt wurde
+        boolean filledOutCompletely = MainActivity.saveQuestionResultValues(rbtnList,ss);
 
-        Intent intent = new Intent(this, System.class);
-        startActivity(intent);
-        this.finish();
+        //Nächste Seite aufrufen
+        if(filledOutCompletely) {
+            Intent intent = new Intent(this, System.class);
+            intent.putExtra("Specific_Survey3", ss);
+            startActivity(intent);
+            this.finish();
+        }else {
+            Toast.makeText(getApplication().getBaseContext(),"Es sind nicht alle Fragen beantwortet",Toast.LENGTH_SHORT).show();
+        }
     }
 }

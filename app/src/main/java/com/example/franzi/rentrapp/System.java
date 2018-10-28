@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -88,14 +89,18 @@ public class System extends AppCompatActivity implements View.OnClickListener {
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ3_28_5));
 
 
-
-        MainActivity.saveQuestonResultValues(rbtnList,ss,getApplication());
+        //Ergebnisse spiecher und überprüfen ob alles Ausgefüllt wurde
+        boolean filledOutCompletely = MainActivity.saveQuestionResultValues(rbtnList,ss);
 
         //Nächste Seite aufrufen: Individuelles Ergebnis
+        if(filledOutCompletely) {
+            Intent intent = new Intent(this, IndividuellesErgebnis.class);
+            intent.putExtra("Specific_Survey4",ss);
+            startActivity(intent);
+            this.finish();
 
-        Intent intent = new Intent(this, IndividuellesErgebnis.class);
-        intent.putExtra("Specific_Survey4",ss);
-        startActivity(intent);
-        this.finish();
+        } else{
+            Toast.makeText(getApplication().getBaseContext(),"Es sind nicht alle Fragen beantwortet",Toast.LENGTH_SHORT).show();
+        }
     }
 }

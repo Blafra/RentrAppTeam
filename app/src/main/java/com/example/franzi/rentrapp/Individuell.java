@@ -93,14 +93,20 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_4));
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_5));
 
-        MainActivity.saveQuestonResultValues(rbtnList,ss,getApplication());
 
-        //Nächste Seite aufrufen
-        Intent intent = new Intent(this, Organisatorisch.class);
-        startActivity(intent);
-        this.finish();
+        //Ergebnisse spiecher und überprüfen ob alles Ausgefüllt wurde
+        boolean filledOutCompletely = MainActivity.saveQuestionResultValues(rbtnList,ss);
 
-        //Speichern der Antwortwerte im Antwortarray
+        if(filledOutCompletely) {
+            //Nächste Seite aufrufen
+            Intent intent = new Intent(this, Organisatorisch.class);
+            intent.putExtra("Specific_Survey2", ss);
+            startActivity(intent);
+            this.finish();
+        } else {
+            Toast.makeText(getApplication().getBaseContext(),"Es sind nicht alle Fragen beantwortet",Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 

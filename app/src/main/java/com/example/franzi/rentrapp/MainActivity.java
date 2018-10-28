@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.finish();
     }
 
-    public static void saveQuestonResultValues (ArrayList<RadioButton> rbtnList, SpecificSurvey ss, Context context){
+    public static boolean saveQuestionResultValues (ArrayList<RadioButton> rbtnList, SpecificSurvey ss){
         //Prüfen ob alle Fragen beantwortet wurden
 
         int count = 0;
@@ -91,13 +91,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //Prüfen ob keines der Felder angeklickt wurde
             if(count> 4 && somethingChecked == false){
-                Toast.makeText(context,"Es sind nicht alle Fragen beantwortet",Toast.LENGTH_SHORT);
-                return;
+                return false;
             }
 
             //Eines der Felder (von 5) wurde angeklickt --> Reste für nächste 5 Felder
             if(count>4 && somethingChecked == true){
-                count=0;
+                count=-1;
                 somethingChecked=false;
             }
 
@@ -105,17 +104,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(rbtn.isChecked()){
                 somethingChecked = true;
             }
+            count++;
+
         }
 
         //Liste durchlaufen und Antworten speichern
 
         int resultValue=1;
-        int i = 0;
+        int i = 1;
 
         for(RadioButton rbtn : rbtnList){
 
             if(rbtn.isChecked()){
-                ss.setAnswerArrayValues(i,resultValue);
+                ss.setAnswerArrayValues((i/5),resultValue);
             }
 
             if(resultValue>5){
@@ -126,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             i++;
         }
+
+        return  true;
 
     }
 
