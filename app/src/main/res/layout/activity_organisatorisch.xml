@@ -155,6 +155,7 @@
                 android:id="@+id/tvQ2.10.b"
                 android:layout_width="match_parent"
                 android:layout_height="118dp"
+                android:textSize="24sp"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="16dp" />
 

@@ -53,12 +53,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         questions[15] = new Question(1,"Ich weiß an wen ich mich bei Problemen mit dem System wenden kann.", 2);
         questions[16] = new Question(1,"Die Hilfestellung, die ich erhalte, ist verständlich.", 2);
 
-        questions[17] = new Question(1,"Ich konnte das neue System bereits testen. ", 1);
-        questions[18] = new Question(1,"Ich empfinde die Systemqualität (Output, Geschwindigkeit, Usability…) als sehr gut.", 1);
-        questions[19] = new Question(1,"Das System arbeitet schnell und ohne große Verzögerungen.", 1);
-        questions[20] = new Question(1,"Das System ist intuitiv bedienbar.", 1);
-        questions[21] = new Question(1,"Das System gibt mir verständliche Hilfestellung bei Problemen.", 1);
-        questions[22] = new Question(1,"Das neue System ist besser als das vorherige.", 1);
+        questions[17] = new Question(1,"Ich konnte das neue System bereits testen. ", 3);
+        questions[18] = new Question(1,"Ich empfinde die Systemqualität (Output, Geschwindigkeit, Usability…) als sehr gut.", 3);
+        questions[19] = new Question(1,"Das System arbeitet schnell und ohne große Verzögerungen.", 3);
+        questions[20] = new Question(1,"Das System ist intuitiv bedienbar.", 3);
+        questions[21] = new Question(1,"Das System gibt mir verständliche Hilfestellung bei Problemen.", 3);
+        questions[22] = new Question(1,"Das neue System ist besser als das vorherige.", 3);
 
         //Konfiguration der Umfrage (wird abgefragt bei Umfrageerstellung)
         boolean[] config = {true,false};

@@ -9,7 +9,6 @@ public class Question implements Parcelable {
     private String text;
     private int questionCategory;        //Wert (1) Categroy Indiv. (2) CategoryOrga (3) Category System
 
-
     //Test
     //Constructor
     public Question(int id, String text, int questionCategory){
