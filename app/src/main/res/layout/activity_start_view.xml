@@ -27,7 +27,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:text="Wilkommen bei der RenntrApp Umfrage zur Technologyakzeptanz"
+        android:text="Wilkommen bei der RenntrApp Umfrage zur Technologieakzeptanz"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnStart"

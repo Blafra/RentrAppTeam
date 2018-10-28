@@ -53,6 +53,10 @@ public class SpecificSurvey implements Parcelable {
         this.answerArray = answerArray;
     }
 
+    public void setAnswerArrayValues(int index, int value){
+        answerArray[index] = value;
+    }
+
     public int getCurrentQuestionIdx() {
         return currentQuestionIdx;
     }
@@ -86,15 +90,15 @@ public class SpecificSurvey implements Parcelable {
             counter[0]++;
 
             //Kategorien
-            if (questionArray[i].getQuestionProperties()[2]) {
+            if (questionArray[i].getquestionCategory()==1) {
                 results[1] += (double) answerArray[i];
             }
             counter[1]++;
-            if (questionArray[i].getQuestionProperties()[3]) {
+            if (questionArray[i].getquestionCategory()==2) {
                 results[2] += (double) answerArray[i];
             }
             counter[2]++;
-            if (questionArray[i].getQuestionProperties()[4]) {
+            if (questionArray[i].getquestionCategory()==3) {
                 results[3] += (double) answerArray[i];
             }
             counter[3]++;

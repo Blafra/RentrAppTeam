@@ -7,7 +7,7 @@ public class Question implements Parcelable {
 
     private int questionID;
     private String text;
-    private int questionCategory;        //(0) System Indroduciton (1) Existing System (2) Categroy Indiv. (3) CategoryOrga (4) Category System (5) Branched
+    private int questionCategory;        //Wert (1) Categroy Indiv. (2) CategoryOrga (3) Category System
 
 
     //Test

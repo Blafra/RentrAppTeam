@@ -1,11 +1,15 @@
 package com.example.franzi.rentrapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -14,6 +18,7 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
     Button btnWeiter1;
     SpecificSurvey ss;
     ArrayList<TextView> tvList = new ArrayList<>();
+    ArrayList<RadioButton> rbtnList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +53,55 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+
+        //Speichern der Antwortwerte im Antwortarray
+        //Radio Buttons in Liste einfügen
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_5));
+
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_5));
+
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_1));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_5));
+
+        MainActivity.saveQuestonResultValues(rbtnList,ss,getApplication());
+
+        //Nächste Seite aufrufen
         Intent intent = new Intent(this, Organisatorisch.class);
         startActivity(intent);
         this.finish();
+
+        //Speichern der Antwortwerte im Antwortarray
     }
+
+
 }
