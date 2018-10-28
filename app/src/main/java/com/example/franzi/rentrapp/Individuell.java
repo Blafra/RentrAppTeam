@@ -56,51 +56,52 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
 
         //Speichern der Antwortwerte im Antwortarray
         //Radio Buttons in Liste einfügen
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_1));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_4));
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_5));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_7a_1));
 
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_1));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_4));
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_5));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_6_1));
 
 
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_1));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_4));
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_5));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_4_1));
 
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_1));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_4));
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_5));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_3a_1));
 
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_1));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_4));
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_5));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_2_1));
 
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_1));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_2));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_3));
-        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_4));
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_5));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_4));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_3));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_2));
+        rbtnList.add((RadioButton) findViewById(R.id.rbtnQ1_1_1));
 
         MainActivity.saveQuestonResultValues(rbtnList,ss,getApplication());
 
         //Nächste Seite aufrufen
+
         Intent intent = new Intent(this, Organisatorisch.class);
+        intent.putExtra("Specific_Survey2",ss);
         startActivity(intent);
         this.finish();
 
-        //Speichern der Antwortwerte im Antwortarray
     }
 
 
