@@ -75,11 +75,16 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
 
     public static Question[] getQuestions(String systemStatus){
 
-        Question[] questions;
+        Question[] questions = new Question[6];
 
         //Zugriff auf Datenbank Fragebogen
 
-
+        questions[0] = new Question(1, "Ich interessiere mich für Computer und IT.", 1);
+        questions[1] = new Question(1, "Ich bin gegenüber neuen Technologien positiv eingestellt.Ich bin gegenüber neuen Technologien positiv eingestellt.", 1);
+        questions[2] = new Question(1, "Ich bin gegenüber der Einführung dieses Systems positiv eingestellt.", 1);
+        questions[3] = new Question(1, "Ich fühle mich in der Lage das System zielgerichtet zu nutzen.", 1);
+        questions[4] = new Question(1, "Meine erworbenen Kompetenzen kann ich im neuen System nutzen.", 1);
+        questions[5] = new Question(1, "Ich habe mit dem System bereits Erfahrungen gesammelt.", 1);
         return questions;
     }
 }
