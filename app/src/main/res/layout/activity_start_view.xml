@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".StartView">
 
     <Button
         android:id="@+id/btnStart"
@@ -27,7 +27,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:text="Wilkommen bei der RenntrApp Umfrage zur Technologyakzeptanz"
+        android:text="Wilkommen bei der RenntrApp Umfrage zur Technologieakzeptanz"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnStart"
@@ -36,5 +36,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.369" />
-
 </android.support.constraint.ConstraintLayout>

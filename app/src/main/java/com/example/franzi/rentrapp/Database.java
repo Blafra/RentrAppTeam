@@ -24,37 +24,37 @@ public class Database {
     private String getConnectionURL(){
         return url+serverName+":"+portNumber+";databaseName="+databaseName+ ";selectMethod="+selectMethod+";";
     }
-
-    private java.sql.Connection getConnection(){
-        try {
-            Class.forName("");
-            con = java.sql.DriverManager.getConnection(getConnectionURL(), userName, password);
-            if(con!=null){
-                System.out.println("Connection Successful");
-            }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            System.out.println("Error Trace in getConnection() : "+e.getMessage());
-        }
-        return con;
-    }
     /*
-    public int getCloumnCount (String systemStatus){
-        try {
-            con = this.getConnection();
-            if (con != null) {
-                ResultSet rs = con.createStatement().executeQuery("Select * from Antwort where Systemstatus = " + systemStatus);
-                ResultSetMetaData rsmd = rs.getMetaData();
-                int cols = rsmd.getColumnCount();
-                closeConnection();
-            } else System.out.println("Error: No active Connection");
-        } catch(Exception e){
-            e.printStackTrace();
+       private java.sql.Connection getConnection(){
+           try {
+               Class.forName("");
+               con = java.sql.DriverManager.getConnection(getConnectionURL(), userName, password);
+               if(con!=null){
+                   System.out.println("Connection Successful");
+               }
+           }
+           catch (Exception e){
+               e.printStackTrace();
+               System.out.println("Error Trace in getConnection() : "+e.getMessage());
+           }
+           return con;
+       }
+       /*
+       public int getCloumnCount (String systemStatus){
+           try {
+               con = this.getConnection();
+               if (con != null) {
+                   ResultSet rs = con.createStatement().executeQuery("Select * from Antwort where Systemstatus = " + systemStatus);
+                   ResultSetMetaData rsmd = rs.getMetaData();
+                   int cols = rsmd.getColumnCount();
+                   closeConnection();
+               } else System.out.println("Error: No active Connection");
+           } catch(Exception e){
+               e.printStackTrace();
 
-        }
-    }
-    */
+           }
+       }
+       */
     private void closeConnection(){
         try{
             if(con!=null){

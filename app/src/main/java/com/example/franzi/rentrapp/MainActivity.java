@@ -1,5 +1,7 @@
 package com.example.franzi.rentrapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,86 +13,130 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+    Button btnStart;
 
     Survey sv;
     SpecificSurvey ss;
-    Question[] questions = new Question[4];
+    Question[] questions = new Question[23];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_start);
+
+        //Setup des Surveys inkl. Questions --> Vorablösung
 
         //Dummy Daten zum rumspielen
 
-        questions[0] = new Question(1,"Wie toll findest du unsere App?", true,false,false,true,false,false);
-        questions[1] = new Question(1,"Hattest du jemals so viel Spaß wie heute?", true,false,false,true,false,false);
-        questions[2] = new Question(1,"Der erste Durchbruch war der Hammer :-)", true,false,false,true,false,false);
-        questions[3] = new Question(1,"Übel geile APP ihr geilen Leute!!", true,false,false,true,false,false);
 
+        boolean[] questionConfig = {true,false,false,false,false,false};
+        questions[0] = new Question(1,"Ich interessiere mich für Computer und IT.", 1);
+        questions[1] = new Question(1,"Ich bin gegenüber neuen Technologien positiv eingestellt.Ich bin gegenüber neuen Technologien positiv eingestellt.", 1);
+        questions[2] = new Question(1,"Ich bin gegenüber der Einführung dieses Systems positiv eingestellt.", 1);
+        questions[3] = new Question(1,"Ich fühle mich in der Lage das System zielgerichtet zu nutzen.", 1);
+        questions[4] = new Question(1,"Meine erworbenen Kompetenzen kann ich im neuen System nutzen.", 1);
+        questions[5] = new Question(1,"Ich habe mit dem System bereits Erfahrungen gesammelt.", 1);
+
+        questions[6] = new Question(1,"Mein Unternehmen ist daran interessiert innovative Lösungen zu verwenden.", 2);
+        questions[7] = new Question(1,"Es ist einfach neue Ideen im Unternehmen umzusetzen.", 2);
+        questions[8] = new Question(1,"Das Management fördert die Einführung des Systems.", 2);
+        questions[9] = new Question(1,"Das IT-System hat in unserem Unternehmen ein positives Image.", 2);
+        questions[10] = new Question(1,"Das Projekt zur Einführung des Systems hat in unserem Unternehmen einen guten Ruf.", 2);
+        questions[11] = new Question(1,"Ich kenne die Prozesse meines Aufgabengebiets, die durch das System unterstützt werden.", 2);
+        questions[12] = new Question(1,"Ich kann meine Aufgaben ohne Nutzung dieses Systems erledigen. ", 2);
+        questions[13] = new Question(1,"Dabei verwende ich folgende Alternativen:", 2);
+        questions[14] = new Question(1,"Von mir wird erwartet das System zu nutzen.", 2);
+        questions[15] = new Question(1,"Ich weiß an wen ich mich bei Problemen mit dem System wenden kann.", 2);
+        questions[16] = new Question(1,"Die Hilfestellung, die ich erhalte, ist verständlich.", 2);
+
+        questions[17] = new Question(1,"Ich konnte das neue System bereits testen. ", 3);
+        questions[18] = new Question(1,"Ich empfinde die Systemqualität (Output, Geschwindigkeit, Usability…) als sehr gut.", 3);
+        questions[19] = new Question(1,"Das System arbeitet schnell und ohne große Verzögerungen.", 3);
+        questions[20] = new Question(1,"Das System ist intuitiv bedienbar.", 3);
+        questions[21] = new Question(1,"Das System gibt mir verständliche Hilfestellung bei Problemen.", 3);
+        questions[22] = new Question(1,"Das neue System ist besser als das vorherige.", 3);
+
+        //Konfiguration der Umfrage (wird abgefragt bei Umfrageerstellung)
         boolean[] config = {true,false};
 
         sv = new Survey("LALA", "SAP","S4HANA", "ERP","Neueinführung",questions,config);
         ss = new SpecificSurvey(1,questions);
-
-        TextView questionText = (TextView) findViewById(R.id.questionTextView);
-        questionText.setText(questions[0].getText());
-
-        //Listener und so
-
-        final Button button = findViewById(R.id.saveBtn);
-
-        button.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-
-                int currentQuestion = ss.getCurrentQuestionIdx();
-                TextView questionText = (TextView) findViewById(R.id.questionTextView);
-
-                //Prüft ob noch Fragen im Katalog vorhanden sind
-                if (currentQuestion < questions.length-1) {
-
-                    //Prüfen welcher Button ausgewählt wurde & ins Antwortarray eintragen
-                    RadioButton[] rb = new RadioButton[5];
-                    rb[0] = (RadioButton) findViewById(R.id.radioButton);
-                    rb[1] = (RadioButton) findViewById(R.id.radioButton2);
-                    rb[2] = (RadioButton) findViewById(R.id.radioButton3);
-                    rb[3] = (RadioButton) findViewById(R.id.radioButton4);
-                    rb[4] = (RadioButton) findViewById(R.id.radioButton5);
-
-                    for (int i = 0; i < 5; i++) {
-                        if (rb[i].isChecked()) {
-                            ss.getAnswerArray()[currentQuestion] = i + 1;
-                        }
-                    }
-                    Toast.makeText(getApplicationContext(),"Gespeichert",Toast.LENGTH_LONG).show();
-                    //Get the next Question
-                    currentQuestion++;
-                    ss.setCurrentQuestionIdx(currentQuestion);
-                    //Check if question left
-                    questionText.setText(questions[currentQuestion].getText());
-
-                    ss.calcResult();
+        sv.addSpecificSurvey(ss);
 
 
+        btnStart = (Button) findViewById(R.id.btnStart);
+        /* OnClickListener verwaltet das Klicken auf den Button */
+        btnStart.setOnClickListener(this);
+    }
 
-                    TextView resultText = (TextView) findViewById(R.id.resultTextView);
-                    double resultInt = ss.getResultTotal();
-                    String resultSting = Double.toString(resultInt);
-                    resultText.setText(resultSting);
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(this, Individuell.class);
+        intent.putExtra("Specific_Survey",ss);
+        startActivity(intent);
+        this.finish();
+    }
 
-                } else {
-                    questionText.setText("Keine weiteren Fragen mehr");
-                }
+    public static boolean saveQuestionResultValues (ArrayList<RadioButton> rbtnList, SpecificSurvey ss){
+        //Prüfen ob alle Fragen beantwortet wurden
+
+        int count = 0;
+        boolean somethingChecked = false;
+
+        for(RadioButton rbtn : rbtnList){
+
+            //Prüfen ob keines der Felder angeklickt wurde
+            if(count> 4 && somethingChecked == false){
+                return false;
             }
-        });
+
+            //Eines der Felder (von 5) wurde angeklickt --> Reste für nächste 5 Felder
+            if(count>4 && somethingChecked == true){
+                count=-1;
+                somethingChecked=false;
+            }
+
+            //Prüfen ob Feld angeklickt wurde
+            if(rbtn.isChecked()){
+                somethingChecked = true;
+            }
+            count++;
+
+        }
+
+        //Liste durchlaufen und Antworten speichern
+
+        int resultValue=1;
+        int i = 1;
+
+        for(RadioButton rbtn : rbtnList){
+
+            if(rbtn.isChecked()){
+                ss.setAnswerArrayValues((i/5),resultValue);
+            }
+
+            if(resultValue>5){
+                resultValue=1;
+            } else {
+                resultValue++;
+            }
+
+            i++;
+        }
+
+        return  true;
 
     }
 
+  }
 
 
 
 
 
-}
+
+
