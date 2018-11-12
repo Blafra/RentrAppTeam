@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class IndividuellesErgebnis extends AppCompatActivity {
 
     SpecificSurvey ss;
@@ -29,10 +32,12 @@ public class IndividuellesErgebnis extends AppCompatActivity {
         TextView tvResultOrg = (TextView) findViewById(R.id.tvResultOrg);
         TextView tvResultSys = (TextView) findViewById(R.id.tvResultSys);
 
-        tvResultTotal.setText(Double.toString(results[0]));
-        tvResultInd.setText(Double.toString(results[1]));
-        tvResultOrg.setText(Double.toString(results[2]));
-        tvResultSys.setText(Double.toString(results[3]));
+        DecimalFormat f = new DecimalFormat(".##");
+
+        tvResultTotal.setText(f.format(results[0]));
+        tvResultInd.setText(f.format(results[1]));
+        tvResultOrg.setText(f.format(results[2]));
+        tvResultSys.setText(f.format(results[3]));
 
         //Nächste Seite aufrufen: Individuelles Ergebnis
 
@@ -41,4 +46,5 @@ public class IndividuellesErgebnis extends AppCompatActivity {
         this.finish();
 
     }
+
 }

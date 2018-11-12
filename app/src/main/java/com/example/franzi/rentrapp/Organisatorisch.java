@@ -135,7 +135,7 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
             intent.putExtra("Specific_Survey3", ss);
             startActivity(intent);
             this.finish();
-        }else {
+        } else {
             Toast.makeText(getApplication().getBaseContext(),"Es sind nicht alle Fragen beantwortet",Toast.LENGTH_SHORT).show();
         }
     }
