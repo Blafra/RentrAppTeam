@@ -29,6 +29,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ErgebnisIndividuell" />
+        <activity android:name=".Menue" />
+        <activity android:name=".CreateNewSurvey"></activity>
     </application>
 
 </manifest>
