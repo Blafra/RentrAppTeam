@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         questions[3] = new Question(1, "Ich fühle mich in der Lage das System zielgerichtet zu nutzen.", 1);
         questions[4] = new Question(1, "Meine erworbenen Kompetenzen kann ich im neuen System nutzen.", 1);
         questions[5] = new Question(1, "Ich habe mit dem System bereits Erfahrungen gesammelt.", 1);
-
         questions[6] = new Question(1, "Mein Unternehmen ist daran interessiert innovative Lösungen zu verwenden.", 2);
         questions[7] = new Question(1, "Es ist einfach neue Ideen im Unternehmen umzusetzen.", 2);
         questions[8] = new Question(1, "Das Management fördert die Einführung des Systems.", 2);
