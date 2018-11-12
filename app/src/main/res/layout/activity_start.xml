@@ -27,7 +27,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:text="Wilkommen bei der RentrApp Umfrage zur Technologie-Akzeptanz"
+        android:text="Wilkommen bei der Techg_App Umfrage zur Technologie-Akzeptanz"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnStart"

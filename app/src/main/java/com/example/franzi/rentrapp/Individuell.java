@@ -95,9 +95,12 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
 
 
         //Ergebnisse spiecher und überprüfen ob alles Ausgefüllt wurde
-        boolean filledOutCompletely = MainActivity.saveQuestionResultValues(rbtnList,ss);
+        boolean filledOutCompletely = MainActivity.filledOutCompletely(rbtnList);
 
         if(filledOutCompletely) {
+            //Antworten speichern
+            MainActivity.saveQuestionResultValues(rbtnList,ss);
+
             //Nächste Seite aufrufen
             Intent intent = new Intent(this, Organisatorisch.class);
             intent.putExtra("Specific_Survey2", ss);
