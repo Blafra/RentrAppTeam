@@ -126,15 +126,16 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
         rbtnList.add((RadioButton) findViewById(R.id.rbtnQ2_18_5));
 
         //Ergebnisse spiecher und überprüfen ob alles Ausgefüllt wurde
-        boolean filledOutCompletely = MainActivity.saveQuestionResultValues(rbtnList,ss);
+        boolean filledOutCompletely = MainActivity.filledOutCompletely(rbtnList);
 
-        //Nächste Seite aufrufen
         if(filledOutCompletely) {
+            //Antworten speichern
+            MainActivity.saveQuestionResultValues(rbtnList,ss);
             Intent intent = new Intent(this, System.class);
             intent.putExtra("Specific_Survey3", ss);
             startActivity(intent);
             this.finish();
-        }else {
+        } else {
             Toast.makeText(getApplication().getBaseContext(),"Es sind nicht alle Fragen beantwortet",Toast.LENGTH_SHORT).show();
         }
     }

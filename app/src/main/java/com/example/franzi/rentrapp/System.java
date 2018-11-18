@@ -90,10 +90,11 @@ public class System extends AppCompatActivity implements View.OnClickListener {
 
 
         //Ergebnisse spiecher und überprüfen ob alles Ausgefüllt wurde
-        boolean filledOutCompletely = MainActivity.saveQuestionResultValues(rbtnList,ss);
+        boolean filledOutCompletely = MainActivity.filledOutCompletely(rbtnList);
 
-        //Nächste Seite aufrufen: Individuelles Ergebnis
         if(filledOutCompletely) {
+            //Antworten speichern
+            MainActivity.saveQuestionResultValues(rbtnList,ss);
             Intent intent = new Intent(this, ErgebnisIndividuell.class);
             intent.putExtra("Specific_Survey4", ss);
             startActivity(intent);

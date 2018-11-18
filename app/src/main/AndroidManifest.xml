@@ -16,7 +16,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Datenbank"></activity>
+        <activity android:name=".Start" />
+        <activity android:name=".Individuell" />
+        <activity android:name=".Organisatorisch" />
+        <activity android:name=".System" />
+        <activity android:name=".IndividuellesErgebnis" />
+        <activity android:name=".StartView">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ErgebnisIndividuell"></activity>
     </application>
 
 </manifest>

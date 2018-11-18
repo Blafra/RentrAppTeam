@@ -8,6 +8,7 @@ public class SpecificSurvey implements Parcelable {
     private int specificSurveyID;
     private int employeeID;
     private int[] answerArray;
+    private int currentAnswerIdx;
     private Question[] questionArray;
     private int currentQuestionIdx;
 
@@ -20,7 +21,7 @@ public class SpecificSurvey implements Parcelable {
 
         answerArray = new int[questions.length];
         currentQuestionIdx = 0;
-
+        currentAnswerIdx = 0;
     }
 
     //Getter & Setter
@@ -29,6 +30,7 @@ public class SpecificSurvey implements Parcelable {
         specificSurveyID = in.readInt();
         employeeID = in.readInt();
         answerArray = in.createIntArray();
+        currentAnswerIdx = in.readInt();
         questionArray = in.createTypedArray(Question.CREATOR);
         currentQuestionIdx = in.readInt();
     }
@@ -75,6 +77,16 @@ public class SpecificSurvey implements Parcelable {
         this.questionArray = questionArray;
     }
 
+
+    public int getCurrentAnswerIdx() {
+        return currentAnswerIdx;
+    }
+
+    public void setCurrentAnswerIdx(int currentAnswerIdx) {
+        this.currentAnswerIdx = currentAnswerIdx;
+    }
+
+
     //Weitere Methoden
 
 
@@ -85,6 +97,7 @@ public class SpecificSurvey implements Parcelable {
 
         for(int i=0;i<currentQuestionIdx;i++) {
 
+
             //Gesamtergebniss aufsummieren
             results[0] += answerArray[i];
             counter[0]++;
@@ -92,16 +105,18 @@ public class SpecificSurvey implements Parcelable {
             //Kategorien
             if (questionArray[i].getquestionCategory()==1) {
                 results[1] += (double) answerArray[i];
+                counter[1]++;
             }
-            counter[1]++;
+
             if (questionArray[i].getquestionCategory()==2) {
                 results[2] += (double) answerArray[i];
+                counter[2]++;
             }
-            counter[2]++;
             if (questionArray[i].getquestionCategory()==3) {
                 results[3] += (double) answerArray[i];
+                counter[3]++;
             }
-            counter[3]++;
+
         }
 
         //Mittelwert berechnen
@@ -127,6 +142,7 @@ public class SpecificSurvey implements Parcelable {
         dest.writeInt(specificSurveyID);
         dest.writeInt(employeeID);
         dest.writeIntArray(answerArray);
+        dest.writeInt(currentAnswerIdx);
         dest.writeTypedArray(questionArray, flags);
         dest.writeInt(currentQuestionIdx);
     }
