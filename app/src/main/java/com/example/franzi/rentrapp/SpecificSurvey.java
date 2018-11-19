@@ -103,16 +103,16 @@ public class SpecificSurvey implements Parcelable {
             counter[0]++;
 
             //Kategorien
-            if (questionArray[i].getquestionCategory()==1) {
+            if (questionArray[i].getQuestionCategory().equals("Individuell")) {
                 results[1] += (double) answerArray[i];
                 counter[1]++;
             }
 
-            if (questionArray[i].getquestionCategory()==2) {
+            if (questionArray[i].getQuestionCategory().equals("Organisatorisch")) {
                 results[2] += (double) answerArray[i];
                 counter[2]++;
             }
-            if (questionArray[i].getquestionCategory()==3) {
+            if (questionArray[i].getQuestionCategory().equals("System")) {
                 results[3] += (double) answerArray[i];
                 counter[3]++;
             }

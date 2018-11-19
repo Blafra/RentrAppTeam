@@ -49,7 +49,7 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
         String systemStatus = iNewSurvey4.getSelectedItem().toString();
         String surveyCode;
 
-        Question[] questions = getQuestions(systemStatus);
+      //  Question[] questions = getQuestions(systemStatus);
 
         //To-Do Config
         boolean[] config = {true,false};
@@ -62,7 +62,7 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
 
         //Create new instance of Survey
 
-        Survey newSurvey = new Survey(surveyCode,companyName,projectName,systemType,systemStatus,questions,config);
+       // Survey newSurvey = new Survey(surveyCode,companyName,projectName,systemType,systemStatus,questions,config);
 
         //Survey Objectinstanz in Datenbank abspeichern
 
@@ -71,7 +71,7 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    public static Question[] getQuestions(String systemStatus){
+   /* public static Question[] getQuestions(String systemStatus){
 
         Question[] questions = new Question[6];
 
@@ -84,5 +84,5 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
         questions[4] = new Question(1, "Meine erworbenen Kompetenzen kann ich im neuen System nutzen.", 1);
         questions[5] = new Question(1, "Ich habe mit dem System bereits Erfahrungen gesammelt.", 1);
         return questions;
-    }
+    }*/
 }

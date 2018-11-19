@@ -5,23 +5,29 @@ import android.os.Parcelable;
 
 public class Question implements Parcelable {
 
-    private int questionID;
-    private String text;
-    private int questionCategory;        //Wert (1) Categroy Indiv. (2) CategoryOrga (3) Category System
+    private int QuestionID;
+    private String QuestionText;
+    private String QuestionCategory;        //Wert (1) Categroy Indiv. (2) CategoryOrga (3) Category System
+    private String SystemCategory;
 
     //Test
     //Constructor
-    public Question(int id, String text, int questionCategory){
-        this.questionID = id;
-        this.text = text;
-        this.questionCategory=questionCategory;
+    public Question(int id, String text, String questionCategory, String SystemCategory){
+        this.QuestionID = id;
+        this.QuestionText = text;
+        this.QuestionCategory=questionCategory;
+        this.SystemCategory = SystemCategory;
     }
 
 
     protected Question(Parcel in) {
-        questionID = in.readInt();
-        text = in.readString();
-        questionCategory = in.readInt();
+        QuestionID = in.readInt();
+        QuestionText = in.readString();
+        QuestionCategory = in.readString();
+    }
+
+    public Question(){
+
     }
 
 
@@ -40,24 +46,38 @@ public class Question implements Parcelable {
 
     //Getter & Setter
     public int getQuestionID() {
-        return questionID;
+        return QuestionID;
     }
 
-    public String getText() {
-        return text;
+    public void setQuestionID(int QuestionID){
+        this.QuestionID = QuestionID;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public String getQuestionText() {
+        return QuestionText;
     }
 
-    public int getquestionCategory() {
-        return questionCategory;
+    public void setQuestionText(String QuestionText) {
+        this.QuestionText = QuestionText;
     }
 
-    public void setquestionCategory(int questionCategory) {
-        this.questionCategory = questionCategory;
+    public String getQuestionCategory() {
+        return QuestionCategory;
     }
+
+    public void setQuestionCategory(String QuestionCategory) {
+        this.QuestionCategory = QuestionCategory;
+    }
+
+    public String getSystemCategory() {
+        return SystemCategory;
+    }
+
+    public void setSystemCategory(String SystemCategory) {
+        SystemCategory = SystemCategory;
+    }
+
+
 
     @Override
     public int describeContents() {
@@ -66,9 +86,9 @@ public class Question implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(questionID);
-        dest.writeString(text);
-        dest.writeInt(questionCategory);
+        dest.writeInt(QuestionID);
+        dest.writeString(QuestionText);
+        dest.writeString(QuestionCategory);
     }
 
 

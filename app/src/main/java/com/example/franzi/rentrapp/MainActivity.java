@@ -2,10 +2,17 @@ package com.example.franzi.rentrapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -16,18 +23,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Survey sv;
     SpecificSurvey ss;
     Question[] questions = new Question[23];
+    private DatabaseReference mRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        mRef = FirebaseDatabase.getInstance().getReference().child("Question");
 
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int i = 0;
+                for(DataSnapshot sn : dataSnapshot.getChildren()){
+                    Question question = sn.getValue(Question.class);
+
+                    if(question.getSystemCategory().equals("Neueinführung") && question.getSystemCategory().equals("Beides") &&question.getSystemCategory().equals("beides")){
+                        questions[i] = question;
+                        i++;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         //Setup des Surveys inkl. Questions --> Vorablösung
 
         //Dummy Daten zum rumspielen
 
 
-        boolean[] questionConfig = {true, false, false, false, false, false};
+
+ /*       boolean[] questionConfig = {true, false, false, false, false, false};
         questions[0] = new Question(1, "Ich interessiere mich für Computer und IT.", 1);
         questions[1] = new Question(1, "Ich bin gegenüber neuen Technologien positiv eingestellt.Ich bin gegenüber neuen Technologien positiv eingestellt.", 1);
         questions[2] = new Question(1, "Ich bin gegenüber der Einführung dieses Systems positiv eingestellt.", 1);
@@ -52,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         questions[20] = new Question(1, "Das System ist intuitiv bedienbar.", 3);
         questions[21] = new Question(1, "Das System gibt mir verständliche Hilfestellung bei Problemen.", 3);
         questions[22] = new Question(1, "Das neue System ist besser als das vorherige.", 3);
-
+*/
         //Konfiguration der Umfrage (wird abgefragt bei Umfrageerstellung)
         boolean[] config = {true, false};
 

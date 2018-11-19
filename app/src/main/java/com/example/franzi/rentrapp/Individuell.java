@@ -40,7 +40,7 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
 
         //Setzte alle Text Views gleich den noch nicht beantworteten Fragen im Fragenarray
         for(TextView tv : tvList){
-            tv.setText(ss.getQuestionArray()[ss.getCurrentQuestionIdx()].getText());
+            tv.setText(ss.getQuestionArray()[ss.getCurrentQuestionIdx()].getQuestionText());
             ss.setCurrentQuestionIdx(ss.getCurrentQuestionIdx()+1);
         }
 
