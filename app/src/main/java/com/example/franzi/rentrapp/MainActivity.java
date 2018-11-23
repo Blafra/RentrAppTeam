@@ -86,7 +86,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Konfiguration der Umfrage (wird abgefragt bei Umfrageerstellung)
         boolean[] config = {true, false};
 
-        sv = new Survey("LALA", "SAP", "S4HANA", "ERP", "Neueinführung", questions, config);
+        sv = new Survey("LALA", "SAP", "S4HANA", "ERP", "Neueinführung", config);
+
+        sv.setQuestions(questions);
+
         ss = new SpecificSurvey(1, questions);
         sv.addSpecificSurvey(ss);
 
@@ -160,6 +163,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Speichern wo im Answer Array wir uns befinden
         ss.setCurrentAnswerIdx(answerIdx);
+
+
+    }
+
+    public static void saveInDatabase (String childName){
 
 
     }

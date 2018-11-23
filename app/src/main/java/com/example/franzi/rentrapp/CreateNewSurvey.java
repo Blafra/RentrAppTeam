@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 public class CreateNewSurvey extends AppCompatActivity implements View.OnClickListener {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +64,11 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
 
         //Create new instance of Survey
 
-       // Survey newSurvey = new Survey(surveyCode,companyName,projectName,systemType,systemStatus,questions,config);
+        Survey newSurvey = new Survey(surveyCode,companyName,projectName,systemType,systemStatus,config);
 
         //Survey Objectinstanz in Datenbank abspeichern
+
+
 
         //Benachrictigung über erfolgreiche Speicherung der Umfrage
 

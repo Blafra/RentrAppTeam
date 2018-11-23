@@ -17,13 +17,12 @@ public class Survey {
     private ArrayList<SpecificSurvey> specificSurveyList = new ArrayList<>();
 
     //Constructor
-    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus, Question[] questions, boolean[] config){
+    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus, boolean[] config){
         this.surveyCode = surveyCode;
         this.companyName = companyName;
         this.projectName = projectName;
         this.systemType = systemType;
         this.systemStatus = systemStatus;
-        this.questions = questions;
         this.configuration = config;
     }
 
