@@ -10,7 +10,6 @@ public class Survey {
     private String projectName;
     private String systemType;
     private String systemStatus;
-    private Question[] questions;
     private double resultTotal;
     private double[] resultCategories;
     private boolean[] configuration;
@@ -69,14 +68,6 @@ public class Survey {
 
     public void setSystemStatus(String systemStatus) {
         this.systemStatus = systemStatus;
-    }
-
-    public Question[] getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(Question[] questions) {
-        this.questions = questions;
     }
 
     public double getResultTotal() {

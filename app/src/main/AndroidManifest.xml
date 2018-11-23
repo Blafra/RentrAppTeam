@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Menue">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,6 +21,7 @@
         <activity android:name=".Organisatorisch" />
         <activity android:name=".System" />
         <activity android:name=".IndividuellesErgebnis" />
+        <activity android:name=".CreateNewSurvey" />
         <activity android:name=".StartView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
