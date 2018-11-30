@@ -27,7 +27,7 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
 
         //Specific Survey Object von vorhergehender Activity holen
         Intent intent = getIntent();
-        ss = intent.getParcelableExtra("Specific_Survey");
+        ss = intent.getParcelableExtra("Specific_Survey1");
 
         //Fragen ausfüllen
         //TextView in Liste zusammenfassen

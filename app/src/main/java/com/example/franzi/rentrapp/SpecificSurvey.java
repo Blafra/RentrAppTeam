@@ -5,7 +5,6 @@ import android.os.Parcelable;
 
 public class SpecificSurvey implements Parcelable {
 
-    private int specificSurveyID;
     private int employeeID;
     private int[] answerArray;
     private int currentAnswerIdx;
@@ -27,7 +26,6 @@ public class SpecificSurvey implements Parcelable {
     //Getter & Setter
 
     protected SpecificSurvey(Parcel in) {
-        specificSurveyID = in.readInt();
         employeeID = in.readInt();
         answerArray = in.createIntArray();
         currentAnswerIdx = in.readInt();
@@ -139,7 +137,6 @@ public class SpecificSurvey implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(specificSurveyID);
         dest.writeInt(employeeID);
         dest.writeIntArray(answerArray);
         dest.writeInt(currentAnswerIdx);

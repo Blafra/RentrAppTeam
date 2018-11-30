@@ -1,34 +1,41 @@
 package com.example.franzi.rentrapp;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Survey {
 
-    private int surveyID;
     private String surveyCode;
     private String companyName;
     private String projectName;
     private String systemType;
     private String systemStatus;
     private double resultTotal;
-    private double[] resultCategories;
-    private boolean[] configuration;
-    private ArrayList<SpecificSurvey> specificSurveyList = new ArrayList<>();
+    public Map<String, Double> resultCategories;
+    public Map<String,SpecificSurvey> specificSurveyList;
 
     //Constructor
-    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus, boolean[] config){
+    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus, double resultTotal){
         this.surveyCode = surveyCode;
         this.companyName = companyName;
         this.projectName = projectName;
         this.systemType = systemType;
         this.systemStatus = systemStatus;
-        this.configuration = config;
+    }
+
+    //Constructor
+    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus,double resultTotal,Map<String, Double> resultCategories,Map<String,SpecificSurvey> specificSurveyList){
+        this.surveyCode = surveyCode;
+        this.companyName = companyName;
+        this.projectName = projectName;
+        this.systemType = systemType;
+        this.systemStatus = systemStatus;
+        this.resultTotal = resultTotal;
+        this.resultCategories = resultCategories;
+        this.specificSurveyList = specificSurveyList;
     }
 
     //Getter & Setter
-    public int getSurveyID() {
-        return surveyID;
-    }
 
     public String getSurveyCode() {
         return surveyCode;
@@ -78,21 +85,10 @@ public class Survey {
         this.resultTotal = resultTotal;
     }
 
-    public double[] getResultCategories() {
+    public Map<String, Double> getResultCategories() {
         return resultCategories;
     }
 
-    public void setResultCategories(double[] resultCategories) {
-        this.resultCategories = resultCategories;
-    }
-
-    public boolean[] getConfiguration() {
-        return configuration;
-    }
-
-    public void setConfiguration(boolean[] configuration) {
-        this.configuration = configuration;
-    }
 
 
 
@@ -103,9 +99,10 @@ public class Survey {
         double [] results = new double[4];                         //Int Array für Ergebnisse (1) Gesammt (2) Individ (3) Orga (4) System
 
 
-        for (SpecificSurvey ss : specificSurveyList){
+        for (Map.Entry e: specificSurveyList.entrySet()){
 
             //Gesamtergebnis und Kategorien aufsummiereun und dann durch Anzahl an specificSurveys teileun um Durchschnittswerte zu erhalten
+            SpecificSurvey ss = (SpecificSurvey) e.getValue();
             double[] specificResults = ss.calcResult();
 
             results[0] += specificResults[0];
@@ -116,9 +113,9 @@ public class Survey {
         }
 
         resultTotal = results[0]/listLength;
-        resultCategories[0] = results[1]/listLength;
-        resultCategories[2] = results[2]/listLength;
-        resultCategories[3] = results[3]/listLength;
+        resultCategories.put("Indviduell",results[1]/listLength);
+        resultCategories.put("Organisation",results[1]/listLength);
+        resultCategories.put("System",results[1]/listLength);
     }
 
 
@@ -129,9 +126,20 @@ public class Survey {
         return false;
     }
 
-    public void addSpecificSurvey (SpecificSurvey ss){
-        specificSurveyList.add(ss);
-    }
 
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+
+        result.put("surveyCode",surveyCode);
+        result.put("companyName",companyName);
+        result.put("projectName",projectName);
+        result.put("systemType",systemType);
+        result.put("systemStatus",systemStatus);
+        result.put("resultTotal",resultTotal);
+        result.put("resultCategories",resultCategories);
+        result.put("specificSurveyList",specificSurveyList);
+
+        return result;
+    }
 
 }

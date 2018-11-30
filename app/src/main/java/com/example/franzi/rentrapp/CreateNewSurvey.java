@@ -1,5 +1,6 @@
 package com.example.franzi.rentrapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -18,11 +19,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CreateNewSurvey extends AppCompatActivity implements View.OnClickListener {
 
-
-
+    Survey newSurvey;
+    String surveyCode="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +51,35 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
         dropdown2.setAdapter(adapter2);
 
         Button btn = (Button) findViewById(R.id.btnCreateNewS);
+        Button btn2 = (Button) findViewById(R.id.btnCreateNewS2);
+
         btn.setOnClickListener(this);
+        btn2.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        addSurvey();
+
+        switch (v.getId()){
+
+            //Umfrage erstellen Button
+            case R.id.btnCreateNewS:
+                addSurvey();
+                break;
+
+
+            //Menü Button --> Ins Hauptmenü
+            case R.id.btnCreateNewS2:
+                Intent intent1 = new Intent(this, Menue.class);
+                intent1.putExtra("SurveyCode",surveyCode);
+                startActivity(intent1);
+                this.finish();
+                break;
+
+            default: break;
+        }
+
+
     }
 
     public void addSurvey (){
@@ -68,47 +94,52 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
         String projectName = iNewSurvey2.getText().toString();
         String systemType = iNewSurvey3.getSelectedItem().toString();
         String systemStatus = iNewSurvey4.getSelectedItem().toString();
-        String surveyCode;
+
 
         //  Question[] questions = getQuestions(systemStatus);
 
         //To-Do Config
         boolean[] config = {true,false};
 
+
+
+        //Create new instance of Survey
+
+        newSurvey = new Survey(surveyCode,companyName,projectName,systemType,systemStatus,0);
+
+
+
+        //Save in database
+
+        saveSurveyInDatabase();
+
         //To-Do Create Survey Code & Display it
-        surveyCode = "TEST00";
+        surveyCode = newSurvey.getSurveyCode();
 
         TextView tvSurveyCode = (TextView) findViewById(R.id.tvNewSurvey6);
         tvSurveyCode.setText(surveyCode);
 
-        //Create new instance of Survey
+         Toast.makeText(this, "Umfrage erfolgreich erstellt", Toast.LENGTH_LONG).show();
+    }
 
-        Survey newSurvey = new Survey(surveyCode,companyName,projectName,systemType,systemStatus,config);
-
+    private void saveSurveyInDatabase (){
 
         //Survey Objectinstanz in Datenbank abspeichern
 
-        DatabaseReference surveyDatabase = FirebaseDatabase.getInstance().getReference("Surveys");
+        DatabaseReference surveyDatabase = FirebaseDatabase.getInstance().getReference();
 
-        String id = surveyDatabase.push().getKey();
+        //To-Do SurveyCode
 
-        surveyDatabase.child(id).setValue(newSurvey);
+        String key = surveyDatabase.child("Survey").push().getKey();
+        newSurvey.setSurveyCode(key);
 
-        Toast.makeText(this, "Umfrage erstellt", Toast.LENGTH_LONG);
+        //Transform Input into HashMap of Survey and add to database
+        Map<String,Object> postValues = newSurvey.toMap();
 
+      //Map<String,Object> surveyUpdate = new HashMap<>();
+      //surveyUpdate.put(key,surveyUpdate);
+
+        surveyDatabase.child("Survey").child(key).setValue(postValues);
     }
-   /* public static Question[] getQuestions(String systemStatus){
 
-        Question[] questions = new Question[6];
-
-        //Zugriff auf Datenbank Fragebogen
-
-        questions[0] = new Question(1, "Ich interessiere mich für Computer und IT.", 1);
-        questions[1] = new Question(1, "Ich bin gegenüber neuen Technologien positiv eingestellt.Ich bin gegenüber neuen Technologien positiv eingestellt.", 1);
-        questions[2] = new Question(1, "Ich bin gegenüber der Einführung dieses Systems positiv eingestellt.", 1);
-        questions[3] = new Question(1, "Ich fühle mich in der Lage das System zielgerichtet zu nutzen.", 1);
-        questions[4] = new Question(1, "Meine erworbenen Kompetenzen kann ich im neuen System nutzen.", 1);
-        questions[5] = new Question(1, "Ich habe mit dem System bereits Erfahrungen gesammelt.", 1);
-        return questions;
-    }*/
 }
