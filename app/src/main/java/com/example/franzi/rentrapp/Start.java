@@ -45,13 +45,13 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         String surveyCode = iText.getText().toString();
 
         //Get survey instance form database and put information in "Survey" (sv) variable
-        sv = getSurvey(surveyCode);
+        getSurvey(surveyCode);
 
         //Create Specific Survey Instance and put information in "Specifc Survey" (ss) variable
         if(sv!=null) {
            ss = createSpecificSurvey(sv);
         }else {
-            Toast.makeText(this,"Code nicht gefunden",Toast.LENGTH_LONG);
+            Toast.makeText(this,"Code nicht gefunden",Toast.LENGTH_LONG).show();
             return;
         }
         //Go to next page and add survey Code
@@ -62,19 +62,22 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         this.finish();
     }
 
-    public Survey getSurvey(final String surveyCode){
+    public void getSurvey(final String surveyCode){
+
         mRef = FirebaseDatabase.getInstance().getReference().child("Survey");
-        final Survey[] sv = new Survey[1];
+
+
 
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for(DataSnapshot sn : dataSnapshot.getChildren()){
+
                     Survey currentSurvey = sn.getValue(Survey.class);
 
                     if(currentSurvey.getSurveyCode().equals(surveyCode)){
-                        sv[0] =currentSurvey;
+                        sv =currentSurvey;
                         break;
                     }
                 }
@@ -87,7 +90,6 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
         });
 
-        return sv[0];
     }
 
     public void getQuestions(final Survey survey){
@@ -95,13 +97,12 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         mRef = FirebaseDatabase.getInstance().getReference().child("Question");
 
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
-
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot sn : dataSnapshot.getChildren()){
                     Question question = sn.getValue(Question.class);
 
-                    if(question.getSystemCategory().equals(survey.getSystemStatus()) && question.getSystemCategory().equals("Beides") && question.getSystemCategory().equals("beides")){
+                    if(question.getSystemCategory().equals(survey.getSystemStatus()) || question.getSystemCategory().equals("Beides") || question.getSystemCategory().equals("beides")){
                         questionList.add(question);
                     }
                 }
@@ -119,11 +120,11 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         DatabaseReference specificSurveyDatabase = FirebaseDatabase.getInstance().getReference();
 
         getQuestions(sv);
-        ss = new SpecificSurvey(1, (Question[]) questionList.toArray());
+        Question [] questionArray = new Question[questionList.size()];
+        questionArray = questionList.toArray(questionArray);
+        ss = new SpecificSurvey(1, questionArray);
 
-        String key = specificSurveyDatabase.child("SpecificSurvey").push().getKey();
-
-        sv.specificSurveyList.put(key,ss);
+        sv.addSpecificSurveyToSurvey(ss);
 
         return ss;
 

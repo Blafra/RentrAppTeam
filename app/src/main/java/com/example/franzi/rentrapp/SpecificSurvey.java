@@ -3,8 +3,12 @@ package com.example.franzi.rentrapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class SpecificSurvey implements Parcelable {
 
+    private String specificSurveyID;
     private int employeeID;
     private int[] answerArray;
     private int currentAnswerIdx;
@@ -12,6 +16,11 @@ public class SpecificSurvey implements Parcelable {
     private int currentQuestionIdx;
 
     //Constructor
+
+    //Constructor für Datenbankzugriff
+    public SpecificSurvey(){
+
+    }
 
     public SpecificSurvey (int employeeID, Question[] questions){
         this.employeeID = employeeID;
@@ -21,11 +30,18 @@ public class SpecificSurvey implements Parcelable {
         answerArray = new int[questions.length];
         currentQuestionIdx = 0;
         currentAnswerIdx = 0;
+
+        this.specificSurveyID = generateSpecificSurveyId();
+
+        //To-DO Save in Database
     }
+
+
 
     //Getter & Setter
 
     protected SpecificSurvey(Parcel in) {
+        specificSurveyID = in.readString();
         employeeID = in.readInt();
         answerArray = in.createIntArray();
         currentAnswerIdx = in.readInt();
@@ -33,17 +49,6 @@ public class SpecificSurvey implements Parcelable {
         currentQuestionIdx = in.readInt();
     }
 
-    public static final Creator<SpecificSurvey> CREATOR = new Creator<SpecificSurvey>() {
-        @Override
-        public SpecificSurvey createFromParcel(Parcel in) {
-            return new SpecificSurvey(in);
-        }
-
-        @Override
-        public SpecificSurvey[] newArray(int size) {
-            return new SpecificSurvey[size];
-        }
-    };
 
     public int[] getAnswerArray() {
         return answerArray;
@@ -84,6 +89,13 @@ public class SpecificSurvey implements Parcelable {
         this.currentAnswerIdx = currentAnswerIdx;
     }
 
+    public String getSpecificSurveyID() {
+        return specificSurveyID;
+    }
+
+    public void setSpecificSurveyID(String specificSurveyID) {
+        this.specificSurveyID = specificSurveyID;
+    }
 
     //Weitere Methoden
 
@@ -126,8 +138,28 @@ public class SpecificSurvey implements Parcelable {
         return results;
     }
 
-    public void tranfResult(){
+    private String generateSpecificSurveyId() {
 
+        //Verbindung zur Datenbank
+
+        DatabaseReference surveyDatabase = FirebaseDatabase.getInstance().getReference();
+
+        //Abfrage einer noch nicht vergebenen ID
+
+        String key = surveyDatabase.child("SpecificSurvey").push().getKey();
+
+        return key;
+
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(specificSurveyID);
+        dest.writeInt(employeeID);
+        dest.writeIntArray(answerArray);
+        dest.writeInt(currentAnswerIdx);
+        dest.writeTypedArray(questionArray, flags);
+        dest.writeInt(currentQuestionIdx);
     }
 
     @Override
@@ -135,12 +167,17 @@ public class SpecificSurvey implements Parcelable {
         return 0;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(employeeID);
-        dest.writeIntArray(answerArray);
-        dest.writeInt(currentAnswerIdx);
-        dest.writeTypedArray(questionArray, flags);
-        dest.writeInt(currentQuestionIdx);
-    }
+    public static final Creator<SpecificSurvey> CREATOR = new Creator<SpecificSurvey>() {
+        @Override
+        public SpecificSurvey createFromParcel(Parcel in) {
+            return new SpecificSurvey(in);
+        }
+
+        @Override
+        public SpecificSurvey[] newArray(int size) {
+            return new SpecificSurvey[size];
+        }
+    };
+
+
 }

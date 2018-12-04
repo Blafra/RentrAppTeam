@@ -1,7 +1,19 @@
 package com.example.franzi.rentrapp;
 
+import android.support.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class Survey {
 
@@ -12,28 +24,29 @@ public class Survey {
     private String systemStatus;
     private double resultTotal;
     public Map<String, Double> resultCategories;
-    public Map<String,SpecificSurvey> specificSurveyList;
 
     //Constructor
+
+    //Constructor für Datenbankzugriff
+    public Survey (){
+
+    }
+
     public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus, double resultTotal){
         this.surveyCode = surveyCode;
         this.companyName = companyName;
         this.projectName = projectName;
         this.systemType = systemType;
         this.systemStatus = systemStatus;
+
+        resultCategories = new HashMap<>();
+        resultCategories.put("Individuell", null);
+        resultCategories.put("System", null);
+        resultCategories.put("Organistaion", null);
+
     }
 
-    //Constructor
-    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus,double resultTotal,Map<String, Double> resultCategories,Map<String,SpecificSurvey> specificSurveyList){
-        this.surveyCode = surveyCode;
-        this.companyName = companyName;
-        this.projectName = projectName;
-        this.systemType = systemType;
-        this.systemStatus = systemStatus;
-        this.resultTotal = resultTotal;
-        this.resultCategories = resultCategories;
-        this.specificSurveyList = specificSurveyList;
-    }
+
 
     //Getter & Setter
 
@@ -89,20 +102,25 @@ public class Survey {
         return resultCategories;
     }
 
-
+    public void setResultCategories(Map<String, Double> resultCategories) {
+        this.resultCategories = resultCategories;
+    }
 
 
     //Weiter Methoden
 
     public void calcResult(){
+
+        //Alle Specific Surveys aus Datenbank abrufen
+        ArrayList<SpecificSurvey> specificSurveyList = getSpecificSurveyList();
+
         int listLength = specificSurveyList.size();
         double [] results = new double[4];                         //Int Array für Ergebnisse (1) Gesammt (2) Individ (3) Orga (4) System
 
 
-        for (Map.Entry e: specificSurveyList.entrySet()){
+        for (SpecificSurvey ss : specificSurveyList){
 
             //Gesamtergebnis und Kategorien aufsummiereun und dann durch Anzahl an specificSurveys teileun um Durchschnittswerte zu erhalten
-            SpecificSurvey ss = (SpecificSurvey) e.getValue();
             double[] specificResults = ss.calcResult();
 
             results[0] += specificResults[0];
@@ -126,6 +144,76 @@ public class Survey {
         return false;
     }
 
+    public ArrayList<SpecificSurvey> getSpecificSurveyList (){
+
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().child("SpecificSurvey");
+        final ArrayList<SpecificSurvey> specificSurveyArrayList = new ArrayList<>();
+
+        //Abfrage in Datenbank für alle SS Ids die Survey zugeordnet sind
+        final ArrayList<String> specificSurveyIdList = getSpecificSurveyIdList();
+
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot sn : dataSnapshot.getChildren()){
+
+                    //Survey in Datenbank
+                    SpecificSurvey currentSurvey = sn.getValue(SpecificSurvey.class);
+
+                    //Gehe durch alle IDs in Liste des Surveys um enthaltene SS in SS Liste hinzuzufügen
+                    for(String id : specificSurveyIdList){
+                        if(id.equals(currentSurvey.getSpecificSurveyID())){
+                            specificSurveyArrayList.add(currentSurvey);
+                            break;
+                        }
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+
+        });
+
+        return specificSurveyArrayList;
+    }
+
+    public ArrayList<String> getSpecificSurveyIdList(){
+
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().child("Survey").child(surveyCode).child("specificSurveyIdList");
+        final ArrayList<String> specificSurveyIdList = new ArrayList<>();
+
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot sn : dataSnapshot.getChildren()){
+
+                    specificSurveyIdList.add(sn.getValue().toString());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+
+        });
+
+        return specificSurveyIdList;
+
+    }
+
+    public void addSpecificSurveyToSurvey (SpecificSurvey ss){
+
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().child("Survey").child(surveyCode).child("specificSurveyIdList");
+        mRef.setValue(ss.getSpecificSurveyID());
+    }
+
 
     public Map<String, Object> toMap(){
         HashMap<String, Object> result = new HashMap<>();
@@ -136,8 +224,6 @@ public class Survey {
         result.put("systemType",systemType);
         result.put("systemStatus",systemStatus);
         result.put("resultTotal",resultTotal);
-        result.put("resultCategories",resultCategories);
-        result.put("specificSurveyList",specificSurveyList);
 
         return result;
     }

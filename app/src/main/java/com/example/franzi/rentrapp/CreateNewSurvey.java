@@ -107,8 +107,6 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
 
         newSurvey = new Survey(surveyCode,companyName,projectName,systemType,systemStatus,0);
 
-
-
         //Save in database
 
         saveSurveyInDatabase();
@@ -134,12 +132,16 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
         newSurvey.setSurveyCode(key);
 
         //Transform Input into HashMap of Survey and add to database
-        Map<String,Object> postValues = newSurvey.toMap();
+        Map<String, Object> surveyMap = newSurvey.toMap();
 
       //Map<String,Object> surveyUpdate = new HashMap<>();
       //surveyUpdate.put(key,surveyUpdate);
 
-        surveyDatabase.child("Survey").child(key).setValue(postValues);
+        surveyDatabase.child("Survey").child(key).setValue(surveyMap);
+        surveyDatabase.child("Survey").child(key).child("resultCategories").setValue(newSurvey.getResultCategories());
+        surveyDatabase.child("Survey").child(key).child("specificSurveyList").setValue(newSurvey.getSpecificSurveyIdList());
+
+
     }
 
 }
