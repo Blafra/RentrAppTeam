@@ -22,13 +22,6 @@
         <activity android:name=".System" />
         <activity android:name=".IndividuellesErgebnis" />
         <activity android:name=".CreateNewSurvey" />
-        <activity android:name=".StartView">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".ErgebnisIndividuell" />
     </application>
 
