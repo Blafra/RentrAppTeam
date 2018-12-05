@@ -10,20 +10,18 @@ public class Survey {
     private String projectName;
     private String systemType;
     private String systemStatus;
-    private Question[] questions;
     private double resultTotal;
     private double[] resultCategories;
     private boolean[] configuration;
     private ArrayList<SpecificSurvey> specificSurveyList = new ArrayList<>();
 
     //Constructor
-    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus, Question[] questions, boolean[] config){
+    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus, boolean[] config){
         this.surveyCode = surveyCode;
         this.companyName = companyName;
         this.projectName = projectName;
         this.systemType = systemType;
         this.systemStatus = systemStatus;
-        this.questions = questions;
         this.configuration = config;
     }
 
@@ -70,14 +68,6 @@ public class Survey {
 
     public void setSystemStatus(String systemStatus) {
         this.systemStatus = systemStatus;
-    }
-
-    public Question[] getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(Question[] questions) {
-        this.questions = questions;
     }
 
     public double getResultTotal() {
