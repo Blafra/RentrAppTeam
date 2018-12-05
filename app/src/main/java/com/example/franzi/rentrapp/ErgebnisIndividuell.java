@@ -23,7 +23,7 @@ public class ErgebnisIndividuell extends AppCompatActivity implements View.OnCli
         ss = intent.getParcelableExtra("Specific_Survey4");
 
         //Berechnung der Ergebnisses
-
+    //DB Ergebnise ablegen TO-DO
         double[] results = ss.calcResult();
 
         //Ergebnisse in Textfeldern anzeigen lassen

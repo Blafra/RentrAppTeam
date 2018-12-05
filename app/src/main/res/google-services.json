@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "466267641154",
+    "firebase_url": "https://techgapp.firebaseio.com",
+    "project_id": "techgapp",
+    "storage_bucket": "techgapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466267641154:android:3ca2e02462c989e7",
+        "android_client_info": {
+          "package_name": "com.example.franzi.rentrapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466267641154-1gd32r0egsgtittagd47hen40lr8f5mt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.franzi.rentrapp",
+            "certificate_hash": "a889ca2090d5b19cc44ee1275806de9e082becb8"
+          }
+        },
+        {
+          "client_id": "466267641154-5pfjjj22sic7rb0tkrqhl0icjgg8fbeg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsQWtxD9IbIyjnGAEOmS31JCTnmkDz23I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466267641154-5pfjjj22sic7rb0tkrqhl0icjgg8fbeg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
