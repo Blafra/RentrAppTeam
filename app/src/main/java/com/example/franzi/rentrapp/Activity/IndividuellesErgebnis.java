@@ -1,11 +1,13 @@
-package com.example.franzi.rentrapp;
+package com.example.franzi.rentrapp.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import java.math.RoundingMode;
+import com.example.franzi.rentrapp.R;
+import com.example.franzi.rentrapp.Model.SpecificSurvey;
+
 import java.text.DecimalFormat;
 
 public class IndividuellesErgebnis extends AppCompatActivity {

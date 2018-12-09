@@ -1,4 +1,4 @@
-package com.example.franzi.rentrapp;
+package com.example.franzi.rentrapp.Model;
 
 public class Employee {
 

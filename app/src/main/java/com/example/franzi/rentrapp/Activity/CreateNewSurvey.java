@@ -1,7 +1,6 @@
-package com.example.franzi.rentrapp;
+package com.example.franzi.rentrapp.Activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,13 +10,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.example.franzi.rentrapp.R;
+import com.example.franzi.rentrapp.Model.Survey;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class CreateNewSurvey extends AppCompatActivity implements View.OnClickListener {
 

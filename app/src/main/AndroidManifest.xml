@@ -9,20 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Menue">
+        <activity android:name=".Activity.Menue">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Start" />
-        <activity android:name=".Individuell" />
-        <activity android:name=".Organisatorisch" />
-        <activity android:name=".System" />
-        <activity android:name=".IndividuellesErgebnis" />
-        <activity android:name=".CreateNewSurvey" />
-        <activity android:name=".ErgebnisIndividuell" />
+        <activity android:name=".Activity.Start" />
+        <activity android:name=".Activity.Individuell" />
+        <activity android:name=".Activity.Organisatorisch" />
+        <activity android:name=".Activity.System" />
+        <activity android:name=".Activity.IndividuellesErgebnis" />
+        <activity android:name=".Activity.CreateNewSurvey" />
+        <activity android:name=".Activity.ErgebnisIndividuell" />
     </application>
 
 

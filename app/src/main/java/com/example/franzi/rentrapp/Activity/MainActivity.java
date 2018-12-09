@@ -1,4 +1,4 @@
-package com.example.franzi.rentrapp;
+package com.example.franzi.rentrapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
+import com.example.franzi.rentrapp.Model.Question;
+import com.example.franzi.rentrapp.R;
+import com.example.franzi.rentrapp.Model.SpecificSurvey;
+import com.example.franzi.rentrapp.Model.Survey;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

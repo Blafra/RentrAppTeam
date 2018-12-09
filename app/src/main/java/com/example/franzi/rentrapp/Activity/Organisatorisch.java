@@ -1,4 +1,4 @@
-package com.example.franzi.rentrapp;
+package com.example.franzi.rentrapp.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.franzi.rentrapp.R;
+import com.example.franzi.rentrapp.Model.SpecificSurvey;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.franzi.rentrapp;
+package com.example.franzi.rentrapp.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.franzi.rentrapp.R;
+import com.example.franzi.rentrapp.Model.SpecificSurvey;
 
 public class ErgebnisIndividuell extends AppCompatActivity implements View.OnClickListener {
 

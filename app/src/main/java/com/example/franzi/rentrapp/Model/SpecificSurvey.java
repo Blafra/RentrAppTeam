@@ -1,4 +1,4 @@
-package com.example.franzi.rentrapp;
+package com.example.franzi.rentrapp.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
