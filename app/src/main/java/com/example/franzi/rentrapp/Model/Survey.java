@@ -23,6 +23,7 @@ public class Survey {
     private String systemType;
     private String systemStatus;
     private double resultTotal;
+    private ArrayList<String> specificSurveyIdList;
     public Map<String, Double> resultCategories;
 
     //Constructor
@@ -38,6 +39,8 @@ public class Survey {
         this.projectName = projectName;
         this.systemType = systemType;
         this.systemStatus = systemStatus;
+
+        specificSurveyIdList = new ArrayList<String>();
 
         resultCategories = new HashMap<>();
         resultCategories.put("Individuell", null);
@@ -106,6 +109,9 @@ public class Survey {
         this.resultCategories = resultCategories;
     }
 
+    public void setSpecificSurveyIdList(ArrayList<String> specificSurveyIdList) {
+        this.specificSurveyIdList = specificSurveyIdList;
+    }
 
     //Weiter Methoden
 
@@ -209,8 +215,11 @@ public class Survey {
 
     public void addSpecificSurveyToSurvey (SpecificSurvey ss){
 
+        specificSurveyIdList.add(ss.getSpecificSurveyID());
+        //Update Database
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().child("Survey").child(surveyCode).child("specificSurveyIdList");
         mRef.setValue(ss.getSpecificSurveyID());
+
     }
 
     public Map<String, Object> toMap(){
