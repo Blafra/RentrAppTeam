@@ -10,7 +10,7 @@
         android:id="@+id/btnStart"
         android:layout_width="266dp"
         android:layout_height="91dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/text_view_boarder"
         android:text="Start"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"

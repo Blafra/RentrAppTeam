@@ -629,7 +629,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/text_view_boarder"
         android:text="WEITER"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"

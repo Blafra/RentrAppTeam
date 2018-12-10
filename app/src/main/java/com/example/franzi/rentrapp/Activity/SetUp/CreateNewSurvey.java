@@ -15,6 +15,8 @@ import com.example.franzi.rentrapp.Activity.Menue;
 import com.example.franzi.rentrapp.Controller.WriteToDB;
 import com.example.franzi.rentrapp.R;
 import com.example.franzi.rentrapp.Model.*;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -115,6 +117,24 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
         tvSurveyCode.setText(surveyCode);
 
         Toast.makeText(this, "Umfrage erfolgreich erstellt", Toast.LENGTH_LONG).show();
+    }
+
+    public static void saveSurveyInDatabase (Survey newSurvey){
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference mRef = database.getReference();
+
+        //To-Do SurveyCode
+
+        String key = mRef.child("Survey").push().getKey();
+        newSurvey.setSurveyCode(key);
+
+        //Transform Input into HashMap of Survey and add to database
+        Map<String, Object> surveyMap = newSurvey.toMap();
+
+        mRef.child("Survey").child(key).setValue(surveyMap);
+
     }
 
 

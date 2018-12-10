@@ -28,6 +28,12 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
     private SpecificSurvey ss;
     private Button btnStart;
 
+    //Variablen für Datenbankabfragen
+    final List<Survey> surveys = new ArrayList<Survey>();
+    final List<Question> questionList = new ArrayList<Question>();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference mRef = database.getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +53,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         String surveyCode = iText.getText().toString();
 
         //Get survey instance form database and put information in "Survey" (sv) variable
-        RetrieveFromDB.getSurvey(surveyCode);
+        getSurvey(surveyCode);
 
         //Create Specific Survey Instance and put information in "Specifc Survey" (ss) variable
         if(sv!=null) {
@@ -68,7 +74,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
     public SpecificSurvey createSpecificSurvey(Survey sv){
 
-        List<Question> questionList =  RetrieveFromDB.getQuestions(sv);
+        List<Question> questionList =  getQuestions(sv);
 
         Question [] questionArray = new Question[questionList.size()];
         questionArray = questionList.toArray(questionArray);
@@ -80,6 +86,69 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         ss = WriteToDB.saveSpecificSurveyInDatabase(ss);
 
         return ss;
+
+    }
+
+    //Get QuestionList from Database
+
+    public List<Question> getQuestions(final Survey survey) {
+
+
+        DatabaseReference surveyDBRef = mRef.child("Question");
+
+        surveyDBRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot sn : dataSnapshot.getChildren()) {
+                    Question question = sn.getValue(Question.class);
+
+                    if (question.getSystemCategory().equals(survey.getSystemStatus())
+                            || question.getSystemCategory().equals("Beides")
+                            || question.getSystemCategory().equals("beides")) {
+                        questionList.add(question);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return questionList;
+    }
+
+    public void getSurvey(final String surveyCode){
+
+
+
+        DatabaseReference surveyDBRef = mRef.child("Survey");
+
+        //Add Value Listener to get Data
+        surveyDBRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot sn : dataSnapshot.getChildren()){
+                    Survey currentSurvey = sn.getValue(Survey.class);
+
+                    if(currentSurvey.getSurveyCode().equals(surveyCode)){
+                        surveys.add(currentSurvey);
+                        break;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+
+        });
+
+
 
     }
 

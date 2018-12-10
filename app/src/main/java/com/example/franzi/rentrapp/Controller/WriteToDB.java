@@ -26,7 +26,6 @@ public class WriteToDB {
 
         mRef.child("Survey").child(key).setValue(surveyMap);
 
-
     }
 
     public static SpecificSurvey saveSpecificSurveyInDatabase(SpecificSurvey ss) {
