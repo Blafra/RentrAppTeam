@@ -1,4 +1,4 @@
-package com.example.franzi.rentrapp;
+package com.example.franzi.rentrapp.Model;
 
 import android.support.annotation.NonNull;
 
@@ -136,7 +136,6 @@ public class Survey {
         resultCategories.put("System",results[1]/listLength);
     }
 
-
     public boolean checkCode(String code){
         if(this.surveyCode==code){
             return true;
@@ -213,7 +212,6 @@ public class Survey {
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().child("Survey").child(surveyCode).child("specificSurveyIdList");
         mRef.setValue(ss.getSpecificSurveyID());
     }
-
 
     public Map<String, Object> toMap(){
         HashMap<String, Object> result = new HashMap<>();

@@ -1,23 +1,26 @@
-package com.example.franzi.rentrapp.Activity;
+package com.example.franzi.rentrapp.Activity.Evaluation;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.franzi.rentrapp.Activity.MainActivity;
 import com.example.franzi.rentrapp.R;
 import com.example.franzi.rentrapp.Model.SpecificSurvey;
 
-import java.text.DecimalFormat;
-
-public class IndividuellesErgebnis extends AppCompatActivity {
+public class ErgebnisIndividuell extends AppCompatActivity implements View.OnClickListener {
 
     SpecificSurvey ss;
+    Button btnEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individuelles_ergebnis);
+
 
         //Specific Survey Object von vorhergehender Activity holen
         Intent intent = getIntent();
@@ -34,19 +37,27 @@ public class IndividuellesErgebnis extends AppCompatActivity {
         TextView tvResultOrg = (TextView) findViewById(R.id.tvResultOrg);
         TextView tvResultSys = (TextView) findViewById(R.id.tvResultSys);
 
-        DecimalFormat f = new DecimalFormat(".##");
+        tvResultTotal.setText(Double.toString(results[0]));
+        tvResultInd.setText(Double.toString(results[1]));
+        tvResultOrg.setText(Double.toString(results[2]));
+        tvResultSys.setText(Double.toString(results[3]));
 
-        tvResultTotal.setText(f.format(results[0]));
-        tvResultInd.setText(f.format(results[1]));
-        tvResultOrg.setText(f.format(results[2]));
-        tvResultSys.setText(f.format(results[3]));
 
+        btnEnd = (Button)findViewById(R.id.btnEnd);
+        btnEnd.setOnClickListener(this);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+        //Speichern der Antwortwerte im Antwortarray
+        //Radio Buttons in Liste einfügen
         //Nächste Seite aufrufen: Individuelles Ergebnis
 
         Intent intent1 = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        startActivity(intent1);
         this.finish();
-
     }
-
 }
+

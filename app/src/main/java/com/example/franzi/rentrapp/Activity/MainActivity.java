@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
+import com.example.franzi.rentrapp.Activity.Execution.Individuell;
 import com.example.franzi.rentrapp.Model.Question;
 import com.example.franzi.rentrapp.R;
 import com.example.franzi.rentrapp.Model.SpecificSurvey;

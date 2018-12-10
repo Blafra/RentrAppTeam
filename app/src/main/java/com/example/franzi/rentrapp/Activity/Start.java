@@ -1,4 +1,4 @@
-package com.example.franzi.rentrapp;
+package com.example.franzi.rentrapp.Activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.franzi.rentrapp.Activity.Execution.Individuell;
+import com.example.franzi.rentrapp.R;
+import com.example.franzi.rentrapp.Model.*;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +36,6 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         btnStart = (Button) findViewById(R.id.btnStart);
         /* OnClickListener verwaltet das Klicken auf den Button */
         btnStart.setOnClickListener(this);
-
     }
 
     @Override
@@ -66,8 +68,6 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
         mRef = FirebaseDatabase.getInstance().getReference().child("Survey");
 
-
-
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -99,6 +99,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 for(DataSnapshot sn : dataSnapshot.getChildren()){
                     Question question = sn.getValue(Question.class);
 
@@ -113,6 +114,27 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
             }
         });
+
+       /* mRef = FirebaseDatabase.getInstance().getReference().child("Question");
+
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot sn : dataSnapshot.getChildren()){
+                    Question question = sn.getValue(Question.class);
+
+                    if(question.getSystemCategory().equals(survey.getSystemStatus()) || question.getSystemCategory().equals("Beides") || question.getSystemCategory().equals("beides")){
+                        questionList.add(question);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });*/
     }
 
     public SpecificSurvey createSpecificSurvey(Survey sv){

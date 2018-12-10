@@ -1,7 +1,6 @@
-package com.example.franzi.rentrapp;
+package com.example.franzi.rentrapp.Activity.SetUp;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,11 +10,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.example.franzi.rentrapp.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.franzi.rentrapp.Model.*;
 
 import java.util.ArrayList;
 
@@ -83,7 +81,7 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
 
         //Create new instance of Survey
 
-        Survey newSurvey = new Survey(surveyCode,companyName,projectName,systemType,systemStatus,config);
+        Survey newSurvey = new Survey(surveyCode,companyName,projectName,systemType,systemStatus,0);
 
 
         //Survey Objectinstanz in Datenbank abspeichern

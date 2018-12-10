@@ -17,12 +17,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.Start" />
-        <activity android:name=".Activity.Individuell" />
-        <activity android:name=".Activity.Organisatorisch" />
+        <activity android:name=".Activity.Execution.Individuell" />
+        <activity android:name=".Activity.Execution.Organisatorisch" />
         <activity android:name=".Activity.System" />
-        <activity android:name=".Activity.IndividuellesErgebnis" />
-        <activity android:name=".Activity.CreateNewSurvey" />
-        <activity android:name=".Activity.ErgebnisIndividuell" />
+        <activity android:name=".Activity.Evaluation.IndividuellesErgebnis" />
+        <activity android:name=".Activity.SetUp.CreateNewSurvey" />
+        <activity android:name=".Activity.Evaluation.ErgebnisIndividuell" />
     </application>
 
 
