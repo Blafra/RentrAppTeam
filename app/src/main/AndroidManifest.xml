@@ -19,11 +19,10 @@
         <activity android:name=".Activity.Start" />
         <activity android:name=".Activity.Execution.Individuell" />
         <activity android:name=".Activity.Execution.Organisatorisch" />
-        <activity android:name=".Activity.System" />
         <activity android:name=".Activity.Evaluation.IndividuellesErgebnis" />
         <activity android:name=".Activity.SetUp.CreateNewSurvey" />
         <activity android:name=".Activity.Evaluation.ErgebnisIndividuell" />
+        <activity android:name=".Questionnaire"></activity>
     </application>
-
 
 </manifest>
