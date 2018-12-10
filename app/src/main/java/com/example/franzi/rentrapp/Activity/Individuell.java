@@ -28,7 +28,7 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
 
         //Specific Survey Object von vorhergehender Activity holen
         Intent intent = getIntent();
-        ss = intent.getParcelableExtra("Specific_Survey");
+        ss = intent.getParcelableExtra("Specific_Survey1");
 
         //Fragen ausfüllen
         //TextView in Liste zusammenfassen
@@ -38,6 +38,8 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
         tvList.add((TextView) findViewById(R.id.tvQ1_4));
         tvList.add((TextView) findViewById(R.id.tvQ1_6));
         tvList.add((TextView) findViewById(R.id.tvQ1_7a));
+        Question[] tmpArray = ss.getQuestionArray();
+
 
         //Setzte alle Text Views gleich den noch nicht beantworteten Fragen im Fragenarray
         for(TextView tv : tvList){

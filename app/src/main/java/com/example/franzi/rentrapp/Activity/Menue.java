@@ -1,12 +1,10 @@
-package com.example.franzi.rentrapp.Activity;
+package com.example.franzi.rentrapp;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import com.example.franzi.rentrapp.R;
 
 public class Menue extends AppCompatActivity implements View.OnClickListener {
 
