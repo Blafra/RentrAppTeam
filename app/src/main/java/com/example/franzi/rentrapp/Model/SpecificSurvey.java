@@ -6,6 +6,9 @@ import android.os.Parcelable;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SpecificSurvey implements Parcelable {
 
     private String specificSurveyID;
@@ -14,6 +17,7 @@ public class SpecificSurvey implements Parcelable {
     private int currentAnswerIdx;
     private Question[] questionArray;
     private int currentQuestionIdx;
+    private int surveyID;
 
     //Constructor
 
@@ -95,6 +99,22 @@ public class SpecificSurvey implements Parcelable {
 
     public void setSpecificSurveyID(String specificSurveyID) {
         this.specificSurveyID = specificSurveyID;
+    }
+
+    public int getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public int getSurveyID() {
+        return surveyID;
+    }
+
+    public void setSurveyID(int surveyID) {
+        this.surveyID = surveyID;
     }
 
     //Weitere Methoden
@@ -179,5 +199,19 @@ public class SpecificSurvey implements Parcelable {
         }
     };
 
+
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+
+        result.put("specificSurveyID",specificSurveyID);
+        result.put("employeeID",employeeID);
+        result.put("answerArray",answerArray);
+        result.put("currentAnswerIdx",currentAnswerIdx);
+        result.put("questionArray",questionArray);
+        result.put("currentQuestionIdx",currentQuestionIdx);
+        result.put("surveyID",surveyID);
+
+        return result;
+    }
 
 }
