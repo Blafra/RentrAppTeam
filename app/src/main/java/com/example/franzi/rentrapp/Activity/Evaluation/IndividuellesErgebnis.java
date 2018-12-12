@@ -12,7 +12,7 @@ import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import java.text.DecimalFormat;
 
 public class IndividuellesErgebnis extends AppCompatActivity {
-
+    /*
     SpecificSurvey ss;
 
     @Override
@@ -26,7 +26,7 @@ public class IndividuellesErgebnis extends AppCompatActivity {
 
         //Berechnung der Ergebnisses
 
-        double[] results = ss.calcResult();
+        //double[] results = ss.calcResult();
 
         //Ergebnisse in Textfeldern anzeigen lassen
 
@@ -48,6 +48,6 @@ public class IndividuellesErgebnis extends AppCompatActivity {
         startActivity(intent);
         this.finish();
 
-    }
+    }*/
 
 }

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sv = new Survey("LALA", "SAP", "S4HANA", "ERP", "Neueinführung");
 
 
-        ss = new SpecificSurvey(1, questions);
+
 
 
 
@@ -113,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
     public static void saveQuestionResultValues (ArrayList<RadioButton> rbtnList, SpecificSurvey ss){
 
 
@@ -125,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for(RadioButton rbtn : rbtnList){
 
             if(rbtn.isChecked()){
-                ss.setAnswerArrayValues((answerIdx),resultValue);
+                ss.setAnswerArrayValues(answerIdx,resultValue);
                 answerIdx++;
             }
 

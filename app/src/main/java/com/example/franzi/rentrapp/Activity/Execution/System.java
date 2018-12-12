@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import com.example.franzi.rentrapp.Model.*;
 import com.example.franzi.rentrapp.Activity.*;
 import com.example.franzi.rentrapp.Activity.Evaluation.*;
@@ -40,9 +42,11 @@ public class System extends AppCompatActivity implements View.OnClickListener {
         tvList.add((TextView) findViewById(R.id.tvQ3_25));
         tvList.add((TextView) findViewById(R.id.tvQ3_28));
 
+        List<Question> questionList = ss.getQuestionList();
+
         //Setzte alle Text Views gleich den noch nicht beantworteten Fragen im Fragenarray
         for(TextView tv : tvList){
-            tv.setText(ss.getQuestionArray()[ss.getCurrentQuestionIdx()].getQuestionText());
+            tv.setText(questionList.get(ss.getCurrentQuestionIdx()).getQuestionText());
             ss.setCurrentQuestionIdx(ss.getCurrentQuestionIdx()+1);
         }
 

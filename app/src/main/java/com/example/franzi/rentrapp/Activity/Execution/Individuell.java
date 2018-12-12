@@ -15,6 +15,7 @@ import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.Model.Question;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Individuell extends AppCompatActivity implements View.OnClickListener {
 
@@ -40,15 +41,14 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
         tvList.add((TextView) findViewById(R.id.tvQ1_4));
         tvList.add((TextView) findViewById(R.id.tvQ1_6));
         tvList.add((TextView) findViewById(R.id.tvQ1_7a));
-        Question[] tmpArray = ss.getQuestionArray();
 
+        List<Question> questionList = ss.getQuestionList();
 
         //Setzte alle Text Views gleich den noch nicht beantworteten Fragen im Fragenarray
         for(TextView tv : tvList){
-            tv.setText(ss.getQuestionArray()[ss.getCurrentQuestionIdx()].getQuestionText());
+            tv.setText(questionList.get(ss.getCurrentQuestionIdx()).getQuestionText());
             ss.setCurrentQuestionIdx(ss.getCurrentQuestionIdx()+1);
         }
-
 
         //Button Listener
         btnWeiter1 = (Button)findViewById(R.id.btnWeiter1);

@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,34 +34,22 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
 
     //Variablen für Datenbankabfragen
-    final List<Survey> surveys = new ArrayList<Survey>();
-    final List<Question> questionList = new ArrayList<Question>();
+    final List<Survey> allSurveyList = new ArrayList<Survey>();
+    final List<Question> allQuestionList = new ArrayList<Question>();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mRef = database.getReference();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_start);
-        DatabaseReference surveyDBRef = mRef.child("Survey");
-        surveyDBRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot sn : dataSnapshot.getChildren()){
-                    Survey currentSurvey = currentSurvey = sn.getValue(Survey.class);
-                        surveys.add(currentSurvey);
-                }
+        getSurveyData();
+        getQuestionData();
 
-                Log.i(TAG, "Survey found:");
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-
-        });
         btnStart = (Button) findViewById(R.id.btnStart);
         /* OnClickListener verwaltet das Klicken auf den Button */
         btnStart.setOnClickListener(this);
@@ -73,52 +62,22 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
         EditText iText = (EditText) findViewById(R.id.iStartSurveyCode);
         final String surveyCode = iText.getText().toString();
+        Survey sv = new Survey();
 
-
-        for (Survey survey : surveys) {
-            if (survey.getSurveyCode().equals(surveyCode)) {
-                Log.i(TAG, "geklappt");
-                if(survey.getSystemStatus()!=null){
-                    Log.i(TAG, "System Status erkannt");
-                }
+        //Look for the survey in the Survey List
+        for(Survey s : allSurveyList){
+            if(s.getSurveyCode().equals(surveyCode)){
+                sv = s;
+                break;
             }
+        }
 
-    /*    //Get survey instance form database and put information in "Survey" (sv) variable
-        DatabaseReference surveyDBRef = mRef.child("Survey");
+        //Create Specific Survey Instance and put information in "Specifc Survey" (ss) variable
 
-        //Add Value Listener to get Data
-        surveyDBRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                Survey currentSurvey = new Survey();
-
-                for(DataSnapshot sn : dataSnapshot.getChildren()){
-
-                    currentSurvey = sn.getValue(Survey.class);
-
-                    if(currentSurvey.getSurveyCode().equals(surveyCode)){
-                        surveys.add(currentSurvey);
-                        break;
-                    }
-                }
-
-                Log.i(TAG, "Survey found:" + currentSurvey.getSurveyCode());
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-
-        });*/
-
-            //Create Specific Survey Instance and put information in "Specifc Survey" (ss) variable
-  /*     int i = 0;
-        if( i == 0) {
-           ss = createSpecificSurvey(sv);
-       // }else {
-            Toast.makeText(this,"Code nicht gefunden",Toast.LENGTH_LONG).show();
+        if (sv!=null) {
+            ss = createSpecificSurvey(sv);
+            }else {
+            Toast.makeText(this,R.string.codenotfound_createnewsurvey, Toast.LENGTH_LONG).show();
             return;
         }
         //Go to next page and add survey Code
@@ -126,34 +85,59 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         Intent intent = new Intent(this, Individuell.class);
         intent.putExtra("Specific_Survey1", ss);
         startActivity(intent);
-        this.finish(); */
-        }
+        this.finish();
+    }
 
-
-
-  /*  public SpecificSurvey createSpecificSurvey(Survey sv){
+    public SpecificSurvey createSpecificSurvey (Survey sv){
 
         List<Question> questionList =  getQuestions(sv);
 
-        Question [] questionArray = new Question[questionList.size()];
-        questionArray = questionList.toArray(questionArray);
-
-        ss = new SpecificSurvey(1, questionArray);
-
-
-
-        ss = WriteToDB.saveSpecificSurveyInDatabase(ss);
+        ss = new SpecificSurvey(1, questionList);
 
         return ss;
-
     }
 
-    //Get QuestionList from Database
+    public List<Question> getQuestions(Survey sv){
 
-    public List<Question> getQuestions(final Survey survey) {
+        List<Question> surveyQuestionList = new ArrayList<>();
 
+        for(Question q : allQuestionList){
+            String projectSystemCategory = sv.getSystemStatus();
+            String questionSystemCategory= q.getSystemCategory();
 
-        DatabaseReference surveyDBRef = mRef.child("Question");
+            if(projectSystemCategory.equalsIgnoreCase(questionSystemCategory)){
+                surveyQuestionList.add(q);
+            } else if (questionSystemCategory.equalsIgnoreCase("Beides")){
+                surveyQuestionList.add(q);
+            }
+        }
+
+        return surveyQuestionList;
+    }
+
+    public void getSurveyData(){
+        DatabaseReference surveyDBRef = mRef.child("Survey");
+        surveyDBRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot sn : dataSnapshot.getChildren()){
+                    Survey currentSurvey = sn.getValue(Survey.class);
+                    allSurveyList.add(currentSurvey);
+                }
+
+                Log.i(TAG, "Survey found:");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    private void getQuestionData(){
+
+    DatabaseReference surveyDBRef = mRef.child("Question");
 
         surveyDBRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -161,12 +145,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
                 for (DataSnapshot sn : dataSnapshot.getChildren()) {
                     Question question = sn.getValue(Question.class);
-
-                    if (question.getSystemCategory().equals(survey.getSystemStatus())
-                            || question.getSystemCategory().equals("Beides")
-                            || question.getSystemCategory().equals("beides")) {
-                        questionList.add(question);
-                    }
+                    allQuestionList.add(question);
                 }
             }
 
@@ -175,44 +154,6 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
             }
         });
-
-        return questionList;
-    }*/
-
-   /* public void getSurvey(final String surveyCode){
-
-        DatabaseReference surveyDBRef = mRef.child("Survey");
-
-        //Add Value Listener to get Data
-        surveyDBRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                Survey currentSurvey = new Survey();
-
-                for(DataSnapshot sn : dataSnapshot.getChildren()){
-
-                    currentSurvey = sn.getValue(Survey.class);
-
-                    if(currentSurvey.getSurveyCode().equals(surveyCode)){
-                        surveys.add(currentSurvey);
-                        break;
-                    }
-                }
-
-                Log.i(TAG, "Survey found:" + currentSurvey.getSurveyCode());
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-
-        });
-
-
-
-    }*/
 
     }
 }

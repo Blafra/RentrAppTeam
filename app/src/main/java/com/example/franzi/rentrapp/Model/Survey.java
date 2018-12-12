@@ -39,8 +39,6 @@ public class Survey {
         this.systemStatus = systemStatus;
         }
 
-
-
     //Getter & Setter
 
     public String getSurveyCode() {
@@ -91,17 +89,15 @@ public class Survey {
 
       //TO-DO
 
-
     }
 
     public boolean checkCode(String code){
+
         if(this.surveyCode==code){
             return true;
         }
         return false;
     }
-
-
 
 
     public Map<String, Object> toMap(){
