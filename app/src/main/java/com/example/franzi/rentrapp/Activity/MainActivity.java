@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnStart;
+    private static final String TAG = "MainActivity";
 
     Survey sv;
     SpecificSurvey ss;

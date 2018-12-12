@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ import java.util.List;
 
 public class Start extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "";
     private Survey sv;
     private SpecificSurvey ss;
     private Button btnStart;
@@ -56,7 +58,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         getSurvey(surveyCode);
 
         //Create Specific Survey Instance and put information in "Specifc Survey" (ss) variable
-        if(sv!=null) {
+        if(!surveys.isEmpty()) {
            ss = createSpecificSurvey(sv);
         }else {
             Toast.makeText(this,"Code nicht gefunden",Toast.LENGTH_LONG).show();
@@ -122,23 +124,26 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
     public void getSurvey(final String surveyCode){
 
-
-
         DatabaseReference surveyDBRef = mRef.child("Survey");
 
         //Add Value Listener to get Data
-        surveyDBRef.addValueEventListener(new ValueEventListener() {
+        surveyDBRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                Survey currentSurvey = new Survey();
+
                 for(DataSnapshot sn : dataSnapshot.getChildren()){
-                    Survey currentSurvey = sn.getValue(Survey.class);
+
+                    currentSurvey = sn.getValue(Survey.class);
 
                     if(currentSurvey.getSurveyCode().equals(surveyCode)){
                         surveys.add(currentSurvey);
                         break;
                     }
                 }
+
+                Log.i(TAG, "Survey found:" + currentSurvey.getSurveyCode());
 
             }
 

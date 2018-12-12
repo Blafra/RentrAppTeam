@@ -99,7 +99,7 @@ public class System extends AppCompatActivity implements View.OnClickListener {
         if(filledOutCompletely) {
             //Antworten speichern
             MainActivity.saveQuestionResultValues(rbtnList,ss);
-            Intent intent = new Intent(this, ErgebnisIndividuell.class);
+            Intent intent = new Intent(this, IndividuellesErgebnis.class);
             intent.putExtra("Specific_Survey4", ss);
             startActivity(intent);
             this.finish();
