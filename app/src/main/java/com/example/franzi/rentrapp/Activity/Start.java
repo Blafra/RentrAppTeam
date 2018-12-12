@@ -29,6 +29,8 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
     private Survey sv;
     private SpecificSurvey ss;
     private Button btnStart;
+   // final String surveyCode;
+
 
     //Variablen für Datenbankabfragen
     final List<Survey> surveys = new ArrayList<Survey>();
@@ -40,7 +42,25 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        DatabaseReference surveyDBRef = mRef.child("Survey");
+        surveyDBRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                for(DataSnapshot sn : dataSnapshot.getChildren()){
+                    Survey currentSurvey = currentSurvey = sn.getValue(Survey.class);
+                        surveys.add(currentSurvey);
+                }
+
+                Log.i(TAG, "Survey found:");
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+
+        });
         btnStart = (Button) findViewById(R.id.btnStart);
         /* OnClickListener verwaltet das Klicken auf den Button */
         btnStart.setOnClickListener(this);
@@ -52,15 +72,52 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         //Get survey code
 
         EditText iText = (EditText) findViewById(R.id.iStartSurveyCode);
-        String surveyCode = iText.getText().toString();
+        final String surveyCode = iText.getText().toString();
 
-        //Get survey instance form database and put information in "Survey" (sv) variable
-        getSurvey(surveyCode);
 
-        //Create Specific Survey Instance and put information in "Specifc Survey" (ss) variable
-        if(!surveys.isEmpty()) {
+        for (Survey survey : surveys) {
+            if (survey.getSurveyCode().equals(surveyCode)) {
+                Log.i(TAG, "geklappt");
+                if(survey.getSystemStatus()!=null){
+                    Log.i(TAG, "System Status erkannt");
+                }
+            }
+
+    /*    //Get survey instance form database and put information in "Survey" (sv) variable
+        DatabaseReference surveyDBRef = mRef.child("Survey");
+
+        //Add Value Listener to get Data
+        surveyDBRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Survey currentSurvey = new Survey();
+
+                for(DataSnapshot sn : dataSnapshot.getChildren()){
+
+                    currentSurvey = sn.getValue(Survey.class);
+
+                    if(currentSurvey.getSurveyCode().equals(surveyCode)){
+                        surveys.add(currentSurvey);
+                        break;
+                    }
+                }
+
+                Log.i(TAG, "Survey found:" + currentSurvey.getSurveyCode());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+
+        });*/
+
+            //Create Specific Survey Instance and put information in "Specifc Survey" (ss) variable
+  /*     int i = 0;
+        if( i == 0) {
            ss = createSpecificSurvey(sv);
-        }else {
+       // }else {
             Toast.makeText(this,"Code nicht gefunden",Toast.LENGTH_LONG).show();
             return;
         }
@@ -69,12 +126,12 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         Intent intent = new Intent(this, Individuell.class);
         intent.putExtra("Specific_Survey1", ss);
         startActivity(intent);
-        this.finish();
-    }
+        this.finish(); */
+        }
 
 
 
-    public SpecificSurvey createSpecificSurvey(Survey sv){
+  /*  public SpecificSurvey createSpecificSurvey(Survey sv){
 
         List<Question> questionList =  getQuestions(sv);
 
@@ -120,9 +177,9 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         });
 
         return questionList;
-    }
+    }*/
 
-    public void getSurvey(final String surveyCode){
+   /* public void getSurvey(final String surveyCode){
 
         DatabaseReference surveyDBRef = mRef.child("Survey");
 
@@ -155,7 +212,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
 
 
+    }*/
+
     }
-
-
 }
