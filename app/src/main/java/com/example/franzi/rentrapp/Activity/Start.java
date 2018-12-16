@@ -83,7 +83,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         }
         //Go to next page and add survey Code
 
-        Intent intent = new Intent(this, Questionnaire.class);
+        Intent intent = new Intent(this, Individuell.class);
         intent.putExtra("Specific_Survey1", ss);
         startActivity(intent);
         this.finish();
