@@ -24,7 +24,7 @@
         <activity android:name=".Activity.Execution.System" />
         <activity android:name=".Activity.Evaluation.IndividuellesErgebnis" />
         <activity android:name=".Activity.SetUp.CreateNewSurvey" />
+        <activity android:name=".Activity.Execution.Questionnaire"></activity>
     </application>
-
 
 </manifest>

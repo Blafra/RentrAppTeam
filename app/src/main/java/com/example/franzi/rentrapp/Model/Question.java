@@ -26,6 +26,10 @@ public class Question implements Parcelable {
         QuestionCategory = in.readString();
     }
 
+    public Question (String questionText){
+        this.QuestionText = questionText;
+    }
+
     public Question(){
 
     }

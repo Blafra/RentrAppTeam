@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.franzi.rentrapp.Activity.Execution.Individuell;
+import com.example.franzi.rentrapp.Activity.Execution.Questionnaire;
 import com.example.franzi.rentrapp.R;
 import com.example.franzi.rentrapp.Model.*;
 import com.example.franzi.rentrapp.Controller.*;
@@ -82,7 +83,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         }
         //Go to next page and add survey Code
 
-        Intent intent = new Intent(this, Individuell.class);
+        Intent intent = new Intent(this, Questionnaire.class);
         intent.putExtra("Specific_Survey1", ss);
         startActivity(intent);
         this.finish();
