@@ -62,15 +62,15 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if (adapter.filledOutCompletely() == true) {
+        //if (adapter.filledOutCompletely() == true) {
             adapter.saveQuestionResultValues(ss);
             Intent intent = new Intent(this, Organisatorisch.class);
             intent.putExtra("Specific_Survey2", ss);
             startActivity(intent);
             this.finish();
-        } else {
-            Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();
-        }
+       // } else {
+       //     Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();
+      //  }
 
     }
 }

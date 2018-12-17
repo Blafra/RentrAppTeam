@@ -78,7 +78,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         if (sv!=null) {
             ss = createSpecificSurvey(sv);
             }else {
-            Toast.makeText(this,R.string.codenotfound_createnewsurvey, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this,R.string.codenotfound_createnewsurvey, Toast.LENGTH_LONG).show();
             return;
         }
         //Go to next page and add survey Code

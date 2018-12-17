@@ -59,15 +59,15 @@ public class System extends AppCompatActivity implements View.OnClickListener  {
 
     @Override
     public void onClick(View v) {
-        if (adapter.filledOutCompletely() == true) {
+        //if (adapter.filledOutCompletely() == true) {
             adapter.saveQuestionResultValues(ss);
             Intent intent = new Intent(this, System.class);
             intent.putExtra("Specific_Survey4", ss);
             startActivity(intent);
             this.finish();
-        } else {
-            Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();
-        }
+       // } else {
+        //    Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();
+        //}
 
     }
 }
