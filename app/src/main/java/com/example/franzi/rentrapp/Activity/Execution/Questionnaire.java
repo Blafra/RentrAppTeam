@@ -5,26 +5,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.franzi.rentrapp.Model.Question;
+import com.example.franzi.rentrapp.Model.SpecificSurvey;
+import com.example.franzi.rentrapp.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.franzi.rentrapp.Activity.MainActivity;
-import com.example.franzi.rentrapp.Model.Question;
-import com.example.franzi.rentrapp.R;
-import com.example.franzi.rentrapp.Model.SpecificSurvey;
+public class Questionnaire extends AppCompatActivity implements View.OnClickListener {
 
-
-
-public class Organisatorisch extends AppCompatActivity implements View.OnClickListener {
-    Button btnWeiter2;
+    Button btnWeiter1;
     SpecificSurvey ss;
     QuestionListAdapter adapter;
 
-    List<Question> questionsOrganisatorisch = new ArrayList<Question>();
+    List<Question> questionsIndividuell = new ArrayList<Question>();
     List<Question> surveyQuestions = new ArrayList<Question>();
 
 
@@ -34,13 +32,13 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_questionnaire);
 
         Intent intent = getIntent();
-        ss = getIntent().getParcelableExtra("Specific_Survey2");
+        ss = getIntent().getParcelableExtra("Specific_Survey1");
         surveyQuestions = ss.getQuestionList();
 
         //prüfen nach Questionkategorie und dann in Liste hinzufügen
         for (Question q : surveyQuestions) {
             if (q.getQuestionCategory().equals("Organisatorisch")) {
-                questionsOrganisatorisch.add(q);
+                questionsIndividuell.add(q);
             }
         }
 
@@ -49,12 +47,12 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
 
 
         //Questionlist Adapter erstellen
-        adapter = new QuestionListAdapter(this, R.layout.item_questionnaire, questionsOrganisatorisch);
+        adapter = new QuestionListAdapter(this, R.layout.item_questionnaire, questionsIndividuell);
         mlvQuestions.setAdapter(adapter);
 
 
-        btnWeiter2 = (Button) findViewById(R.id.btnWeiter1);
-        btnWeiter2.setOnClickListener(this);
+        btnWeiter1 = (Button) findViewById(R.id.btnWeiter1);
+        btnWeiter1.setOnClickListener(this);
 
 
     }
@@ -64,8 +62,8 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         if (adapter.filledOutCompletely() == true) {
             adapter.saveQuestionResultValues(ss);
-            Intent intent = new Intent(this, System.class);
-            intent.putExtra("Specific_Survey3", ss);
+            Intent intent = new Intent(this, Organisatorisch.class);
+            intent.putExtra("Specific_Survey2", ss);
             startActivity(intent);
             this.finish();
         } else {
