@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import com.example.franzi.rentrapp.Model.ResultDBModel;
 
 
@@ -25,8 +27,21 @@ public class Result {
 
     }
 
+    public double calculateResult(SpecificSurvey ss){
+        List<Integer> answersInd = ss.getAnswersIndividuell();
+        int questionAmount = answersInd.size();
+        int sum = 0;
+       double averageIndividuell = 0;
+
+       for(int i : answersInd){
+           sum = sum +i;
+       }
+       averageIndividuell = (sum/questionAmount)*1.0;
+       return averageIndividuell;
+    }
+
     //Ergebnisse in der Datenbank ablegen
-    public void storeResult(List<Integer> results, int surveyCode, List<Integer> questionIDs) {
+    public void storeResult(List<Integer> results, String specificSurveyCode, List<Integer> questionIDs) {
         int i = 0;
         int[] questions = new int[questionIDs.size()];
         int x = 0;
@@ -36,14 +51,13 @@ public class Result {
             x++;
         }
 
-        mRef = FirebaseDatabase.getInstance().getReference("SpecificSurvey/" + surveyCode);
-        mRef.child("Result");
+        mRef = FirebaseDatabase.getInstance().getReference("SpecificSurvey/" + specificSurveyCode);
 
 
         for (int resultValue : results) {
-            mRef = FirebaseDatabase.getInstance().getReference("SpecificSurvey/" + surveyCode + "Result");
+            mRef = FirebaseDatabase.getInstance().getReference("SpecificSurvey/" + specificSurveyCode);
             mRef.child("Result" + i);
-            mRef = FirebaseDatabase.getInstance().getReference("SpecificSurvey/" + surveyCode + "Result/Result"+i);
+            mRef = FirebaseDatabase.getInstance().getReference("SpecificSurvey/" + specificSurveyCode + "Result/Result"+i);
             mRef.child("ResultValue").setValue(resultValue);
             mRef.child("QuestionID").setValue(questions[i]);
             i++;
@@ -51,6 +65,7 @@ public class Result {
 
 
     }
+
 
     // Ergebnis pro Frage auswerten
     public double getResultPerQuestion(String surveyCode, final int questionID){

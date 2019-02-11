@@ -2,6 +2,7 @@ package com.example.franzi.rentrapp.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -20,12 +21,35 @@ public class SpecificSurvey implements Parcelable {
     private List<Question> questionList;
     private int currentQuestionIdx;
     private int surveyID;
-
+    private List<Integer> answersIndividuell;
+    private List<Integer> answersOrganisatorisch;
+    private List<Integer> answersSystem;
+    DatabaseReference mRef;
     //Constructor
 
     //Constructor für Datenbankzugriff
     public SpecificSurvey() {
 
+    }
+
+    public void setAnswersIndividuell(List<Integer> answersIndividuell){
+        this.answersIndividuell = answersIndividuell;
+    }
+    public void setAnswersOrganisatorisch(List<Integer> answersOrganisatorisch){
+        this.answersOrganisatorisch = answersOrganisatorisch;
+    }
+    public void setAnswersSystem(List<Integer> answersSystem){
+        this.answersSystem = answersSystem;
+    }
+
+    public List<Integer> getAnswersIndividuell(){
+        return this.answersIndividuell;
+    }
+    public List<Integer> getAnswersOrganisatorisch(){
+        return this.answersOrganisatorisch;
+    }
+    public List<Integer> getAnswersSystem(){
+        return this.answersSystem;
     }
 
     public SpecificSurvey(int employeeID, List<Question> questions) {
@@ -38,10 +62,23 @@ public class SpecificSurvey implements Parcelable {
         currentAnswerIdx = 0;
 
         this.specificSurveyID = generateSpecificSurveyId();
+        Log.d("CHECK",specificSurveyID);
 
         //To-DO Save in Database
+        mRef = FirebaseDatabase.getInstance().getReference("SpecificSurvey");
+        mRef.child(specificSurveyID).setValue(toMap());
+        //String key = mRef.child("SpecificSurvey").setValue(specificSurveyID);
+
     }
 
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+
+        result.put("employeeID",employeeID);
+        result.put("surveyCode",specificSurveyID);
+
+        return result;
+    }
 
     //Parcelabel
 
@@ -179,17 +216,7 @@ public class SpecificSurvey implements Parcelable {
 
     }
 
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
 
-        result.put("specificSurveyID", specificSurveyID);
-        result.put("employeeID", employeeID);
-        result.put("currentAnswerIdx", currentAnswerIdx);
-        result.put("currentQuestionIdx", currentQuestionIdx);
-        result.put("surveyID", surveyID);
-
-        return result;
-    }
 
     @Override
     public int describeContents() {

@@ -93,7 +93,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
         List<Question> questionList =  getQuestions(sv);
 
         ss = new SpecificSurvey(1, questionList);
-
+      //  ss.setSurveyID(sv.getSurveyCode());
         return ss;
     }
 

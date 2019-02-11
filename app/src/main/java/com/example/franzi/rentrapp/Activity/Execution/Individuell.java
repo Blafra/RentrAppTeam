@@ -3,6 +3,7 @@ package com.example.franzi.rentrapp.Activity.Execution;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -14,7 +15,7 @@ import com.example.franzi.rentrapp.Activity.MainActivity;
 import com.example.franzi.rentrapp.R;
 import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.Model.Question;
-
+import com.example.franzi.rentrapp.Controller.Result;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +64,16 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if (adapter.filledOutCompletely() == true) {
+            List<Integer> answers = new ArrayList<>();
+            List<Integer> questionIDs = new ArrayList<>();
+            for(Question question: questionsIndividuell){
+                answers.add(question.getSelectedValue());
+                questionIDs.add(question.getQuestionID());
+            }
+            //ss.setAnswersIndividuell(answers);
+            Result result = new Result();
+           // result.storeResult(questionIDs, ss.getSpecificSurveyID(), answers);
+
             Intent intent = new Intent(this, Organisatorisch.class);
             intent.putExtra("Specific_Survey2", ss);
             startActivity(intent);

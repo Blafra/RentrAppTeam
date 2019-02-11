@@ -4,11 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
+import com.example.franzi.rentrapp.Controller.Result;
 import com.example.franzi.rentrapp.Model.Question;
 import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.R;
@@ -60,6 +61,18 @@ public class System extends AppCompatActivity implements View.OnClickListener  {
     @Override
     public void onClick(View v) {
         if (adapter.filledOutCompletely() == true) {
+            List<Integer> answers = new ArrayList<>();
+            Result result = new Result();
+            for(Question question: questionsSystem){
+                answers.add(question.getSelectedValue());
+            }
+            ss.setAnswersSystem(answers);
+            for(int i : ss.getAnswersIndividuell()){
+                Log.d("CHECK","Antwort: "+i);
+            }
+           // String text = "Das Ergebnis von Individuell ist: "+result.calculateResult(ss);
+            //Toast.makeText(getApplication().getBaseContext(), text, Toast.LENGTH_SHORT).show();
+
             Intent intent = new Intent(this, System.class);
             intent.putExtra("Specific_Survey4", ss);
             startActivity(intent);
