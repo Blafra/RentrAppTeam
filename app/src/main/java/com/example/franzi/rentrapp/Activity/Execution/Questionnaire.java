@@ -50,7 +50,6 @@ public class Questionnaire extends AppCompatActivity implements View.OnClickList
         adapter = new QuestionListAdapter(this, R.layout.item_questionnaire, questionsIndividuell);
         mlvQuestions.setAdapter(adapter);
 
-
         btnWeiter1 = (Button) findViewById(R.id.btnWeiter1);
         btnWeiter1.setOnClickListener(this);
 

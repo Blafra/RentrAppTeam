@@ -31,7 +31,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal"
-                android:layout_below="@+id/tvQ1.1">
+                android:layout_below="@+id/tvQ1.1"
+                android:id="@+id/rbtnGr">
 
                 <RadioButton
                     android:id="@+id/rbtnValue5"
