@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.franzi.rentrapp.Activity.Execution.Individuell;
-import com.example.franzi.rentrapp.Activity.Execution.Questionnaire;
 import com.example.franzi.rentrapp.R;
 import com.example.franzi.rentrapp.Model.*;
 import com.example.franzi.rentrapp.Controller.*;
@@ -31,7 +30,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
     private Survey sv;
     private SpecificSurvey ss;
     private Button btnStart;
-   // final String surveyCode;
+    // final String surveyCode;
 
 
     //Variablen für Datenbankabfragen
@@ -77,7 +76,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
         if (sv!=null) {
             ss = createSpecificSurvey(sv);
-            }else {
+        }else {
             //Toast.makeText(this,R.string.codenotfound_createnewsurvey, Toast.LENGTH_LONG).show();
             return;
         }
@@ -138,7 +137,7 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
     private void getQuestionData(){
 
-    DatabaseReference surveyDBRef = mRef.child("Question");
+        DatabaseReference surveyDBRef = mRef.child("Question");
 
         surveyDBRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

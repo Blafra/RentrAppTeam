@@ -138,20 +138,15 @@ public class SpecificSurvey implements Parcelable {
     public void calcResult() {
      /*   double[] results = new double[4];                     //Int Array für Ergebnisse (1) Gesammt (2) Individ (3) Orga (4) System
         int[] counter = new int[4];                           //Counter wird für Durchschnittsberechnung mitgeführt
-
         for(int i=0;i<currentQuestionIdx;i++) {
-
-
             //Gesamtergebniss aufsummieren
             results[0] += answerArray[i];
             counter[0]++;
-
             //Kategorien
             if (questionArray[i].getQuestionCategory().equals("Individuell")) {
                 results[1] += (double) answerArray[i];
                 counter[1]++;
             }
-
             if (questionArray[i].getQuestionCategory().equals("Organisatorisch")) {
                 results[2] += (double) answerArray[i];
                 counter[2]++;
@@ -160,9 +155,7 @@ public class SpecificSurvey implements Parcelable {
                 results[3] += (double) answerArray[i];
                 counter[3]++;
             }
-
         }
-
         //Mittelwert berechnen
         results[0] = results[0]/counter[0];
         results[1] = results[1]/counter[1];
@@ -220,5 +213,3 @@ public class SpecificSurvey implements Parcelable {
 
 
 }
-
-

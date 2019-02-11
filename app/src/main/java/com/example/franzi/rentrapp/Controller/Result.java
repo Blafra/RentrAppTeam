@@ -21,8 +21,12 @@ public class Result {
 
     DatabaseReference mRef;
 
+    public Result(){
+
+    }
+
     //Ergebnisse in der Datenbank ablegen
-    public void storeResult(List<Integer> results, String surveyCode, List<Integer> questionIDs) {
+    public void storeResult(List<Integer> results, int surveyCode, List<Integer> questionIDs) {
         int i = 0;
         int[] questions = new int[questionIDs.size()];
         int x = 0;
@@ -53,7 +57,7 @@ public class Result {
 
         final List<Double> results = new ArrayList<Double>();
 
-        mRef = FirebaseDatabase.getInstance().getReference("SpecificSurvey/"+surveyCode+"Result");
+        mRef = FirebaseDatabase.getInstance().getReference("SpecificSurveyRe/"+surveyCode+"Result");
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
