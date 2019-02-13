@@ -8,12 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.franzi.rentrapp.Activity.Execution.Individuell;
+import com.example.franzi.rentrapp.Activity.Execution.SpecificSurvey;
 import com.example.franzi.rentrapp.R;
 import com.example.franzi.rentrapp.Model.*;
-import com.example.franzi.rentrapp.Controller.*;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

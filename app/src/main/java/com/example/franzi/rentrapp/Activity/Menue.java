@@ -23,6 +23,9 @@ public class Menue extends AppCompatActivity implements View.OnClickListener {
         Button btnParticipate = (Button)findViewById(R.id.btnParticipate);
         btnParticipate.setOnClickListener(this);
 
+        Button btnShowResult = (Button) findViewById(R.id.btnShowResults);
+        btnShowResult.setOnClickListener(this);
+
     }
 
 
@@ -40,6 +43,12 @@ public class Menue extends AppCompatActivity implements View.OnClickListener {
             case R.id.btnParticipate:
                 Intent intent1 = new Intent(this, Start.class);
                 startActivity(intent1);
+                this.finish();
+            break;
+
+            case R.id.btnShowResults:
+                Intent intent2 = new Intent(this, Results.class);
+                startActivity(intent2);
                 this.finish();
             break;
 

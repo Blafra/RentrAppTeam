@@ -1,11 +1,8 @@
 package com.example.franzi.rentrapp.Controller;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import com.example.franzi.rentrapp.Model.Question;
-import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -13,12 +10,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.example.franzi.rentrapp.Model.ResultDBModel;
 
 
 public class Result  {
@@ -26,8 +20,8 @@ public class Result  {
     DatabaseReference mRef;
     private int QuestionID;
     private int resultValue;
-    private List<Question> questions = new ArrayList<>();
-    private List<ResultDBModel> results = new ArrayList<>();
+    private String questionCategory;
+
 
     //Constructor
     public Result(){
@@ -35,23 +29,6 @@ public class Result  {
     }
 
     //Getter Setter
-
-
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
-
-    public List<ResultDBModel> getResults() {
-        return results;
-    }
-
-    public void setResults(List<ResultDBModel> results) {
-        this.results = results;
-    }
 
     public int getQuestionID() {
         return QuestionID;
@@ -64,6 +41,14 @@ public class Result  {
     }
     public void setResultValue(int resultValue){
         this.resultValue = resultValue;
+    }
+
+    public String getQuestionCategory() {
+        return questionCategory;
+    }
+
+    public void setQuestionCategory(String questionCategory) {
+        this.questionCategory = questionCategory;
     }
 
     //store in Database
@@ -88,47 +73,35 @@ public class Result  {
 
         result.put("QuestionID",this.QuestionID);
         result.put("resultValue",this.resultValue);
+        result.put("questionCategory",this.questionCategory);
 
         return result;
     }
 
-    //get questions and result Lists for Calculation
-    public void getLists(String specificSurveyID){
+   /* //get questions and result Lists for Calculation
+    public List<SpecificSurvey> getSurveyList(){
 
-        final List<ResultDBModel> results = new ArrayList<>();
-        final List<Question> questions = new ArrayList<>();
+        final String surveyID = "-LU4QQ04QLJKLfhO-LAv";
 
-        mRef = FirebaseDatabase.getInstance().getReference("SpecificSurvey/"+specificSurveyID+"/Result");
+
+        mRef = FirebaseDatabase.getInstance().getReference("SpecificSurvey");
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot sn : dataSnapshot.getChildren()){
-                    ResultDBModel result = sn.getValue(ResultDBModel.class);
-                        results.add(result);
+                    SpecificSurvey survey = sn.getValue(SpecificSurvey.class);
+                        if(survey.getSurveyID().equals(surveyID)){
+                            surveys.add(survey);
+                        }
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+        return surveys;
 
-        mRef = FirebaseDatabase.getInstance().getReference("Question");
-        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot sn : dataSnapshot.getChildren()){
-                    Question question = sn.getValue(Question.class);
-                    questions.add(question);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-
-        this.questions = questions;
-        this.results = results;
-    }
+    }*/
    /* public double calculateResult(SpecificSurvey ss){
         List<Result> answersInd = ss.getAnswersIndividuell();
         int questionAmount = answersInd.size();
@@ -143,7 +116,7 @@ public class Result  {
     }*/
 
     // Ergebnis pro Frage auswerten
-    public double getResultPerQuestion(String surveyCode, final int questionID){
+  /*  public double getResultPerQuestion(String surveyCode, final int questionID){
 
         final List<Double> results = new ArrayList<Double>();
 
@@ -173,10 +146,10 @@ public class Result  {
 
         resultPerQuestion = sum / counter;
         return resultPerQuestion;
-    }
+    }*/
 
 // Ergebnis pro Kategorie berechnen ############noch nicht fertig##########
-    public double getResultPerCategory(String surveyCode, final String category ){
+  /*  public double getResultPerCategory(String surveyCode, final String category ){
         final List<Double> results = new ArrayList<Double>();
         final List<Integer> questionIDs = new ArrayList<Integer>();
 
@@ -247,6 +220,6 @@ public class Result  {
         });
 
         return 1;
-    }
+    }*/
 
 }
