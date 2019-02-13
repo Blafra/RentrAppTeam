@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import com.example.franzi.rentrapp.Controller.Result;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -21,9 +22,6 @@ public class SpecificSurvey implements Parcelable {
     private List<Question> questionList;
     private int currentQuestionIdx;
     private int surveyID;
-    private List<Integer> answersIndividuell;
-    private List<Integer> answersOrganisatorisch;
-    private List<Integer> answersSystem;
     DatabaseReference mRef;
     //Constructor
 
@@ -32,60 +30,56 @@ public class SpecificSurvey implements Parcelable {
 
     }
 
-    public void setAnswersIndividuell(List<Integer> answersIndividuell){
-        this.answersIndividuell = answersIndividuell;
-    }
-    public void setAnswersOrganisatorisch(List<Integer> answersOrganisatorisch){
-        this.answersOrganisatorisch = answersOrganisatorisch;
-    }
-    public void setAnswersSystem(List<Integer> answersSystem){
-        this.answersSystem = answersSystem;
-    }
-
-    public List<Integer> getAnswersIndividuell(){
-        return this.answersIndividuell;
-    }
-    public List<Integer> getAnswersOrganisatorisch(){
-        return this.answersOrganisatorisch;
-    }
-    public List<Integer> getAnswersSystem(){
-        return this.answersSystem;
-    }
-
-    public SpecificSurvey(int employeeID, List<Question> questions) {
-        this.employeeID = employeeID;
-        this.questionList = questions;
-        //Iniziere Antwortarray Länge auf Anzahl der Fragen in Umfrage
-
-        answerArray = new int[questionList.size()];
-        currentQuestionIdx = 0;
-        currentAnswerIdx = 0;
-
-        this.specificSurveyID = generateSpecificSurveyId();
-        Log.d("CHECK",specificSurveyID);
-
-        //To-DO Save in Database
-        mRef = FirebaseDatabase.getInstance().getReference("SpecificSurvey");
-        mRef.child(specificSurveyID).setValue(toMap());
-        //String key = mRef.child("SpecificSurvey").setValue(specificSurveyID);
-
-    }
-
-    public Map<String, Object> toMap(){
-        HashMap<String, Object> result = new HashMap<>();
-
-        result.put("employeeID",employeeID);
-        result.put("surveyCode",specificSurveyID);
-
-        return result;
-    }
-
-    //Parcelabel
-
-
-
-
     //Getter & Setter
+
+    public String getSpecificSurveyID() {
+        return specificSurveyID;
+    }
+    public void setSpecificSurveyID(String specificSurveyID) {
+        this.specificSurveyID = specificSurveyID;
+    }
+
+    public int getEmployeeID() {
+        return employeeID;
+    }
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public int[] getAnswerArray() {
+        return answerArray;
+    }
+    public void setAnswerArray(int[] answerList) {
+        this.answerArray = answerList;
+    }
+
+    public int getCurrentAnswerIdx() {
+        return currentAnswerIdx;
+    }
+    public void setCurrentAnswerIdx(int currentAnswerIdx) {
+        this.currentAnswerIdx = currentAnswerIdx;
+    }
+
+    public List<Question> getQuestionList() {
+        return questionList;
+    }
+    public void setQuestionList(List<Question>  questionList) {
+        this.questionList = questionList;
+    }
+
+    public int getCurrentQuestionIdx() {
+        return currentQuestionIdx;
+    }
+    public void setCurrentQuestionIdx(int currentQuestionIdx) {this.currentQuestionIdx = currentQuestionIdx;}
+
+    public int getSurveyID() {
+        return surveyID;
+    }
+    public void setSurveyID(int surveyID) {
+        this.surveyID = surveyID;
+    }
+
+    //Parcable
 
     protected SpecificSurvey(Parcel in) {
         specificSurveyID = in.readString();
@@ -108,62 +102,22 @@ public class SpecificSurvey implements Parcelable {
             return new SpecificSurvey[size];
         }
     };
-
-    public String getSpecificSurveyID() {
-        return specificSurveyID;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setSpecificSurveyID(String specificSurveyID) {
-        this.specificSurveyID = specificSurveyID;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(specificSurveyID);
+        dest.writeInt(employeeID);
+        dest.writeIntArray(answerArray);
+        dest.writeInt(currentAnswerIdx);
+        dest.writeTypedList(questionList);
+        dest.writeInt(currentQuestionIdx);
+        dest.writeInt(surveyID);
     }
 
-    public int getEmployeeID() {
-        return employeeID;
-    }
-
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
-    }
-
-    public int[] getAnswerArray() {
-        return answerArray;
-    }
-
-    public void setAnswerArray(int[] answerList) {
-        this.answerArray = answerList;
-    }
-
-    public int getCurrentAnswerIdx() {
-        return currentAnswerIdx;
-    }
-
-    public void setCurrentAnswerIdx(int currentAnswerIdx) {
-        this.currentAnswerIdx = currentAnswerIdx;
-    }
-
-    public List<Question> getQuestionList() {
-        return questionList;
-    }
-
-    public void setQuestionList(List<Question>  questionList) {
-        this.questionList = questionList;
-    }
-
-    public int getCurrentQuestionIdx() {
-        return currentQuestionIdx;
-    }
-
-    public void setCurrentQuestionIdx(int currentQuestionIdx) {
-        this.currentQuestionIdx = currentQuestionIdx;
-    }
-
-    public int getSurveyID() {
-        return surveyID;
-    }
-
-    public void setSurveyID(int surveyID) {
-        this.surveyID = surveyID;
-    }
 
 
     //Weitere Methoden
@@ -202,6 +156,37 @@ public class SpecificSurvey implements Parcelable {
 
     }
 
+    //save in database
+    public SpecificSurvey(int employeeID, List<Question> questions, Survey sv) {
+        this.employeeID = employeeID;
+        this.questionList = questions;
+        //Iniziere Antwortarray Länge auf Anzahl der Fragen in Umfrage
+
+        answerArray = new int[questionList.size()];
+        currentQuestionIdx = 0;
+        currentAnswerIdx = 0;
+
+        this.specificSurveyID = generateSpecificSurveyId();
+        Log.d("CHECK",specificSurveyID);
+        String generalSurveyCode = sv.getSurveyCode();
+        //To-DO Save in Database
+        mRef = FirebaseDatabase.getInstance().getReference("SpecificSurvey");
+        mRef.child(specificSurveyID).setValue(toMap(generalSurveyCode));
+        //String key = mRef.child("SpecificSurvey").setValue(specificSurveyID);
+
+    }
+
+    public Map<String, Object> toMap(String generalSurveyCode){
+        HashMap<String, Object> result = new HashMap<>();
+
+        result.put("employeeID",employeeID);
+        result.put("specificSurveyID",specificSurveyID);
+        result.put("surveyID", generalSurveyCode);
+        result.put("Result", 0);
+
+        return result;
+    }
+
     private String generateSpecificSurveyId() {
 
         //Verbindung zur Datenbank
@@ -215,28 +200,6 @@ public class SpecificSurvey implements Parcelable {
         return key;
 
     }
-
-
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(specificSurveyID);
-        dest.writeInt(employeeID);
-        dest.writeIntArray(answerArray);
-        dest.writeInt(currentAnswerIdx);
-        dest.writeTypedList(questionList);
-        dest.writeInt(currentQuestionIdx);
-        dest.writeInt(surveyID);
-    }
-
-
-    //Parcel Methoden
-
 
 
 }

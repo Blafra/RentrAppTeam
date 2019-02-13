@@ -11,8 +11,12 @@ public class Question implements Parcelable {
     private String SystemCategory;
     private boolean isSelected;
     private int selectedValue;
-    //Test
+
+
     //Constructor
+    public Question(){
+
+    }
     public Question(int id, String text, String questionCategory, String SystemCategory){
         this.QuestionID = id;
         this.QuestionText = text;
@@ -20,34 +24,10 @@ public class Question implements Parcelable {
         this.SystemCategory = SystemCategory;
     }
 
-
-    protected Question(Parcel in) {
-        QuestionID = in.readInt();
-        QuestionText = in.readString();
-        QuestionCategory = in.readString();
-    }
-
     public Question (String questionText){
+
         this.QuestionText = questionText;
     }
-
-    public Question(){
-
-    }
-
-
-    //Parcel
-    public static final Creator<Question> CREATOR = new Creator<Question>() {
-        @Override
-        public Question createFromParcel(Parcel in) {
-            return new Question(in);
-        }
-
-        @Override
-        public Question[] newArray(int size) {
-            return new Question[size];
-        }
-    };
 
     //Getter & Setter
     public int getQuestionID() {
@@ -97,7 +77,25 @@ public class Question implements Parcelable {
         return this.selectedValue;
     }
 
+    //Parcable
+    protected Question(Parcel in) {
+        QuestionID = in.readInt();
+        QuestionText = in.readString();
+        QuestionCategory = in.readString();
+        selectedValue = in.readInt();
+    }
 
+    public static final Creator<Question> CREATOR = new Creator<Question>() {
+        @Override
+        public Question createFromParcel(Parcel in) {
+            return new Question(in);
+        }
+
+        @Override
+        public Question[] newArray(int size) {
+            return new Question[size];
+        }
+    };
 
     @Override
     public int describeContents() {
@@ -109,8 +107,7 @@ public class Question implements Parcelable {
         dest.writeInt(QuestionID);
         dest.writeString(QuestionText);
         dest.writeString(QuestionCategory);
+        dest.writeInt(selectedValue);
     }
 
-
-    //Weiter Methonden
 }

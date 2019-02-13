@@ -64,15 +64,6 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if (adapter.filledOutCompletely() == true) {
-            List<Integer> answers = new ArrayList<>();
-            List<Integer> questionIDs = new ArrayList<>();
-            for(Question question: questionsIndividuell){
-                answers.add(question.getSelectedValue());
-                questionIDs.add(question.getQuestionID());
-            }
-            //ss.setAnswersIndividuell(answers);
-            Result result = new Result();
-           // result.storeResult(questionIDs, ss.getSpecificSurveyID(), answers);
 
             Intent intent = new Intent(this, Organisatorisch.class);
             intent.putExtra("Specific_Survey2", ss);

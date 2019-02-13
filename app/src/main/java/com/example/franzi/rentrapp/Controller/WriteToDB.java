@@ -41,7 +41,8 @@ public class WriteToDB {
         ss.setSpecificSurveyID(key);
 
         //Transform Input into HashMap of Survey and add to database
-        Map<String, Object> specificSurveyMap = ss.toMap();
+        String test = "Hallo";
+        Map<String, Object> specificSurveyMap = ss.toMap(test);
 
         mRef.child("SpecificSurvey").child(key).setValue(specificSurveyMap);
 

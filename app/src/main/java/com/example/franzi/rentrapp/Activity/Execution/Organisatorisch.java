@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.franzi.rentrapp.Activity.MainActivity;
+import com.example.franzi.rentrapp.Controller.Result;
 import com.example.franzi.rentrapp.Model.Question;
 import com.example.franzi.rentrapp.R;
 import com.example.franzi.rentrapp.Model.SpecificSurvey;
@@ -63,11 +64,7 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if (adapter.filledOutCompletely() == true) {
-            List<Integer> answers = new ArrayList<>();
-            for(Question question: questionsOrganisatorisch){
-                answers.add(question.getSelectedValue());
-            }
-            ss.setAnswersOrganisatorisch(answers);
+
             Intent intent = new Intent(this, System.class);
             intent.putExtra("Specific_Survey3", ss);
             startActivity(intent);

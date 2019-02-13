@@ -61,21 +61,19 @@ public class System extends AppCompatActivity implements View.OnClickListener  {
     @Override
     public void onClick(View v) {
         if (adapter.filledOutCompletely() == true) {
-            List<Integer> answers = new ArrayList<>();
-            Result result = new Result();
-            for(Question question: questionsSystem){
-                answers.add(question.getSelectedValue());
+            List<Result> resultList = new ArrayList<>();
+            for(Question question : surveyQuestions){
+                Result result = new Result();
+                result.setResultValue(question.getSelectedValue());
+                result.setQuestionID(question.getQuestionID());
+                resultList.add(result);
             }
-            ss.setAnswersSystem(answers);
-            for(int i : ss.getAnswersIndividuell()){
-                Log.d("CHECK","Antwort: "+i);
-            }
-           // String text = "Das Ergebnis von Individuell ist: "+result.calculateResult(ss);
-            //Toast.makeText(getApplication().getBaseContext(), text, Toast.LENGTH_SHORT).show();
+            Result.storeResults(ss.getSpecificSurveyID(), resultList);
 
-            Intent intent = new Intent(this, System.class);
+
+          /*  Intent intent = new Intent(this, System.class);
             intent.putExtra("Specific_Survey4", ss);
-            startActivity(intent);
+            startActivity(intent);*/
             this.finish();
         } else {
             Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();

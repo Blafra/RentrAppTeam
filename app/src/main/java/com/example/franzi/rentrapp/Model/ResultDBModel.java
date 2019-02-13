@@ -6,18 +6,16 @@ public class ResultDBModel {
     int QuestionID;
 
     public void setResultValue(int resultValue){
-        double dummy = 1;
-
-        this.resultValue = resultValue * dummy;
+        this.resultValue = resultValue;
     }
 
     public double getResultValue(){
         return this.resultValue;
     }
 
-    public void setQuestionID(int questionID){
+    public void setQuestionID(int QuestionID){
 
-        this.QuestionID = questionID;
+        this.QuestionID = QuestionID;
     }
 
     public int getQuestionID(){
