@@ -105,7 +105,7 @@ public class Results extends AppCompatActivity {
         stackedChart = findViewById(R.id.stackedChartTotal);
         stackedChartCategories = (BarChart) findViewById(R.id.stackedChartInd);
 
-        BarDataSet barDataSet = new BarDataSet(dataValues1(),"");
+        BarDataSet barDataSet = new BarDataSet(dataValuesOverallValue(),"");
         Log.d("CHECK","barDAtaset:"+barDataSet);
         barDataSet.setDrawIcons(false);
         barDataSet.setStackLabels(new String[]{"Erreichte Punktzahl","Differenz zu Maximum"});
@@ -123,7 +123,7 @@ public class Results extends AppCompatActivity {
         //  stackedChartTotal.setScaleEnabled(true);
 
 
-        BarDataSet barDataSet2 = new BarDataSet(dataValues2(),"");
+        BarDataSet barDataSet2 = new BarDataSet(dataValuesCategoryValues(),"");
         barDataSet2.setDrawIcons(false);
         barDataSet2.setStackLabels(new String[]{"Erreichte Punktzahl","Differenz zu Maximum"});
         barDataSet2.setColors(colorClassArray);
