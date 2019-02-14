@@ -22,6 +22,12 @@ public class Survey {
     private String projectName;
     private String systemType;
     private String systemStatus;
+    private boolean participantAge;
+    private boolean participantDepartment;
+    private boolean participantPosition;
+    private String focusQuestionOne;
+    private String focusQuestionTwo;
+    private String focusQuestionThree;
 
 
     //Constructor
@@ -31,12 +37,18 @@ public class Survey {
 
     }
 
-    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus){
+    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus, boolean participantAge, boolean participantDepartment, boolean participantPosition, String focusQuestionOne, String focusQuestionTwo, String focusQuestionThree){
         this.surveyCode = surveyCode;
         this.companyName = companyName;
         this.projectName = projectName;
         this.systemType = systemType;
         this.systemStatus = systemStatus;
+        this.participantAge = participantAge;
+        this.participantDepartment = participantDepartment;
+        this.participantPosition = participantPosition;
+        this.focusQuestionOne = focusQuestionOne;
+        this.focusQuestionTwo = focusQuestionTwo;
+        this.focusQuestionThree = focusQuestionThree;
         }
 
     //Getter & Setter
@@ -53,34 +65,41 @@ public class Survey {
         return companyName;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
     public String getProjectName() {
         return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
     }
 
     public String getSystemType() {
         return systemType;
     }
 
-    public void setSystemType(String systemType) {
-        this.systemType = systemType;
-    }
-
     public String getSystemStatus() {
         return systemStatus;
     }
 
-    public void setSystemStatus(String systemStatus) {
-        this.systemStatus = systemStatus;
+    public boolean isParticipantAge() {
+        return participantAge;
     }
 
+    public boolean isParticipantDepartment() {
+        return participantDepartment;
+    }
+
+    public boolean isParticipantPosition() {
+        return participantPosition;
+    }
+
+    public String getFocusQuestionOne() {
+        return focusQuestionOne;
+    }
+
+    public String getFocusQuestionTwo() {
+        return focusQuestionTwo;
+    }
+
+    public String getFocusQuestionThree() {
+        return focusQuestionThree;
+    }
 
 
     //Weiter Methoden
@@ -108,6 +127,12 @@ public class Survey {
         result.put("projectName",projectName);
         result.put("systemType",systemType);
         result.put("systemStatus",systemStatus);
+        result.put("participantAge",participantAge);
+        result.put("participantDepartment",participantDepartment);
+        result.put("participantPosition",participantPosition);
+        result.put("focusQuestionOne",focusQuestionOne);
+        result.put("focusQuestionTwo",focusQuestionTwo);
+        result.put("focusQuestionThree",focusQuestionThree);
 
         return result;
     }

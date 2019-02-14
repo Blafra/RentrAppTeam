@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="btnColor">#1E90FF</color>
     <color name="btnTextColor">#FFFFFF</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

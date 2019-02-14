@@ -20,6 +20,9 @@ public class SpecificSurvey implements Parcelable {
     private List<Question> questionList;
     private int currentQuestionIdx;
     private int surveyID;
+    private boolean participantAge;
+    private boolean participantDepartment;
+    private boolean participantPosition;
 
     //Constructor
 
@@ -28,27 +31,21 @@ public class SpecificSurvey implements Parcelable {
 
     }
 
-    public SpecificSurvey(int employeeID, List<Question> questions) {
+    public SpecificSurvey(int employeeID, List<Question> questions, boolean participantAge, boolean participantDepartment, boolean participantPosition) {
         this.employeeID = employeeID;
         this.questionList = questions;
+        this.participantAge = participantAge;
+        this.participantDepartment = participantDepartment;
+        this.participantPosition = participantPosition;
+        this.specificSurveyID = generateSpecificSurveyId();
+
         //Iniziere Antwortarray Länge auf Anzahl der Fragen in Umfrage
 
         answerArray = new int[questionList.size()];
         currentQuestionIdx = 0;
         currentAnswerIdx = 0;
 
-        this.specificSurveyID = generateSpecificSurveyId();
-
-        //To-DO Save in Database
     }
-
-
-    //Parcelabel
-
-
-
-
-    //Getter & Setter
 
     protected SpecificSurvey(Parcel in) {
         specificSurveyID = in.readString();
@@ -60,17 +57,8 @@ public class SpecificSurvey implements Parcelable {
         surveyID = in.readInt();
     }
 
-    public static final Creator<SpecificSurvey> CREATOR = new Creator<SpecificSurvey>() {
-        @Override
-        public SpecificSurvey createFromParcel(Parcel in) {
-            return new SpecificSurvey(in);
-        }
 
-        @Override
-        public SpecificSurvey[] newArray(int size) {
-            return new SpecificSurvey[size];
-        }
-    };
+    //Getter & Setter
 
     public String getSpecificSurveyID() {
         return specificSurveyID;
@@ -128,6 +116,30 @@ public class SpecificSurvey implements Parcelable {
         this.surveyID = surveyID;
     }
 
+    public boolean isParticipantAge() {
+        return participantAge;
+    }
+
+    public void setParticipantAge(boolean participantAge) {
+        this.participantAge = participantAge;
+    }
+
+    public boolean isParticipantDepartment() {
+        return participantDepartment;
+    }
+
+    public void setParticipantDepartment(boolean participantDepartment) {
+        this.participantDepartment = participantDepartment;
+    }
+
+    public boolean isParticipantPosition() {
+        return participantPosition;
+    }
+
+    public void setParticipantPosition(boolean participantPosition) {
+        this.participantPosition = participantPosition;
+    }
+
 
     //Weitere Methoden
 
@@ -135,42 +147,6 @@ public class SpecificSurvey implements Parcelable {
         this.answerArray[answerIdx] = resultValue;
     }
 
-    public void calcResult() {
-     /*   double[] results = new double[4];                     //Int Array für Ergebnisse (1) Gesammt (2) Individ (3) Orga (4) System
-        int[] counter = new int[4];                           //Counter wird für Durchschnittsberechnung mitgeführt
-
-        for(int i=0;i<currentQuestionIdx;i++) {
-
-
-            //Gesamtergebniss aufsummieren
-            results[0] += answerArray[i];
-            counter[0]++;
-
-            //Kategorien
-            if (questionArray[i].getQuestionCategory().equals("Individuell")) {
-                results[1] += (double) answerArray[i];
-                counter[1]++;
-            }
-
-            if (questionArray[i].getQuestionCategory().equals("Organisatorisch")) {
-                results[2] += (double) answerArray[i];
-                counter[2]++;
-            }
-            if (questionArray[i].getQuestionCategory().equals("System")) {
-                results[3] += (double) answerArray[i];
-                counter[3]++;
-            }
-
-        }
-
-        //Mittelwert berechnen
-        results[0] = results[0]/counter[0];
-        results[1] = results[1]/counter[1];
-        results[2] = results[2]/counter[2];
-        results[3] = results[3]/counter[3];
-        */
-
-    }
 
     private String generateSpecificSurveyId() {
 
@@ -198,10 +174,7 @@ public class SpecificSurvey implements Parcelable {
         return result;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+    //Parcel für Übergabe der SS an nächste Activity
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -214,8 +187,24 @@ public class SpecificSurvey implements Parcelable {
         dest.writeInt(surveyID);
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-    //Parcel Methoden
+    public static final Creator<SpecificSurvey> CREATOR = new Creator<SpecificSurvey>() {
+        @Override
+        public SpecificSurvey createFromParcel(Parcel in) {
+            return new SpecificSurvey(in);
+        }
+
+        @Override
+        public SpecificSurvey[] newArray(int size) {
+            return new SpecificSurvey[size];
+        }
+    };
+
+
 
 
 
