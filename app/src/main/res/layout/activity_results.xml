@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shrinkColumns="*"
+    android:stretchColumns="*"
+    tools:context=".Results">
+
+    <ScrollView
+        android:layout_width="585dp"
+        android:layout_height="806dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="2dip"
+                android:text="ERGEBNISSE "
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvResultTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="2dip"
+                android:text="PUNKTZAHL GESAMT "
+                android:textSize="18sp" />
+
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:id="@+id/stackedChartTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"></com.github.mikephil.charting.charts.HorizontalBarChart>
+
+            <TextView
+                android:id="@+id/tvResultCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="2dip"
+                android:text="DURCHSCHNITTSWERTE KATEGORIE "
+                android:textSize="18sp" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/stackedChartInd"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_weight="1"></com.github.mikephil.charting.charts.BarChart>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="100">
+
+                <TextView
+                    android:id="@+id/tvResultInd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33.3"
+                    android:gravity="right"
+                    android:padding="2dip"
+                    android:text="Individuell"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvResultOrg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33.3"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:text="Organisatorisch"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvResultSys"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33.3"
+                    android:gravity="left"
+                    android:padding="2dip"
+                    android:text="System"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPlatzhalter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="2dip"
+                android:text=""
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvOverview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="2dip"
+                android:text="FRAGEN: GEWÄHLTE/ BESTE/ SCHLECHTESTE"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/tvChoice3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:text="GEWÄHLTE FRAGEN"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvResultChoiceQ1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="20"
+                        android:padding="2dip"
+                        android:text="Q1: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvResultChoiceQ1Value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="80"
+                        android:padding="2dip"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvResultChoiceQ2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="20"
+                        android:padding="2dip"
+                        android:text="Q2: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvResultChoiceQ2Value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="80"
+                        android:padding="2dip"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvResultChoiceQ3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="20"
+                        android:padding="2dip"
+                        android:text="Q3: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvResultChoiceQ3Value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="80"
+                        android:padding="2dip"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvPlatzhalter1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp" />
+
+                </TableRow>
+
+                <TextView
+                    android:id="@+id/tvBest3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:text="BESTE WERTE"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvResultBestQ1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="20"
+                        android:padding="2dip"
+                        android:text="Q1: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvResultBestQ1Value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="80"
+                        android:padding="2dip"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvResultBestQ2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="20"
+                        android:padding="2dip"
+                        android:text="Q2: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvResultBestQ2Value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="80"
+                        android:padding="2dip"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvResultBestQ3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="20"
+                        android:padding="2dip"
+                        android:text="Q3: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvResultBestQ3Value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="80"
+                        android:padding="2dip"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tvPlatzhalter2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:text=""
+                    android:textSize="5sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tvWorst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:text="SCHLECHTESTE WERTE"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvResultWorstQ1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="20"
+                        android:padding="2dip"
+                        android:text="Q1: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvResultWorstQ1Value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="80"
+                        android:padding="2dip"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvResultWorstQ2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="20"
+                        android:padding="2dip"
+                        android:text="Q2: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvResultWorstQ2Value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="80"
+                        android:padding="2dip"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvResultWorstQ3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="20"
+                        android:padding="2dip"
+                        android:text="Q3: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvResultWorstQ3Value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="80"
+                        android:padding="2dip"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tvPlatzhalter3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvGeneralInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:text="ALLGEMEINE INFORMATIONEN"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvFirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:text="Firma: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvFirmValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvProjectname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:text="Projektname: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvProjectnameValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvSystemtype"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:text="Systemtyp: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvSystemtypeValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:textSize="18sp" />
+
+
+                    <TextView
+                        android:id="@+id/tvSystemstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:text="Systemstatus: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvSystemstatusValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvNumberOfParticipants"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:text="Teilnehmer: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvNumberOfParticipantsValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:textSize="18sp" />
+
+
+                    <TextView
+                        android:id="@+id/tvSurveyTimeFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:text="Zeitraum: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvSurveyTimeFrameValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvResponsibility"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:text="Firma: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvResponsibilityValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:textSize="18sp" />
+
+
+                    <TextView
+                        android:id="@+id/tvXX"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:text=""
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvxxValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
+
+
+
+
+
+
+
+
