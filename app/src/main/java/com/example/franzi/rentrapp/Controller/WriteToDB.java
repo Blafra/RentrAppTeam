@@ -1,6 +1,6 @@
 package com.example.franzi.rentrapp.Controller;
 
-import com.example.franzi.rentrapp.Model.SpecificSurvey;
+import com.example.franzi.rentrapp.Activity.Execution.SpecificSurvey;
 import com.example.franzi.rentrapp.Model.Survey;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -41,7 +41,8 @@ public class WriteToDB {
         ss.setSpecificSurveyID(key);
 
         //Transform Input into HashMap of Survey and add to database
-        Map<String, Object> specificSurveyMap = ss.toMap();
+        String test = "Hallo";
+        Map<String, Object> specificSurveyMap = ss.toMap(test);
 
         mRef.child("SpecificSurvey").child(key).setValue(specificSurveyMap);
 

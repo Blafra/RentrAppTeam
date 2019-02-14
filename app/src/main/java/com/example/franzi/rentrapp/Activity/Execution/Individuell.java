@@ -6,13 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.franzi.rentrapp.Activity.MainActivity;
 import com.example.franzi.rentrapp.R;
-import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.Model.Question;
 
 import java.util.ArrayList;
@@ -62,15 +58,15 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        //if (adapter.filledOutCompletely() == true) {
-        //    adapter.saveQuestionResultValues(ss);
+        if (adapter.filledOutCompletely() == true) {
+
             Intent intent = new Intent(this, Organisatorisch.class);
             intent.putExtra("Specific_Survey2", ss);
             startActivity(intent);
             this.finish();
-       // } else {
-       //     Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();
-      //  }
+        } else {
+            Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }

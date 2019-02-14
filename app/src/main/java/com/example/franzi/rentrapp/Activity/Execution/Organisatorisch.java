@@ -6,17 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.franzi.rentrapp.Activity.MainActivity;
 import com.example.franzi.rentrapp.Model.Question;
 import com.example.franzi.rentrapp.R;
-import com.example.franzi.rentrapp.Model.SpecificSurvey;
-
 
 
 public class Organisatorisch extends AppCompatActivity implements View.OnClickListener {
@@ -62,15 +57,15 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-       // if (adapter.filledOutCompletely() == true) {
-         //   adapter.saveQuestionResultValues(ss);
+        if (adapter.filledOutCompletely() == true) {
+
             Intent intent = new Intent(this, System.class);
             intent.putExtra("Specific_Survey3", ss);
             startActivity(intent);
             this.finish();
-     //  } else {
-     //       Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();
-    //}
+       } else {
+            Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();
+    }
 
     }
 }

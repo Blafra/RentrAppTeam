@@ -11,7 +11,7 @@ import android.widget.RadioButton;
 import com.example.franzi.rentrapp.Activity.Execution.Individuell;
 import com.example.franzi.rentrapp.Model.Question;
 import com.example.franzi.rentrapp.R;
-import com.example.franzi.rentrapp.Model.SpecificSurvey;
+import com.example.franzi.rentrapp.Activity.Execution.SpecificSurvey;
 import com.example.franzi.rentrapp.Model.Survey;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

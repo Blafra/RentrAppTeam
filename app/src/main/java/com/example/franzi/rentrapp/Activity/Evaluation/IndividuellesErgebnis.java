@@ -1,15 +1,6 @@
 package com.example.franzi.rentrapp.Activity.Evaluation;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.TextView;
-
-import com.example.franzi.rentrapp.Activity.MainActivity;
-import com.example.franzi.rentrapp.R;
-import com.example.franzi.rentrapp.Model.SpecificSurvey;
-
-import java.text.DecimalFormat;
 
 public class IndividuellesErgebnis extends AppCompatActivity {
     /*

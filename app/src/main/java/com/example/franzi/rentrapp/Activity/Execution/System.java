@@ -1,6 +1,5 @@
 package com.example.franzi.rentrapp.Activity.Execution;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +8,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.franzi.rentrapp.Activity.Menue;
+import com.example.franzi.rentrapp.Activity.Start;
+import com.example.franzi.rentrapp.Controller.Result;
 import com.example.franzi.rentrapp.Model.Question;
-import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.R;
 
 import java.util.ArrayList;
@@ -59,15 +60,26 @@ public class System extends AppCompatActivity implements View.OnClickListener  {
 
     @Override
     public void onClick(View v) {
-        //if (adapter.filledOutCompletely() == true) {
-          //  adapter.saveQuestionResultValues(ss);
-            Intent intent = new Intent(this, System.class);
-            intent.putExtra("Specific_Survey4", ss);
+        if (adapter.filledOutCompletely() == true) {
+            List<Result> resultList = new ArrayList<>();
+            for(Question question : surveyQuestions){
+                Result result = new Result();
+                result.setResultValue(question.getSelectedValue());
+                result.setQuestionID(question.getQuestionID());
+                result.setQuestionCategory(question.getQuestionCategory());
+                resultList.add(result);
+            }
+            Result.storeResults(ss.getSpecificSurveyID(), resultList);
+
+
+          Intent intent = new Intent(this, Menue.class);
+           // intent.putExtra("Specific_Survey4", ss);
+
             startActivity(intent);
             this.finish();
-       // } else {
-        //    Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();
-        //}
+        } else {
+            Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }
