@@ -63,7 +63,7 @@ public class Individuell extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         //if (adapter.filledOutCompletely() == true) {
-            adapter.saveQuestionResultValues(ss);
+        //    adapter.saveQuestionResultValues(ss);
             Intent intent = new Intent(this, Organisatorisch.class);
             intent.putExtra("Specific_Survey2", ss);
             startActivity(intent);

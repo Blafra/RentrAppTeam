@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/tvQuestion"
@@ -27,51 +31,51 @@
 
 
             <RadioGroup
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_below="@+id/tvQ1.1"
                 android:gravity="center_horizontal"
-                android:layout_below="@+id/tvQ1.1">
+                android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/rbtnValue5"
                     android:layout_width="112dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="20"
                     android:text="Stimme voll zu"
-                    android:textSize="18sp"
-                    android:layout_weight="20"/>
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/rbtnValue4"
                     android:layout_width="112dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="20"
                     android:text=" "
-                    android:textSize="18sp"
-                    android:layout_weight="20"/>
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/rbtnValue3"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="20"
                     android:text=""
-                    android:textSize="18sp"
-                    android:layout_weight="20"/>
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/rbtnValue2"
                     android:layout_width="112dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="20"
                     android:text=""
-                    android:textSize="18sp"
-                    android:layout_weight="20"/>
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/rbtnValue1"
                     android:layout_width="112dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="20"
                     android:text="Stimme gar nicht zu"
-                    android:textSize="18sp"
-                    android:layout_weight="20"/>
+                    android:textSize="18sp" />
 
 
             </RadioGroup>

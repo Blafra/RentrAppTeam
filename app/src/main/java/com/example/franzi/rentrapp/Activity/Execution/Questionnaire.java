@@ -60,7 +60,7 @@ public class Questionnaire extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (adapter.filledOutCompletely() == true) {
+        /*if (adapter.filledOutCompletely() == true) {
             adapter.saveQuestionResultValues(ss);
             Intent intent = new Intent(this, Organisatorisch.class);
             intent.putExtra("Specific_Survey2", ss);
@@ -68,7 +68,7 @@ public class Questionnaire extends AppCompatActivity implements View.OnClickList
             this.finish();
         } else {
             Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();
-        }
+        }*/
 
     }
 }

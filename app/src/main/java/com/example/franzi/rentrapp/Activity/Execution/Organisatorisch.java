@@ -63,7 +63,7 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
        // if (adapter.filledOutCompletely() == true) {
-            adapter.saveQuestionResultValues(ss);
+         //   adapter.saveQuestionResultValues(ss);
             Intent intent = new Intent(this, System.class);
             intent.putExtra("Specific_Survey3", ss);
             startActivity(intent);

@@ -60,7 +60,7 @@ public class System extends AppCompatActivity implements View.OnClickListener  {
     @Override
     public void onClick(View v) {
         //if (adapter.filledOutCompletely() == true) {
-            adapter.saveQuestionResultValues(ss);
+          //  adapter.saveQuestionResultValues(ss);
             Intent intent = new Intent(this, System.class);
             intent.putExtra("Specific_Survey4", ss);
             startActivity(intent);

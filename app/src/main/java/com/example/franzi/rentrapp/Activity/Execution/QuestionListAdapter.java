@@ -21,6 +21,9 @@ public class QuestionListAdapter extends ArrayAdapter<Question> {
 
     private Context mContext;
     int mResource;
+    List<Integer> resultList = new ArrayList<>();
+    List<Boolean> isCheckedList = new ArrayList<>();
+    List<Question> questionList = new ArrayList<>();
 
 
     public RadioButton radioButton1;
@@ -33,10 +36,11 @@ public class QuestionListAdapter extends ArrayAdapter<Question> {
 
 
     //Default Constructor
-    public QuestionListAdapter(Context context, int resource, List<Question> objects) {
-        super(context, resource, objects);
+    public QuestionListAdapter(Context context, int resource, List<Question> questionList) {
+        super(context, resource, questionList);
         mContext = context;
         mResource = resource;
+        this.questionList = questionList;
     }
 
 
@@ -54,38 +58,85 @@ public class QuestionListAdapter extends ArrayAdapter<Question> {
 
         TextView tvQuestion = (TextView) convertView.findViewById(R.id.tvQuestion);
 
-        //RadioButtons aus Questionnaire_Item um Liste erstellen zu können
-        radioButton1 = (RadioButton) convertView.findViewById(R.id.rbtnValue5);
-        radioButton2 = (RadioButton) convertView.findViewById(R.id.rbtnValue4);
-        radioButton3 = (RadioButton) convertView.findViewById(R.id.rbtnValue3);
-        radioButton4 = (RadioButton) convertView.findViewById(R.id.rbtnValue2);
-        radioButton5 = (RadioButton) convertView.findViewById(R.id.rbtnValue1);
-
-        radioButtonList = createList();
 
         tvQuestion.setText(questionText);
+
+
+        onRadioButtonClicked(convertView);
+
 
         return convertView;
 
 
     }
 
-    //Radio-ButtonList erstellen
-    private List<RadioButton> createList() {
-        radioButtonList.add(radioButton1);
-        radioButtonList.add(radioButton2);
-        radioButtonList.add(radioButton3);
-        radioButtonList.add(radioButton4);
-        radioButtonList.add(radioButton5);
-        return radioButtonList;
+
+    private void onRadioButtonClicked(View view) {
+
+        int value = 0;
+        //is the button checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        isCheckedList.add(checked);
+
+        //check which radio button was clicked
+        switch (view.getId()) {
+            case R.id.rbtnValue5:
+                if (checked) {
+                    value = 5;
+                    resultList.add(value);
+                    break;
+                }
+            case R.id.rbtnValue4:
+                if (checked) {
+                    value = 4;
+                    resultList.add(value);
+                    break;
+                }
+            case R.id.rbtnValue3:
+                if (checked) {
+                    value = 3;
+                    resultList.add(value);
+                    break;
+                }
+            case R.id.rbtnValue2:
+                if (checked) {
+                    value = 2;
+                    resultList.add(value);
+                    break;
+                }
+            case R.id.rbtnValue1:
+                if (checked) {
+                    value = 1;
+                    resultList.add(value);
+                    break;
+                }
+
+        }
     }
 
-    private void handleRadioButtons(SpecificSurvey ss){
-
-
+    public boolean allChecked() {
+        int counterChecked = 0;
+        int counterQuestion = 0;
+        boolean checkValue;
+        for (boolean b : isCheckedList) {
+            if (b == true) {
+                counterChecked++;
+            }
+        }
+        for (Question q : questionList) {
+            counterQuestion++;
+        }
+        if (counterChecked == counterQuestion) {
+            checkValue = true;
+        } else checkValue = false;
+        return checkValue;
     }
 
-    public boolean filledOutCompletely() {
+
+}
+
+    /*public boolean filledOutCompletely() {
         //Prüfen ob alle Fragen beantwortet wurden
 
         int count = 0;
@@ -141,5 +192,5 @@ public class QuestionListAdapter extends ArrayAdapter<Question> {
         ss.setCurrentAnswerIdx(answerIdx);
 
     }
+*/
 
-}
