@@ -89,6 +89,7 @@ public class Results extends AppCompatActivity {
     TextView responsibiltyValue;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +104,38 @@ public class Results extends AppCompatActivity {
         //Zuordnung zu Feldern mit StackedCharts
         stackedChart = findViewById(R.id.stackedChartTotal);
         stackedChartCategories = (BarChart) findViewById(R.id.stackedChartInd);
+
+        BarDataSet barDataSet = new BarDataSet(dataValues1(),"");
+        Log.d("CHECK","barDAtaset:"+barDataSet);
+        barDataSet.setDrawIcons(false);
+        barDataSet.setStackLabels(new String[]{"Erreichte Punktzahl","Differenz zu Maximum"});
+        barDataSet.setColors(colorClassArray);
+
+        BarData barData = new BarData(barDataSet);
+        Log.d("CHECK","barDAtaset:"+barData);
+        stackedChart.setData(barData);
+        stackedChart.setEnabled(false);
+        stackedChart.setFitBars(true);
+        stackedChart.invalidate();
+        stackedChart.getDescription().setEnabled(false);
+        //  stackedChartTotal.setTouchEnabled(true);
+        //  stackedChartTotal.setDragEnabled(true);
+        //  stackedChartTotal.setScaleEnabled(true);
+
+
+        BarDataSet barDataSet2 = new BarDataSet(dataValues2(),"");
+        barDataSet2.setDrawIcons(false);
+        barDataSet2.setStackLabels(new String[]{"Erreichte Punktzahl","Differenz zu Maximum"});
+        barDataSet2.setColors(colorClassArray);
+
+
+        BarData barData2 = new BarData(barDataSet2);
+        stackedChartCategories.setEnabled(false);
+        stackedChartCategories.setData(barData2);
+        stackedChartCategories.setFitBars(true);
+        stackedChartCategories.invalidate();
+        stackedChartCategories.getDescription().setEnabled(false);
+
 
         //Zuordnung zu Textfeldern (Fragen und Werte dazu)
         resultChoiceQ1 = (TextView) findViewById(R.id.tvResultChoiceQ1);
@@ -169,7 +202,6 @@ public class Results extends AppCompatActivity {
                        generalSurvey = survey;
 
                     }
-
 
                 }
 
