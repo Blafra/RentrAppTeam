@@ -105,6 +105,7 @@ public class Results extends AppCompatActivity {
         BarData barData = new BarData(barDataSet);
         Log.d("CHECK","barDAtaset:"+barData);
         stackedChart.setData(barData);
+        stackedChart.setEnabled(false);
         stackedChart.setFitBars(true);
         stackedChart.invalidate();
         stackedChart.getDescription().setEnabled(false);
@@ -120,6 +121,7 @@ public class Results extends AppCompatActivity {
 
 
         BarData barData2 = new BarData(barDataSet2);
+        stackedChartCategories.setEnabled(false);
         stackedChartCategories.setData(barData2);
         stackedChartCategories.setFitBars(true);
         stackedChartCategories.invalidate();
@@ -192,8 +194,8 @@ public class Results extends AppCompatActivity {
                         Log.d("CHECK","SURVEY#####################:"+generalSurvey);
                     }
 
-
                 }
+
             }
 
             @Override
