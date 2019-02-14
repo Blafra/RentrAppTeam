@@ -2,12 +2,15 @@ package com.example.franzi.rentrapp;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 
-
+import com.example.franzi.rentrapp.Activity.Execution.Individuell;
+import com.example.franzi.rentrapp.Model.Result;
 import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.Model.Survey;
 import com.github.mikephil.charting.charts.BarChart;
@@ -20,13 +23,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+
+//import androidx.annotation.NonNull;
 
 public class Results extends AppCompatActivity {
 
     DatabaseReference mRef;
-    //final List<SpecificSurvey> surveys = new ArrayList<>();
-   // final List<Result> surveyResults = new ArrayList<>();
+    final List<SpecificSurvey> surveys = new ArrayList<>();
+    final List<Result> surveyResults = new ArrayList<>();
     String generalsurveyID;
     Survey generalSurvey;
 
@@ -73,24 +84,26 @@ public class Results extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_results);
 
-        Intent intent = getIntent();
         generalsurveyID = getIntent().getExtras().getString("surveyCode");
 
         getSurvey();
         getSpecificSurveys();
+        Log.d("CHECK","barDAtaset:"+surveys);
 
         //Zuordnung zu Feldern mit StackedCharts
-        stackedChart = (BarChart) findViewById(R.id.stackedChartTotal);
+        stackedChart = findViewById(R.id.stackedChartTotal);
         stackedChartCategories = (BarChart) findViewById(R.id.stackedChartInd);
 
         BarDataSet barDataSet = new BarDataSet(dataValues1(),"");
+        Log.d("CHECK","barDAtaset:"+barDataSet);
         barDataSet.setDrawIcons(false);
         barDataSet.setStackLabels(new String[]{"Erreichte Punktzahl","Differenz zu Maximum"});
         barDataSet.setColors(colorClassArray);
 
         BarData barData = new BarData(barDataSet);
+        Log.d("CHECK","barDAtaset:"+barData);
         stackedChart.setData(barData);
         stackedChart.setFitBars(true);
         stackedChart.invalidate();
@@ -157,7 +170,7 @@ public class Results extends AppCompatActivity {
 
     private ArrayList<BarEntry> dataValues2(){
         ArrayList<BarEntry>dataVals2=new ArrayList<>();
-        dataVals2.add(new BarEntry(1f, new float[]{(float) 3.90, (float) 1.1}));
+        dataVals2.add(new BarEntry(1f, new float[]{(float) 2.1, (float) 1.1}));
         dataVals2.add(new BarEntry(2f, new float[]{(float) 2.20, (float) 2.8}));
         dataVals2.add(new BarEntry(3f, new float[]{(float) 1.50, (float) 3.5}));
         return dataVals2;
@@ -175,8 +188,10 @@ public class Results extends AppCompatActivity {
                 for (DataSnapshot sn : dataSnapshot.getChildren()) {
                     Survey survey= sn.getValue(Survey.class);
                     if(survey.getSurveyCode().equals(generalsurveyID)){
-                        generalSurvey = survey;
+                       generalSurvey = survey;
+                        Log.d("CHECK","SURVEY#####################:"+generalSurvey);
                     }
+
 
                 }
             }

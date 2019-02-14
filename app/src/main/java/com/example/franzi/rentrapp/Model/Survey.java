@@ -22,6 +22,13 @@ public class Survey {
     private String projectName;
     private String systemType;
     private String systemStatus;
+    private String focusQuestionOne;
+    private String focusQuestionTwo;
+    private String focusQuestionThree;
+    private boolean participantAge;
+    private boolean participantDepartment;
+    private boolean participantPosition;
+
 
 
     //Constructor
@@ -40,6 +47,55 @@ public class Survey {
         }
 
     //Getter & Setter
+
+
+    public String getFocusQuestionOne() {
+        return focusQuestionOne;
+    }
+
+    public void setFocusQuestionOne(String focusQuestionOne) {
+        this.focusQuestionOne = focusQuestionOne;
+    }
+
+    public String getFocusQuestionThree() {
+        return focusQuestionThree;
+    }
+
+    public void setFocusQuestionThree(String focusQuestionThree) {
+        this.focusQuestionThree = focusQuestionThree;
+    }
+
+    public void setFocusQuestionTwo(String focusQuestionTwo) {
+        this.focusQuestionTwo = focusQuestionTwo;
+    }
+
+    public String getFocusQuestionTwo() {
+        return focusQuestionTwo;
+    }
+
+    public void setParticipantAge(boolean participantAge) {
+        this.participantAge = participantAge;
+    }
+
+    public boolean isParticipantAge() {
+        return participantAge;
+    }
+
+    public void setParticipantDepartment(boolean participantDepartment) {
+        this.participantDepartment = participantDepartment;
+    }
+
+    public boolean isParticipantDepartment() {
+        return participantDepartment;
+    }
+
+    public void setParticipantPosition(boolean participantPosition) {
+        this.participantPosition = participantPosition;
+    }
+
+    public boolean isParticipantPosition() {
+        return participantPosition;
+    }
 
     public String getSurveyCode() {
         return surveyCode;

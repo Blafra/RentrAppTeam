@@ -51,8 +51,10 @@
             <com.github.mikephil.charting.charts.HorizontalBarChart
                 android:id="@+id/stackedChartTotal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"></com.github.mikephil.charting.charts.HorizontalBarChart>
+                android:layout_height="150dp"
+                android:layout_weight="1">
+
+            </com.github.mikephil.charting.charts.HorizontalBarChart>
 
             <TextView
                 android:id="@+id/tvResultCategory"

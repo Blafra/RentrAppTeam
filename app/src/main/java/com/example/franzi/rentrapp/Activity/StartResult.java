@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.example.franzi.rentrapp.Activity.Execution.Individuell;
 import com.example.franzi.rentrapp.R;
+import com.example.franzi.rentrapp.Results;
 
 public class StartResult extends AppCompatActivity implements View.OnClickListener{
     private Button btnStartResult;
@@ -29,9 +30,9 @@ public class StartResult extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         surveyCode = editText.getText().toString();
-       // Intent intent = new Intent(this, Results.class);
-      //  intent.putExtra("surveyCode", surveyCode);
-       // startActivity(intent);
+       Intent intent = new Intent(this, Results.class);
+       intent.putExtra("surveyCode", surveyCode);
+       startActivity(intent);
     }
 
 }
