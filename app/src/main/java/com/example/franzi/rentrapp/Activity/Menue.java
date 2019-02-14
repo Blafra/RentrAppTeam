@@ -47,7 +47,7 @@ public class Menue extends AppCompatActivity implements View.OnClickListener {
             break;
 
             case R.id.btnShowResults:
-                Intent intent2 = new Intent(this, Results.class);
+                Intent intent2 = new Intent(this, StartResult.class);
                 startActivity(intent2);
                 this.finish();
             break;

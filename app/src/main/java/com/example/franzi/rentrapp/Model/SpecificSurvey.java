@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SpecificSurvey {
+
     private HashMap<String, Result> Result;
     private int employeeID;
     private String specificSurveyID;

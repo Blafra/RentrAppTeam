@@ -27,7 +27,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:text="Bitte tragen Sie ihren Survey Code ein um mit der Umfrage zu beginnen"
+        android:text="Bitte tragen Sie ihren Survey Code ein, um mit der Umfrage zu beginnen"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnStart"

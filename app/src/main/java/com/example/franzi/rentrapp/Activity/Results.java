@@ -1,5 +1,6 @@
 package com.example.franzi.rentrapp.Activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,18 +38,20 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
     EditText averageQuestion1;
     EditText averageIndividual;
     Button button;
-    final String generalsurveyID = "-LU4QQ04QLJKLfhO-LAv";
+    String generalsurveyID;
+    Survey generalSurvey;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-
+        Intent intent = getIntent();
+        generalsurveyID = getIntent().getExtras().getString("surveyCode");
         button = (Button)findViewById(R.id.button);
         button.setOnClickListener(this);
         averageQuestion1 = (EditText) findViewById(R.id.etAverage);
         averageIndividual = (EditText)findViewById(R.id.etAvInd);
-        //getQuestionData();
+        getSurvey();
         getSpecificSurveys();
 
     }
@@ -56,12 +59,12 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        double average = getAverageOfCategory("Individuell");
-        Log.d("AVERAGE", "this is the aerage of question1: "+average);
-        Log.d("TEST","#########surveys"+surveys);
-        for(SpecificSurvey survey : surveys){
-            Log.d("CHECK","###########"+survey.getResult().get("Result0").getResultValue());
-        }
+        //double average = getAverageOfCategory("Individuell");
+       // Log.d("AVERAGE", "this is the aerage of question1: "+average);
+        Log.d("TEST","#########surveys"+generalSurvey.getSurveyCode());
+       // for(SpecificSurvey survey : surveys){
+       //     Log.d("CHECK","###########"+survey.getResult().get("Result0").getResultValue());
+      //  }
 
     }
 
@@ -95,6 +98,31 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
         average = sum/counter;
 
         return average;
+    }
+
+    private void getSurvey(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference mRef = database.getReference();
+        DatabaseReference questionsDBRef = mRef.child("Survey");
+
+        questionsDBRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot sn : dataSnapshot.getChildren()) {
+                    Survey survey= sn.getValue(Survey.class);
+                    if(survey.getSurveyCode().equals(generalsurveyID)){
+                        generalSurvey = survey;
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
