@@ -9,7 +9,8 @@ public class Question implements Parcelable {
     private String QuestionText;
     private String QuestionCategory;        //Wert (1) Categroy Indiv. (2) CategoryOrga (3) Category System
     private String SystemCategory;
-
+    private boolean isSelected;
+    private int selectedValue;
     //Test
     //Constructor
     public Question(int id, String text, String questionCategory, String SystemCategory){
@@ -79,6 +80,21 @@ public class Question implements Parcelable {
 
     public void setSystemCategory(String SystemCategory) {
         SystemCategory = SystemCategory;
+    }
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    public void setSelectedValue(int value){
+        this.selectedValue =value;
+    }
+
+    public int getSelectedValue(){
+        return this.selectedValue;
     }
 
 
