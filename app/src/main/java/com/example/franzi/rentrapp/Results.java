@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 
 import com.example.franzi.rentrapp.Activity.Execution.Individuell;
+import com.example.franzi.rentrapp.Model.Question;
 import com.example.franzi.rentrapp.Model.Result;
 import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.Model.Survey;
@@ -40,11 +41,19 @@ public class Results extends AppCompatActivity {
     final List<Result> surveyResults = new ArrayList<>();
     String generalsurveyID;
     Survey generalSurvey;
-
+    double averageIndividuell;
+    double averageOrganisatorisch;
+    double averageSystem;
+    int questionID;
+    int minQuestionID;
+    int maxQuestionID;
+    double minValue;
+    double maxValue;
     //Charts (Gesamt & Kategorien)
     BarChart stackedChart;
     BarChart stackedChartCategories;
     int[]colorClassArray = new int[]{Color.LTGRAY, Color.DKGRAY};
+    int questionCounter = 3;
 
     //Ergebnisse für alle drei gewählte Fragen und jeweils Wert dazu (value)
     TextView resultChoiceQ1;
@@ -80,7 +89,6 @@ public class Results extends AppCompatActivity {
     TextView responsibiltyValue;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,41 +98,11 @@ public class Results extends AppCompatActivity {
 
         getSurvey();
         getSpecificSurveys();
-        Log.d("CHECK","barDAtaset:"+surveys);
+
 
         //Zuordnung zu Feldern mit StackedCharts
         stackedChart = findViewById(R.id.stackedChartTotal);
         stackedChartCategories = (BarChart) findViewById(R.id.stackedChartInd);
-
-        BarDataSet barDataSet = new BarDataSet(dataValues1(),"");
-        Log.d("CHECK","barDAtaset:"+barDataSet);
-        barDataSet.setDrawIcons(false);
-        barDataSet.setStackLabels(new String[]{"Erreichte Punktzahl","Differenz zu Maximum"});
-        barDataSet.setColors(colorClassArray);
-
-        BarData barData = new BarData(barDataSet);
-        Log.d("CHECK","barDAtaset:"+barData);
-        stackedChart.setData(barData);
-        stackedChart.setFitBars(true);
-        stackedChart.invalidate();
-        stackedChart.getDescription().setEnabled(false);
-        //  stackedChartTotal.setTouchEnabled(true);
-        //  stackedChartTotal.setDragEnabled(true);
-        //  stackedChartTotal.setScaleEnabled(true);
-
-
-        BarDataSet barDataSet2 = new BarDataSet(dataValues2(),"");
-        barDataSet2.setDrawIcons(false);
-        barDataSet2.setStackLabels(new String[]{"Erreichte Punktzahl","Differenz zu Maximum"});
-        barDataSet2.setColors(colorClassArray);
-
-
-        BarData barData2 = new BarData(barDataSet2);
-        stackedChartCategories.setData(barData2);
-        stackedChartCategories.setFitBars(true);
-        stackedChartCategories.invalidate();
-        stackedChartCategories.getDescription().setEnabled(false);
-
 
         //Zuordnung zu Textfeldern (Fragen und Werte dazu)
         resultChoiceQ1 = (TextView) findViewById(R.id.tvResultChoiceQ1);
@@ -158,24 +136,24 @@ public class Results extends AppCompatActivity {
         responsibiltyValue = (TextView)findViewById(R.id.tvResponsibilityValue);
 
 
-
-
     }
 
-    private ArrayList<BarEntry> dataValues1(){
+    private ArrayList<BarEntry> dataValuesOverallValue(){
         ArrayList<BarEntry>dataVals=new ArrayList<>();
-        dataVals.add(new BarEntry(0f, new float[]{(float) 3.50, (float) 1.5}));
+        dataVals.add(new BarEntry(0f, new float[]{(float) getAverageOverall(), (float) (5-getAverageOverall())}));
         return dataVals;
     }
 
-    private ArrayList<BarEntry> dataValues2(){
+    private ArrayList<BarEntry> dataValuesCategoryValues(){
         ArrayList<BarEntry>dataVals2=new ArrayList<>();
-        dataVals2.add(new BarEntry(1f, new float[]{(float) 2.1, (float) 1.1}));
-        dataVals2.add(new BarEntry(2f, new float[]{(float) 2.20, (float) 2.8}));
-        dataVals2.add(new BarEntry(3f, new float[]{(float) 1.50, (float) 3.5}));
+        dataVals2.add(new BarEntry(1f, new float[]{(float) averageIndividuell, (float) (5-averageIndividuell)}));
+        dataVals2.add(new BarEntry(2f, new float[]{(float) averageOrganisatorisch, (float) (5-averageOrganisatorisch)}));
+        dataVals2.add(new BarEntry(3f, new float[]{(float) averageSystem, (float) (5-averageSystem)}));
         return dataVals2;
     }
 
+
+    //retrieve data
     private void getSurvey(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference mRef = database.getReference();
@@ -189,11 +167,13 @@ public class Results extends AppCompatActivity {
                     Survey survey= sn.getValue(Survey.class);
                     if(survey.getSurveyCode().equals(generalsurveyID)){
                        generalSurvey = survey;
-                        Log.d("CHECK","SURVEY#####################:"+generalSurvey);
+
                     }
 
 
                 }
+
+                setProjectData();
             }
 
             @Override
@@ -215,12 +195,19 @@ public class Results extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot sn : dataSnapshot.getChildren()) {
                     SpecificSurvey survey = sn.getValue(SpecificSurvey.class);
-                    Log.d("CHECK","survey:"+survey.getSpecificSurveyID());
-                    Log.d("CHECK2", "value"+survey.getResult().get("Result0"));
                     if(survey.getSurveyID().equals(generalsurveyID)) {
                         surveys.add(survey);
                     }
                 }
+
+
+                averageIndividuell = getAverageOfCategory("Individuell");
+                averageOrganisatorisch = getAverageOfCategory("Organisatorisch");
+                averageSystem = getAverageOfCategory("System");
+                setOverall();
+                setCategories();
+                getMinANDMax();
+                Log.d("CHECKMAX", "MMAX"+maxValue);
             }
 
             @Override
@@ -230,6 +217,114 @@ public class Results extends AppCompatActivity {
         });
 
     }
+
+
+
+    //bar chart
+    private double getAverageOverall(){
+
+        return ((averageIndividuell+averageOrganisatorisch+averageSystem)/3);
+    }
+    private void setCategories(){
+        BarDataSet barDataSet2 = new BarDataSet(dataValuesCategoryValues(),"");
+        barDataSet2.setDrawIcons(false);
+        barDataSet2.setStackLabels(new String[]{"Erreichte Punktzahl","Differenz zu Maximum"});
+        barDataSet2.setColors(colorClassArray);
+
+
+        BarData barData2 = new BarData(barDataSet2);
+        stackedChartCategories.setData(barData2);
+        stackedChartCategories.setFitBars(true);
+        stackedChartCategories.invalidate();
+        stackedChartCategories.getDescription().setEnabled(false);
+    }
+    private void setOverall(){
+        BarDataSet barDataSet = new BarDataSet(dataValuesOverallValue(),"");
+        Log.d("CHECK","barDAtaset:"+barDataSet);
+        barDataSet.setDrawIcons(false);
+        barDataSet.setStackLabels(new String[]{"Erreichte Punktzahl","Differenz zu Maximum"});
+        barDataSet.setColors(colorClassArray);
+
+        BarData barData = new BarData(barDataSet);
+        Log.d("CHECK","barDAtaset:"+barData);
+        stackedChart.setData(barData);
+        stackedChart.setFitBars(true);
+        stackedChart.invalidate();
+        stackedChart.getDescription().setEnabled(false);
+        //  stackedChartTotal.setTouchEnabled(true);
+        //  stackedChartTotal.setDragEnabled(true);
+        //  stackedChartTotal.setScaleEnabled(true);
+    }
+
+    private void setProjectData(){
+        firmValue.setText(generalSurvey.getCompanyName());
+        projectNameVaue.setText(generalSurvey.getProjectName());
+        systemtypeValue.setText(generalSurvey.getSystemType());
+        systemstatusValue.setText(generalSurvey.getSystemStatus());
+       // numberOfParticipantsValue.setText(questionCounter);
+        responsibiltyValue.setText("dummy");
+    }
+
+    //average calculation
+    private double getAverageOfQuestion(int questionID){
+        double average;
+        int sum =0;
+        int i = 0;
+        double counter = 0;
+        HashMap<String, Result> resultMap = new HashMap<>();
+
+        for(SpecificSurvey survey : surveys){
+            resultMap = survey.getResult();
+
+            for(Map.Entry<String, Result> entry : resultMap.entrySet()){
+                    if(entry.getValue().getQuestionID() == questionID){
+                        sum = sum + entry.getValue().getResultValue();
+                        counter = counter+1;
+                        i++;
+
+                }
+            }
+
+
+        }
+
+        average = sum/counter;
+        Log.d("COUNTERQUESTION","questioncounter"+counter);
+
+        return average;
+    }
+
+    private void getMinANDMax(){
+
+        double value;
+        int minID = 0;
+        double minValue = 0.0;
+        int maxID = 0;
+        double maxValue = 0.0;
+
+        for(int i = 0; i<surveys.size();i++){
+            value = getAverageOfQuestion(i);
+            if(value!= 0.0) {
+                if (value < minValue) {
+                    minValue = value;
+                    minID = i;
+                }
+                if(value>maxValue){
+                    maxValue = value;
+                    maxID = i;
+                }
+            }
+        }
+
+        minQuestionID = minID;
+        this.minValue = minValue;
+        maxQuestionID = maxID;
+        this.maxValue = maxValue;
+
+
+
+    }
+
     private double getAverageOfCategory(String questionCategory){
         double average;
         int sum =0;
@@ -241,22 +336,20 @@ public class Results extends AppCompatActivity {
             resultMap = survey.getResult();
 
             for(Map.Entry<String, Result> entry : resultMap.entrySet()){
-                String key = "Result"+i;
-                if(entry.getKey().equals(key)){
-                    if(entry.getValue().getQuestionCategory().equals(questionCategory)){
-                        sum = sum + entry.getValue().getResultValue();
-                        counter = counter+1;
-                        i++;
-                    };
+
+                if(entry.getValue().getQuestionCategory().equals(questionCategory)){
+                    sum = sum + entry.getValue().getResultValue();
+                    counter = counter+1;
+                    i++;
                 }
+
             }
-            i=0;
+
 
         }
 
+        Log.d("COUNTER","counter: "+counter);
 
-        Log.d("CACULATION", "Sum"+sum);
-        Log.d("AMOUNT","Counter"+counter);
         average = sum/counter;
 
         return average;
