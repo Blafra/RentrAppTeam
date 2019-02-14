@@ -29,9 +29,9 @@ public class StartResult extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         surveyCode = editText.getText().toString();
-        Intent intent = new Intent(this, Results.class);
-        intent.putExtra("surveyCode", surveyCode);
-        startActivity(intent);
+       // Intent intent = new Intent(this, Results.class);
+      //  intent.putExtra("surveyCode", surveyCode);
+       // startActivity(intent);
     }
 
 }
