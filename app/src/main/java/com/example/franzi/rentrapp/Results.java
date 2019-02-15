@@ -85,7 +85,6 @@ public class Results extends AppCompatActivity {
     TextView systemtypeValue;
     TextView systemstatusValue;
     TextView numberOfParticipantsValue;
-    TextView surveyTimeFrameValue;
     TextView responsibiltyValue;
 
 
@@ -165,7 +164,6 @@ public class Results extends AppCompatActivity {
         systemtypeValue= (TextView)findViewById(R.id.tvSystemtypeValue);
         systemstatusValue =(TextView)findViewById(R.id.tvSystemstatusValue);
         numberOfParticipantsValue = (TextView)findViewById(R.id.tvNumberOfParticipantsValue);
-        surveyTimeFrameValue=(TextView)findViewById(R.id.tvSurveyTimeFrameValue);
         responsibiltyValue = (TextView)findViewById(R.id.tvResponsibilityValue);
 
 
