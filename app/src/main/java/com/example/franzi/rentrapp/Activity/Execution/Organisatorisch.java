@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,8 @@ import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.Model.Question;
 import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.R;
+
+import org.w3c.dom.Text;
 
 
 public class Organisatorisch extends AppCompatActivity implements View.OnClickListener {
@@ -40,6 +43,9 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
                 questionsOrganisatorisch.add(q);
             }
         }
+
+        TextView textView = (TextView) findViewById(R.id.tvCategories);
+        textView.setText("ORGANISATORISCH");
 
 
         ListView mlvQuestions = (ListView) findViewById(R.id.lvQuestion);

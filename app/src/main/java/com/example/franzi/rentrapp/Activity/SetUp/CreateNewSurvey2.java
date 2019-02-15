@@ -196,7 +196,10 @@ public class CreateNewSurvey2 extends AppCompatActivity implements View.OnClickL
 
                 for (DataSnapshot sn : dataSnapshot.getChildren()) {
                     Question question = sn.getValue(Question.class);
-                    questionTextList.add(question.getQuestionText());
+                    if(question.getSystemCategory().equals(systemStatus)){
+                        questionTextList.add(question.getQuestionText());
+                    }
+
                 }
             }
 

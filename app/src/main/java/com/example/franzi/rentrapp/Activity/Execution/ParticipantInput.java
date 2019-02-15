@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.R;
@@ -30,7 +32,15 @@ public class ParticipantInput extends AppCompatActivity implements View.OnClickL
     private boolean isManager;
     private int numbEmployees;
 
+    TextView tv1;
+    TextView tv2;
+    TextView tv3;
+
+    RadioGroup rg;
+    EditText answerQ2;
+    Switch s;
     EditText answerQ3;
+
     Button btnNext;
 
     @Override
@@ -52,9 +62,23 @@ public class ParticipantInput extends AppCompatActivity implements View.OnClickL
         settingParticipantDepartment = ss.isSettingParticipantDepartment();
         settingParticipantPosition = ss.isSettingParticipantPosition();
 
+        //Get refernces for Text & Input Fields
+        tv1 = findViewById(R.id.tvPIQ1);
+        rg = findViewById(R.id.irbQ1);
 
+        tv2 = findViewById(R.id.tvPIQ2);
+        answerQ2 = findViewById(R.id.iPIQ2);
+
+        tv3 = findViewById(R.id.tvPIQ3);
+        s = findViewById(R.id.iPIQ3_1);
         answerQ3 = findViewById(R.id.iPIQ3_2);
         answerQ3.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+        //Show according to settings
+
+        if(!settingParticipantAge){
+
+        }
 
         btnNext = findViewById(R.id.btn_nextPI);
         btnNext.setOnClickListener(this);

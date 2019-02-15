@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.franzi.rentrapp.Activity.Menue;
@@ -41,7 +42,8 @@ public class System extends AppCompatActivity implements View.OnClickListener  {
                 questionsSystem.add(q);
             }
         }
-
+        TextView textView = (TextView) findViewById(R.id.tvCategories);
+        textView.setText("SYSTEM");
 
         ListView mlvQuestions = (ListView) findViewById(R.id.lvQuestion);
 

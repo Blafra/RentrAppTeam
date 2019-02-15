@@ -35,7 +35,7 @@
                 android:gravity="center"
                 android:padding="2dip"
                 android:text="ERGEBNISSE "
-                android:textSize="18sp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
         <LinearLayout
@@ -70,18 +70,18 @@
             android:layout_height="wrap_content"
             android:weightSum="100">
 
-            <com.github.mikephil.charting.charts.HorizontalBarChart
+            <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/stackedChartTotal"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="250dp"
                 android:layout_weight="75">
 
-            </com.github.mikephil.charting.charts.HorizontalBarChart>
+            </com.github.mikephil.charting.charts.BarChart>
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/stackedChartInd"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="250dp"
                 android:layout_weight="25">
 
             </com.github.mikephil.charting.charts.BarChart>
@@ -559,7 +559,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="25"
                         android:padding="2dip"
-                        android:text="Verantwortlich: "
+                        android:text="Alterdurchschnitt "
                         android:textSize="18sp" />
 
                     <TextView
@@ -574,6 +574,24 @@
 
 
             </LinearLayout>
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="100dp"
+                android:layout_height="47dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/text_view_boarder"
+                android:text="MENÜ"
+                android:textColor="@android:color/background_light"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_Start"
+                app:layout_constraintVertical_bias="0.158" />
         </LinearLayout>
 
     </ScrollView>
