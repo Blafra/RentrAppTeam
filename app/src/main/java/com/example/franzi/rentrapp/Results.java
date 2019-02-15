@@ -44,6 +44,10 @@ public class Results extends AppCompatActivity {
     //Charts (Gesamt & Kategorien)
     BarChart stackedChart;
     BarChart stackedChartCategories;
+
+
+   // int[]colorClassArray = new int[]{R.color.colorPrimary, R.color.colorPrimaryDark};
+
     int[]colorClassArray = new int[]{Color.LTGRAY, Color.DKGRAY};
 
     //Ergebnisse für alle drei gewählte Fragen und jeweils Wert dazu (value)
@@ -78,7 +82,7 @@ public class Results extends AppCompatActivity {
     TextView numberOfParticipantsValue;
     TextView surveyTimeFrameValue;
     TextView responsibiltyValue;
-
+    private int context;
 
 
     @Override
@@ -100,7 +104,8 @@ public class Results extends AppCompatActivity {
         Log.d("CHECK","barDAtaset:"+barDataSet);
         barDataSet.setDrawIcons(false);
         barDataSet.setStackLabels(new String[]{"Erreichte Punktzahl","Differenz zu Maximum"});
-        barDataSet.setColors(colorClassArray);
+        //barDataSet.setColors(new int[]{R.color.colorPrimary , R.color.colorPrimaryDark}, context);
+        barDataSet.setColors(getResources().getColor(R.color.colorPrimary),getResources().getColor(R.color.colorPrimaryLight));
 
         BarData barData = new BarData(barDataSet);
         Log.d("CHECK","barDAtaset:"+barData);
@@ -156,7 +161,6 @@ public class Results extends AppCompatActivity {
         systemtypeValue= (TextView)findViewById(R.id.tvSystemtypeValue);
         systemstatusValue =(TextView)findViewById(R.id.tvSystemstatusValue);
         numberOfParticipantsValue = (TextView)findViewById(R.id.tvNumberOfParticipantsValue);
-        surveyTimeFrameValue=(TextView)findViewById(R.id.tvSurveyTimeFrameValue);
         responsibiltyValue = (TextView)findViewById(R.id.tvResponsibilityValue);
 
 
