@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class Results extends AppCompatActivity implements View.OnClickListener {
 
-    DatabaseReference mRef;
+
     final List<SpecificSurvey> surveys = new ArrayList<>();
     final List<Result> surveyResults = new ArrayList<>();
     final List<Question> questions = new ArrayList<>();
@@ -49,7 +49,9 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
     double averageOrganisatorisch;
     double averageSystem;
     int questionID;
+
     DecimalFormat df;
+    DatabaseReference mRef;
 
     //Listen für Max und Min Fragen
     ArrayList<Integer> maxQList = new ArrayList<>();
