@@ -19,9 +19,18 @@ public class SpecificSurvey implements Parcelable {
     private String surveyID;
     private int employeeID;
     private List<Question> questionList;
-    private boolean participantAge;
-    private boolean participantDepartment;
-    private boolean participantPosition;
+
+
+
+    private boolean settingParticipantAge;
+    private boolean settingParticipantDepartment;
+    private boolean settingParticipantPosition;
+
+    private int participantAgeGroup;
+    private String participantDepartment;
+    private boolean isManager;
+    private int numbEmployees;
+
     DatabaseReference mRef;
 
     //Constructor
@@ -31,16 +40,33 @@ public class SpecificSurvey implements Parcelable {
 
     }
 
-    public SpecificSurvey(int employeeID, List<Question> questions, boolean participantAge, boolean participantDepartment, boolean participantPosition) {
+    public SpecificSurvey(String surveyID, int employeeID, List<Question> questions, boolean participantAge, boolean participantDepartment, boolean participantPosition) {
 
         this.employeeID = employeeID;
         this.questionList = questions;
-        this.participantAge = participantAge;
-        this.participantDepartment = participantDepartment;
-        this.participantPosition = participantPosition;
+        this.settingParticipantAge = participantAge;
+        this.settingParticipantDepartment = participantDepartment;
+        this.settingParticipantPosition = participantPosition;
         this.specificSurveyID = generateSpecificSurveyId();
+        this.surveyID = surveyID;
 
     }
+
+    protected SpecificSurvey(Parcel in) {
+        specificSurveyID = in.readString();
+        surveyID = in.readString();
+        employeeID = in.readInt();
+        questionList = in.createTypedArrayList(Question.CREATOR);
+        settingParticipantAge = in.readByte() != 0;
+        settingParticipantDepartment = in.readByte() != 0;
+        settingParticipantPosition = in.readByte() != 0;
+        participantAgeGroup = in.readInt();
+        participantDepartment = in.readString();
+        isManager = in.readByte() != 0;
+        numbEmployees = in.readInt();
+    }
+
+
 
     public void saveSpecificSurvey(){
 
@@ -72,9 +98,10 @@ public class SpecificSurvey implements Parcelable {
             result.put("specificSurveyID", specificSurveyID);
             result.put("employeeID", employeeID);
             result.put("surveyID", surveyID);
-            result.put("participantAge", participantAge);
+            result.put("participantAge", participantAgeGroup);
             result.put("participantDepartment", participantDepartment);
-            result.put("participantPosition", participantPosition);
+            result.put("isManager", isManager);
+            result.put("numbEmployees", numbEmployees);
 
             return result;
         }
@@ -82,6 +109,63 @@ public class SpecificSurvey implements Parcelable {
 
 
     //Getter Setter
+
+    public boolean isSettingParticipantAge() {
+        return settingParticipantAge;
+    }
+
+    public void setSettingParticipantAge(boolean settingParticipantAge) {
+        this.settingParticipantAge = settingParticipantAge;
+    }
+
+    public boolean isSettingParticipantDepartment() {
+        return settingParticipantDepartment;
+    }
+
+    public void setSettingParticipantDepartment(boolean settingParticipantDepartment) {
+        this.settingParticipantDepartment = settingParticipantDepartment;
+    }
+
+    public boolean isSettingParticipantPosition() {
+        return settingParticipantPosition;
+    }
+
+    public void setSettingParticipantPosition(boolean settingParticipantPosition) {
+        this.settingParticipantPosition = settingParticipantPosition;
+    }
+
+    public int getParticipantAgeGroup() {
+        return participantAgeGroup;
+    }
+
+    public void setParticipantAgeGroup(int participantAgeGroup) {
+        this.participantAgeGroup = participantAgeGroup;
+    }
+
+    public String getParticipantDepartment() {
+        return participantDepartment;
+    }
+
+    public void setParticipantDepartment(String participantDepartment) {
+        this.participantDepartment = participantDepartment;
+    }
+
+    public boolean isManager() {
+        return isManager;
+    }
+
+    public void setManager(boolean manager) {
+        isManager = manager;
+    }
+
+    public int getNumbEmployees() {
+        return numbEmployees;
+    }
+
+    public void setNumbEmployees(int numbEmployees) {
+        this.numbEmployees = numbEmployees;
+    }
+
     public HashMap<String, com.example.franzi.rentrapp.Model.Result> getResult() {
         return Result;
     }
@@ -122,50 +206,21 @@ public class SpecificSurvey implements Parcelable {
         this.questionList = questionList;
     }
 
-    public boolean isParticipantAge() {
-        return participantAge;
-    }
-
-    public void setParticipantAge(boolean participantAge) {
-        this.participantAge = participantAge;
-    }
-
-    public boolean isParticipantDepartment() {
-        return participantDepartment;
-    }
-
-    public void setParticipantDepartment(boolean participantDepartment) {
-        this.participantDepartment = participantDepartment;
-    }
-
-    public boolean isParticipantPosition() {
-        return participantPosition;
-    }
-
-    public void setParticipantPosition(boolean participantPosition) {
-        this.participantPosition = participantPosition;
-    }
 
     //Parcable
-    protected SpecificSurvey(Parcel in) {
-        specificSurveyID = in.readString();
-        surveyID = in.readString();
-        employeeID = in.readInt();
-        questionList = in.createTypedArrayList(Question.CREATOR);
-        participantAge = in.readByte() != 0;
-        participantDepartment = in.readByte() != 0;
-        participantPosition = in.readByte() != 0;
-    }
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(specificSurveyID);
         dest.writeString(surveyID);
         dest.writeInt(employeeID);
         dest.writeTypedList(questionList);
-        dest.writeByte((byte) (participantAge ? 1 : 0));
-        dest.writeByte((byte) (participantDepartment ? 1 : 0));
-        dest.writeByte((byte) (participantPosition ? 1 : 0));
+        dest.writeByte((byte) (settingParticipantAge ? 1 : 0));
+        dest.writeByte((byte) (settingParticipantDepartment ? 1 : 0));
+        dest.writeByte((byte) (settingParticipantPosition ? 1 : 0));
+        dest.writeInt(participantAgeGroup);
+        dest.writeString(participantDepartment);
+        dest.writeByte((byte) (isManager ? 1 : 0));
+        dest.writeInt(numbEmployees);
     }
 
     @Override

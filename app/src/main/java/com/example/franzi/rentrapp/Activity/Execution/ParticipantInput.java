@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -30,9 +31,13 @@ public class ParticipantInput extends AppCompatActivity implements View.OnClickL
     private int numbEmployees;
 
     EditText answerQ3;
+    Button btnNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_participant_input);
 
         participantAgeGroup = 0;
         isManager = false;
@@ -43,16 +48,16 @@ public class ParticipantInput extends AppCompatActivity implements View.OnClickL
         ss = getIntent().getParcelableExtra("Specific_Survey1");
 
         //Get Info about what should be asked
-        settingParticipantAge = ss.isParticipantAge();
-        settingParticipantDepartment = ss.isParticipantDepartment();
-        settingParticipantPosition = ss.isParticipantPosition();
+        settingParticipantAge = ss.isSettingParticipantAge();
+        settingParticipantDepartment = ss.isSettingParticipantDepartment();
+        settingParticipantPosition = ss.isSettingParticipantPosition();
 
 
         answerQ3 = findViewById(R.id.iPIQ3_2);
         answerQ3.setInputType(InputType.TYPE_CLASS_NUMBER);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_participant_input);
+        btnNext = findViewById(R.id.btn_nextPI);
+        btnNext.setOnClickListener(this);
     }
 
     @Override
@@ -93,23 +98,23 @@ public class ParticipantInput extends AppCompatActivity implements View.OnClickL
         int i = 1;
         for(RadioButton rb : radioButtons){
             if(rb.isChecked()){
-                participantAgeGroup = i;
+                ss.setParticipantAgeGroup(i);
             }
         }
 
         //Get Department
 
         EditText answerQ2 = findViewById(R.id.iPIQ2);
-        participantDepartment = answerQ2.getText().toString();
+        ss.setParticipantDepartment(answerQ2.getText().toString());
 
         //Get manager info & numb employees
 
         Switch s = findViewById(R.id.iPIQ3_1);
 
         if(s.isChecked()){
-            isManager=true;
+            ss.setManager(true);
             String value= answerQ3.getText().toString();
-            numbEmployees = Integer.parseInt(value);
+            ss.setNumbEmployees(Integer.parseInt(value));
         }
 
     }

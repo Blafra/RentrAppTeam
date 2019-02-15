@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.franzi.rentrapp.Model.Result;
 import com.example.franzi.rentrapp.Model.SpecificSurvey;
@@ -221,10 +222,16 @@ public class Results extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot sn : dataSnapshot.getChildren()) {
-                    SpecificSurvey survey = sn.getValue(SpecificSurvey.class);
-                    if(survey.getSurveyID().equals(generalsurveyID)) {
-                        surveys.add(survey);
+                    SpecificSurvey specificSurvey = sn.getValue(SpecificSurvey.class);
+                    if(specificSurvey != null){
+                        if(specificSurvey.getSurveyID().equals(generalsurveyID)) {
+                            surveys.add(specificSurvey);
+                        }
                     }
+                    else{
+                        Toast.makeText(getApplication().getBaseContext(), "Es wurden noch keine Umfragen zum SurveyCode durchgeführt", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
 

@@ -27,12 +27,15 @@
         </activity>
         <activity
             android:name=".Activity.Start"
-            android:screenOrientation="portrait" />
+            />
         <activity android:name=".Activity.Evaluation.IndividuellesErgebnis" />
         <activity android:name=".Activity.SetUp.CreateNewSurvey" />
         <activity android:name=".Activity.SetUp.CreateNewSurvey2" />
         <activity android:name=".Activity.StartResult"></activity>
         <activity android:name=".Activity.Execution.Questionnaire" />
+        <activity android:name=".Activity.Execution.Individuell" />
+        <activity android:name=".Activity.Execution.Organisatorisch" />
+        <activity android:name=".Activity.Execution.System" />
         <activity android:name=".Activity.Evaluation.Results"></activity>
     </application>
 
