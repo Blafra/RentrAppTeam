@@ -237,7 +237,7 @@ public class Results extends AppCompatActivity {
                 setOverall();
                 setCategories();
                 getMinANDMax();
-                Log.d("CHECKMAX", "MMAX"+maxValue);
+                Log.d("CHECKMIn", "MIN"+minValue);
             }
 
             @Override
@@ -300,7 +300,7 @@ public class Results extends AppCompatActivity {
         double average;
         int sum =0;
         int i = 0;
-        double counter = 0;
+        double counter = (double)surveys.size();
         HashMap<String, Result> resultMap = new HashMap<>();
 
         for(SpecificSurvey survey : surveys){
@@ -309,7 +309,6 @@ public class Results extends AppCompatActivity {
             for(Map.Entry<String, Result> entry : resultMap.entrySet()){
                     if(entry.getValue().getQuestionID() == questionID){
                         sum = sum + entry.getValue().getResultValue();
-                        counter = counter+1;
                         i++;
 
                 }
@@ -319,6 +318,7 @@ public class Results extends AppCompatActivity {
         }
 
         average = sum/counter;
+        Log.d("SURVEYSIZE","surveySize"+surveys.size());
         Log.d("COUNTERQUESTION","questioncounter"+counter);
 
         return average;
