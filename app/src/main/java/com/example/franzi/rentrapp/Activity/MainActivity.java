@@ -59,17 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-        //Konfiguration der Umfrage (wird abgefragt bei Umfrageerstellung)
-        boolean[] config = {true, false};
-
-        sv = new Survey("LALA", "SAP", "S4HANA", "ERP", "Neueinführung");
-
-
-
-
-
-
-        btnStart = (Button) findViewById(R.id.btnStart);
+        btnStart = (Button) findViewById(R.id.btn_Start);
         /* OnClickListener verwaltet das Klicken auf den Button */
         btnStart.setOnClickListener(this);
     }

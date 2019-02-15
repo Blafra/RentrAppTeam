@@ -7,7 +7,7 @@
     tools:context=".Activity.Start">
 
     <Button
-        android:id="@+id/btnStart"
+        android:id="@+id/btn_Start"
         android:layout_width="266dp"
         android:layout_height="91dp"
         android:background="@drawable/text_view_boarder"
@@ -20,6 +20,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.681" />
 
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="265dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/text_view_boarder"
+        android:text="MENÜ"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Start"
+        app:layout_constraintVertical_bias="0.158" />
+
     <TextView
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
@@ -30,7 +49,7 @@
         android:text="Bitte tragen Sie ihren Survey Code ein, um mit der Umfrage zu beginnen"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnStart"
+        app:layout_constraintBottom_toTopOf="@+id/btn_Start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,9 +71,11 @@
         android:hint="Survey Code"
         android:inputType="text|textPersonName"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnStart"
+        app:layout_constraintBottom_toTopOf="@+id/btn_Start"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
+
+
 
 </android.support.constraint.ConstraintLayout>

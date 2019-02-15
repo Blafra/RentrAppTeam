@@ -3,5 +3,56 @@
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="codenotfound_createnewsurvey">Code nicht gefunden. Bitte überprüfen Sie Ihre Eingabe</string>
+
+    <!--Menue-->
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="btn_startSurvey">An Umfrage teilnehmen</string>
+    <string name="btn_createSurvey">Neue Umfrage erstellen</string>
+    <string name="btn_getResult">Ergebnisse anzeigen</string>
+
+    <string name="backgroundImg">Background Image</string>
+    <string name="contentLogo">TechGApp Logo White</string>
+
+    <!--Create New Survey 1-->
+
+    <string name="tvCompany">Firma</string>
+    <string name="tvCompanyHint">Max Müller GmbH</string>
+    <string name="tvProject">Projektname</string>
+    <string name="tvProjectHint">SAP Einführung S4/HANA</string>
+    <string name="tvSystemType">Systemtyp</string>
+    <string name="tvSystemStatus">Systemstatus</string>
+
+
+    <string name="notFilledOut">Bitte füllen Sie alle benötigten Felder aus</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <!--Create New Survey 2-->
+
+    <string name="checkPersonalData">Welche zusätzlichen Daten zu den Umfrageteilnehmern sollen erhoben werden?</string>
+    <string name="personalData1">&#8226; Teilnehmer Alter (20-25; 26-30...)</string>
+    <string name="personalData2">&#8226; Abteilung</string>
+    <string name="personalData3">&#8226; Hierarchieebene</string>
+
+    <string name="focusQuestions">Bitte wählen Sie bis zu drei Fokusfragen aus. \n Für diese werden Sie eine sperate Auswertung erhalten</string>
+
+    <string name="tvSurveyCode">Umfragecode:</string>
+
+    <!--Participant Input-->
+
+    <string name="headlineUserInput">Teilnehmer Informationen</string>
+    <string name="piQuestionOne">Wie alt sind Sie?</string>
+    <string name="piQuestionTwo">In welcher Abteilung arbeiten Sie?</string>
+    <string name="piQuestionThree">Leiten Sie ein Team? Falls ja wie viele Mitarbeiter sind Ihnen zugeteilt</string>
+
+    <string name="rbAge1">16-25</string>
+    <string name="rbAge2">26-35</string>
+    <string name="rbAge3">36-50</string>
+    <string name="rbAge4">50+</string>
+
+    <!--Headlines-->
+    <string name="headlineCreateNewService">Neue Umfrage Erstellen</string>
+
     <string name="title_activity_result">result</string>
 </resources>

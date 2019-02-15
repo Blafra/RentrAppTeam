@@ -22,13 +22,12 @@ public class Survey {
     private String projectName;
     private String systemType;
     private String systemStatus;
-    private String focusQuestionOne;
-    private String focusQuestionTwo;
-    private String focusQuestionThree;
     private boolean participantAge;
     private boolean participantDepartment;
     private boolean participantPosition;
-
+    private String focusQuestionOne;
+    private String focusQuestionTwo;
+    private String focusQuestionThree;
 
 
     //Constructor
@@ -38,12 +37,18 @@ public class Survey {
 
     }
 
-    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus){
+    public Survey(String surveyCode, String companyName, String projectName, String systemType, String systemStatus, boolean participantAge, boolean participantDepartment, boolean participantPosition, String focusQuestionOne, String focusQuestionTwo, String focusQuestionThree){
         this.surveyCode = surveyCode;
         this.companyName = companyName;
         this.projectName = projectName;
         this.systemType = systemType;
         this.systemStatus = systemStatus;
+        this.participantAge = participantAge;
+        this.participantDepartment = participantDepartment;
+        this.participantPosition = participantPosition;
+        this.focusQuestionOne = focusQuestionOne;
+        this.focusQuestionTwo = focusQuestionTwo;
+        this.focusQuestionThree = focusQuestionThree;
         }
 
     //Getter & Setter
@@ -164,6 +169,12 @@ public class Survey {
         result.put("projectName",projectName);
         result.put("systemType",systemType);
         result.put("systemStatus",systemStatus);
+        result.put("participantAge",participantAge);
+        result.put("participantDepartment",participantDepartment);
+        result.put("participantPosition",participantPosition);
+        result.put("focusQuestionOne",focusQuestionOne);
+        result.put("focusQuestionTwo",focusQuestionTwo);
+        result.put("focusQuestionThree",focusQuestionThree);
 
         return result;
     }

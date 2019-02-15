@@ -8,11 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.franzi.rentrapp.Activity.Menue;
-import com.example.franzi.rentrapp.Controller.WriteToDB;
 import com.example.franzi.rentrapp.R;
 import com.example.franzi.rentrapp.Model.*;
 import com.google.firebase.database.DatabaseReference;
@@ -23,13 +21,19 @@ import java.util.Map;
 
 public class CreateNewSurvey extends AppCompatActivity implements View.OnClickListener {
 
-    Survey newSurvey;
-    String surveyCode="";
+    private String companyName;
+    private String projectName;
+    private String systemType;
+    private String systemStatus;
+
+    private ArrayList<String> projectInfoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_survey);
+
+        projectInfoList = new ArrayList<String>();
 
         //Init Spinner 1
 
@@ -49,7 +53,9 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items2);
         dropdown2.setAdapter(adapter2);
 
-        Button btn = (Button) findViewById(R.id.btnCreateNewS);
+
+        //Set On Click Listeners for buttons
+        Button btn = (Button) findViewById(R.id.btnCreateNewSurvey);
         Button btn2 = (Button) findViewById(R.id.btnCreateNewS2);
 
         btn.setOnClickListener(this);
@@ -61,17 +67,20 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
 
         switch (v.getId()){
 
-            //Umfrage erstellen Button
-            case R.id.btnCreateNewS:
-                addSurvey();
+            //Weiter Button
+            case R.id.btnCreateNewSurvey:
+                Intent intent1 = new Intent(this, CreateNewSurvey2.class);
+                getUserInput();
+                intent1.putStringArrayListExtra("projectInfoList", projectInfoList);
+                startActivity(intent1);
+                this.finish();
                 break;
 
 
             //Menü Button --> Ins Hauptmenü
             case R.id.btnCreateNewS2:
-                Intent intent1 = new Intent(this, Menue.class);
-                intent1.putExtra("SurveyCode",surveyCode);
-                startActivity(intent1);
+                Intent intent2 = new Intent(this, Menue.class);
+                startActivity(intent2);
                 this.finish();
                 break;
 
@@ -81,7 +90,8 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    public void addSurvey (){
+    public void getUserInput (){
+
 
         //Get User Input
         final EditText iNewSurvey1 = (EditText)findViewById(R.id.iNewSurvey1);
@@ -89,34 +99,38 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
         final Spinner iNewSurvey3 = (Spinner) findViewById(R.id.iNewSurvey3);
         final Spinner iNewSurvey4 = (Spinner) findViewById(R.id.iNewSurvey4);
 
-        String companyName = iNewSurvey1.getText().toString();
-        String projectName = iNewSurvey2.getText().toString();
-        String systemType = iNewSurvey3.getSelectedItem().toString();
-        String systemStatus = iNewSurvey4.getSelectedItem().toString();
+        companyName = iNewSurvey1.getText().toString();
+        projectName = iNewSurvey2.getText().toString();
+        systemType = iNewSurvey3.getSelectedItem().toString();
+        systemStatus = iNewSurvey4.getSelectedItem().toString();
 
 
-        //  Question[] questions = getQuestions(systemStatus);
+        //Check if everything is filled out
 
-        //To-Do Config
-        boolean[] config = {true,false};
+        if(filledOutCompletely()!=true){
+            Toast.makeText(getApplicationContext(),"@string/notFilledOut",Toast.LENGTH_LONG);
+            return;
+        }
 
+        //Add to project info list
 
+        projectInfoList.add(companyName);
+        projectInfoList.add(projectName);
+        projectInfoList.add(systemType);
+        projectInfoList.add(systemStatus);
 
-        //Create new instance of Survey
+    }
 
-        newSurvey = new Survey(surveyCode,companyName,projectName,systemType,systemStatus);
-
-        //Save in database
-
-        WriteToDB.saveSurveyInDatabase(newSurvey);
-
-        //To-Do Create Survey Code & Display it
-        surveyCode = newSurvey.getSurveyCode();
-
-        TextView tvSurveyCode = (TextView) findViewById(R.id.tvNewSurvey6);
-        tvSurveyCode.setText(surveyCode);
-
-        Toast.makeText(this, "Umfrage erfolgreich erstellt", Toast.LENGTH_LONG).show();
+    private boolean filledOutCompletely() {
+        if(companyName.equals("")
+                |projectName.equals("")
+                |systemType.equals("")
+                |systemStatus.equals("")
+        ){
+            return false;
+        } else{
+            return true;
+        }
     }
 
     public static void saveSurveyInDatabase (Survey newSurvey){
