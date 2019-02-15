@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.franzi.rentrapp.Activity.Evaluation.StartResult;
+import com.example.franzi.rentrapp.Activity.Execution.Start;
 import com.example.franzi.rentrapp.Activity.SetUp.CreateNewSurvey;
 import com.example.franzi.rentrapp.R;
 

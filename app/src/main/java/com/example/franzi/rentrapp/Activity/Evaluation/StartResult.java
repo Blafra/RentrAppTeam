@@ -1,4 +1,4 @@
-package com.example.franzi.rentrapp.Activity;
+package com.example.franzi.rentrapp.Activity.Evaluation;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.franzi.rentrapp.Activity.Menue;
 import com.example.franzi.rentrapp.R;
 import com.example.franzi.rentrapp.Activity.Evaluation.Results;
 

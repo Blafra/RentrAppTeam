@@ -26,12 +26,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.Start"
+            android:name=".Activity.Execution.Start"
             />
-        <activity android:name=".Activity.Evaluation.IndividuellesErgebnis" />
         <activity android:name=".Activity.SetUp.CreateNewSurvey" />
         <activity android:name=".Activity.SetUp.CreateNewSurvey2" />
-        <activity android:name=".Activity.StartResult"></activity>
+        <activity android:name=".Activity.Evaluation.StartResult"></activity>
         <activity android:name=".Activity.Execution.Questionnaire" />
         <activity android:name=".Activity.Execution.Individuell" />
         <activity android:name=".Activity.Execution.Organisatorisch" />
