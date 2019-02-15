@@ -1,6 +1,5 @@
 package com.example.franzi.rentrapp;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -8,10 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-
-import com.example.franzi.rentrapp.Activity.Execution.Individuell;
-import com.example.franzi.rentrapp.Model.Question;
-import com.example.franzi.rentrapp.Model.Result;
 import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.Model.Survey;
 import com.github.mikephil.charting.charts.BarChart;

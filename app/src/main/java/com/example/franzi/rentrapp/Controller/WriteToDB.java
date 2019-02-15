@@ -1,6 +1,5 @@
 package com.example.franzi.rentrapp.Controller;
 
-import com.example.franzi.rentrapp.Activity.Execution.SpecificSurvey;
 import com.example.franzi.rentrapp.Model.Survey;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

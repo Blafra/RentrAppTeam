@@ -9,8 +9,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+import com.example.franzi.rentrapp.Model.SpecificSurvey;
 
 import com.example.franzi.rentrapp.Model.Question;
+import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.R;
 
 

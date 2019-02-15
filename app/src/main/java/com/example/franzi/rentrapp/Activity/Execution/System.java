@@ -9,9 +9,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.franzi.rentrapp.Activity.Menue;
-import com.example.franzi.rentrapp.Activity.Start;
-import com.example.franzi.rentrapp.Controller.Result;
+import com.example.franzi.rentrapp.Model.Result;
 import com.example.franzi.rentrapp.Model.Question;
+import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.R;
 
 import java.util.ArrayList;
@@ -69,6 +69,7 @@ public class System extends AppCompatActivity implements View.OnClickListener  {
                 result.setQuestionCategory(question.getQuestionCategory());
                 resultList.add(result);
             }
+            ss.saveSpecificSurvey();
             Result.storeResults(ss.getSpecificSurveyID(), resultList);
 
 
