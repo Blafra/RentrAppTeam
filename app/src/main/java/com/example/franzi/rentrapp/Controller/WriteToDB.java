@@ -27,25 +27,4 @@ public class WriteToDB {
 
     }
 
-    public static SpecificSurvey saveSpecificSurveyInDatabase(SpecificSurvey ss) {
-
-        //Survey Objectinstanz in Datenbank abspeichern
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference mRef = database.getReference();
-
-        //To-Do SurveyCode
-
-        String key = mRef.child("SpecificSurvey").push().getKey();
-        ss.setSpecificSurveyID(key);
-
-        //Transform Input into HashMap of Survey and add to database
-        String test = "Hallo";
-        Map<String, Object> specificSurveyMap = ss.toMap(test);
-
-        mRef.child("SpecificSurvey").child(key).setValue(specificSurveyMap);
-
-        //Retrun brauch man hier glaub nicht da ss Referenz auf gelichen Speicher?!
-        return ss;
-    }
 }

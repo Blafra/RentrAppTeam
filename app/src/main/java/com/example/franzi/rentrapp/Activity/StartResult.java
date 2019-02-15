@@ -3,14 +3,12 @@ package com.example.franzi.rentrapp.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.franzi.rentrapp.Activity.Execution.Individuell;
 import com.example.franzi.rentrapp.R;
-import com.example.franzi.rentrapp.Results;
+import com.example.franzi.rentrapp.Activity.Evaluation.Results;
 
 public class StartResult extends AppCompatActivity implements View.OnClickListener{
     private Button btnStartResult;

@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvQ1.1"
-
+                android:id="@+id/rbtnGr"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:weightSum="100">

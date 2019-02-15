@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:shrinkColumns="*"
     android:stretchColumns="*"
-    tools:context=".Results">
+    tools:context=".Activity.Evaluation.Results">
 
     <ScrollView
         android:layout_width="585dp"

@@ -33,7 +33,7 @@
         <activity android:name=".Activity.SetUp.CreateNewSurvey2" />
         <activity android:name=".Activity.StartResult"></activity>
         <activity android:name=".Activity.Execution.Questionnaire" />
-        <activity android:name=".Results"></activity>
+        <activity android:name=".Activity.Evaluation.Results"></activity>
     </application>
 
 </manifest>
