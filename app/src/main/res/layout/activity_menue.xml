@@ -11,8 +11,14 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img3" />
+        android:layout_height="1353dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/img3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,19 +27,22 @@
         android:weightSum="100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="50"/>
+            android:layout_weight="30" />
 
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_marginTop="150dp"
             android:layout_weight="15"
             android:contentDescription="@string/contentLogo"
             app:srcCompat="@drawable/logo_weiss" />
@@ -41,20 +50,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="35"
-            android:weightSum="100"
-            android:orientation="horizontal">
+            android:layout_weight="45"
+            android:orientation="horizontal"
+            android:weightSum="100">
 
             <Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="20"/>
+                android:layout_weight="20" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="60"
                 android:layout_gravity="center"
+                android:layout_weight="60"
                 android:orientation="vertical">
 
 
@@ -62,7 +71,7 @@
                     android:id="@+id/btnParticipate"
                     style="Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
@@ -83,10 +92,10 @@
                     android:id="@+id/btnCreateSurvey"
                     style="Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
@@ -103,7 +112,7 @@
                 <Button
                     android:id="@+id/btnShowResults"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
@@ -127,7 +136,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="20"/>
+                android:layout_weight="20" />
 
         </LinearLayout>
 

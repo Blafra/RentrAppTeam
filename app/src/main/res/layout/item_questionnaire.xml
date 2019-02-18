@@ -9,10 +9,17 @@
         android:weightSum="100"
         android:orientation="vertical">
 
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
+
         <TextView
             android:id="@+id/tvQuestion"
             android:layout_width="match_parent"
             android:layout_height="61dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="Question"
             android:textAlignment="center"
@@ -27,10 +34,11 @@
 
 
             <RadioGroup
+                android:id="@+id/rbtnGr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvQ1.1"
-                android:id="@+id/rbtnGr"
+                android:layout_marginBottom="20dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:weightSum="100">

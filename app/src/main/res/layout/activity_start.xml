@@ -9,7 +9,7 @@
     <Button
         android:id="@+id/btn_Start"
         android:layout_width="266dp"
-        android:layout_height="91dp"
+        android:layout_height="50dp"
         android:background="@drawable/text_view_boarder"
         android:text="Start"
         android:textColor="@android:color/background_light"
@@ -23,27 +23,28 @@
     <Button
         android:id="@+id/btn_back"
         android:layout_width="265dp"
-        android:layout_height="47dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/text_view_boarder"
         android:text="MENÜ"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Start"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_Start" />
 
     <TextView
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="68dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="Bitte tragen Sie ihren Survey Code ein, um mit der Umfrage zu beginnen"

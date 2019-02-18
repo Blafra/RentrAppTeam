@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +33,9 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_create_new_survey);
 
         projectInfoList = new ArrayList<String>();
@@ -55,8 +60,8 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
 
 
         //Set On Click Listeners for buttons
-        Button btn = (Button) findViewById(R.id.btnCreateNewSurvey);
-        Button btn2 = (Button) findViewById(R.id.btnCreateNewS2);
+        Button btn = (Button) findViewById(R.id.btnNext);
+        Button btn2 = (Button) findViewById(R.id.btnMenue);
 
         btn.setOnClickListener(this);
         btn2.setOnClickListener(this);
@@ -68,17 +73,22 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()){
 
             //Weiter Button
-            case R.id.btnCreateNewSurvey:
-                Intent intent1 = new Intent(this, CreateNewSurvey2.class);
+            case R.id.btnNext:
+
                 getUserInput();
+                if(filledOutCompletely()!=true){
+                    Toast.makeText(this,"@string/notFilledOut",Toast.LENGTH_LONG);
+                    break;
+                }
+
+                Intent intent1 = new Intent(this, CreateNewSurvey2.class);
                 intent1.putStringArrayListExtra("projectInfoList", projectInfoList);
                 startActivity(intent1);
-                this.finish();
                 break;
 
 
             //Menü Button --> Ins Hauptmenü
-            case R.id.btnCreateNewS2:
+            case R.id.btnMenue:
                 Intent intent2 = new Intent(this, Menue.class);
                 startActivity(intent2);
                 this.finish();
@@ -108,7 +118,6 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
         //Check if everything is filled out
 
         if(filledOutCompletely()!=true){
-            Toast.makeText(getApplicationContext(),"@string/notFilledOut",Toast.LENGTH_LONG);
             return;
         }
 

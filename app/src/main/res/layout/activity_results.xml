@@ -9,15 +9,15 @@
     tools:context=".Activity.Evaluation.Results">
 
     <ScrollView
-        android:layout_width="585dp"
-        android:layout_height="806dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -31,6 +31,7 @@
                 android:id="@+id/tvResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="2dip"
@@ -38,55 +39,56 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="100">
-
-            <TextView
-                android:id="@+id/tvResultTotal"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="75"
-                android:gravity="center"
-                android:padding="2dip"
-                android:text="GESAMT "
-                android:textSize="18sp" />
+                android:layout_marginTop="20dp"
+                android:weightSum="100">
 
-            <TextView
-                android:id="@+id/tvResultCategory"
+                <TextView
+                    android:id="@+id/tvResultTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="75"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:text="GESAMT "
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvResultCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:gravity="center"
+                    android:padding="2dip"
+                    android:text="DURCHSCHNITTSWERTE KATEGORIE "
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:gravity="center"
-                android:padding="2dip"
-                android:text="DURCHSCHNITTSWERTE KATEGORIE "
-                android:textSize="18sp" />
+                android:weightSum="100">
 
-        </LinearLayout>
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/stackedChartTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_weight="75">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="100">
+                </com.github.mikephil.charting.charts.BarChart>
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/stackedChartTotal"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_weight="75">
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/stackedChartInd"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_weight="25">
 
-            </com.github.mikephil.charting.charts.BarChart>
+                </com.github.mikephil.charting.charts.BarChart>
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/stackedChartInd"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_weight="25">
-
-            </com.github.mikephil.charting.charts.BarChart>
-
-        </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -151,6 +153,13 @@
                 android:orientation="vertical">
 
 
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#000000" />
+
                 <TextView
                     android:id="@+id/tvChoice3"
                     android:layout_width="match_parent"
@@ -165,6 +174,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:weightSum="100">
 
@@ -248,10 +258,18 @@
 
                 </TableRow>
 
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#000000" />
+
                 <TextView
                     android:id="@+id/tvBest3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="2dip"
@@ -263,6 +281,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:weightSum="100">
 
@@ -347,10 +366,18 @@
                     android:textStyle="bold" />
 
 
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#000000" />
+
                 <TextView
                     android:id="@+id/tvWorst"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="2dip"
@@ -362,6 +389,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:weightSum="100">
 
@@ -439,10 +467,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#000000" />
+
                 <TextView
                     android:id="@+id/tvGeneralInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:padding="2dip"
                     android:text="ALLGEMEINE INFORMATIONEN"
@@ -452,6 +488,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:weightSum="100">
 
                     <TextView
@@ -559,7 +596,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="25"
                         android:padding="2dip"
-                        android:text="Alterdurchschnitt "
+                        android:text="Alterdurchschnitt:"
                         android:textSize="18sp" />
 
                     <TextView
@@ -574,13 +611,14 @@
 
 
             </LinearLayout>
+
             <Button
                 android:id="@+id/btn_back"
                 android:layout_width="100dp"
-                android:layout_height="47dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"

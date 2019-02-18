@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.franzi.rentrapp.Activity.Evaluation.StartResult;
@@ -17,7 +19,12 @@ public class Menue extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_menue);
+
 
         Button btnCreateSurvey = (Button)findViewById(R.id.btnCreateSurvey);
         btnCreateSurvey.setOnClickListener(this);
@@ -39,20 +46,17 @@ public class Menue extends AppCompatActivity implements View.OnClickListener {
             case R.id.btnCreateSurvey:
                 Intent intent = new Intent(this, CreateNewSurvey.class);
                 startActivity(intent);
-                this.finish();
-            break;
+                break;
 
             case R.id.btnParticipate:
                 Intent intent1 = new Intent(this, Start.class);
                 startActivity(intent1);
-                this.finish();
-            break;
+                break;
 
             case R.id.btnShowResults:
                 Intent intent2 = new Intent(this, StartResult.class);
                 startActivity(intent2);
-                this.finish();
-            break;
+                break;
 
             default: break;
         }

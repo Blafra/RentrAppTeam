@@ -7,8 +7,10 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -62,6 +64,9 @@ public class CreateNewSurvey2 extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_create_new_survey2);
 
         //Get infomation from previous activity
@@ -91,7 +96,7 @@ public class CreateNewSurvey2 extends AppCompatActivity implements View.OnClickL
         dropdown3.setAdapter(adapter);
 
         //Set On Click Listeners for buttons
-        Button btn = (Button) findViewById(R.id.btnCreateNewSurvey);
+        Button btn = (Button) findViewById(R.id.btnNext);
         Button btn2 = (Button) findViewById(R.id.btnCns2Back);
         Button btn3 = (Button) findViewById(R.id.btnCns2Menue);
 
@@ -106,7 +111,7 @@ public class CreateNewSurvey2 extends AppCompatActivity implements View.OnClickL
         switch (v.getId()){
 
             //Create new survey
-            case R.id.btnCreateNewSurvey:
+            case R.id.btnNext:
                 createNewSurvey();
                 break;
 
@@ -159,10 +164,12 @@ public class CreateNewSurvey2 extends AppCompatActivity implements View.OnClickL
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(getBaseContext(), "Umfragecode wurde in Zwischenspeicher kopiert", Toast.LENGTH_LONG).show();
+                Toast toast = Toast.makeText(getBaseContext(), "Umfragecode wurde in Zwischenspeicher kopiert", Toast.LENGTH_SHORT);
+                TextView v = toast.getView().findViewById(android.R.id.message);
+                if( v != null) v.setGravity(Gravity.CENTER);
+                toast.show();
             }
         }, 1000);
-
 
     }
 
@@ -196,7 +203,7 @@ public class CreateNewSurvey2 extends AppCompatActivity implements View.OnClickL
 
                 for (DataSnapshot sn : dataSnapshot.getChildren()) {
                     Question question = sn.getValue(Question.class);
-                    if(question.getSystemCategory().equals(systemStatus)){
+                    if(question.getSystemCategory().equals(systemType)||question.getSystemCategory().equals("Beides")){
                         questionTextList.add(question.getQuestionText());
                     }
 

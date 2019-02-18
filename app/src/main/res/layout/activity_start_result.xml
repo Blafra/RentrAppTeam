@@ -9,10 +9,10 @@
     <Button
         android:id="@+id/btnStartResult"
         android:layout_width="266dp"
-        android:layout_height="91dp"
+        android:layout_height="50dp"
         android:background="@drawable/text_view_boarder"
         android:onClick="onClick"
-        android:text="Ergebnis Anzeigen"
+        android:text="Anzeigen"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -61,20 +61,17 @@
     <Button
         android:id="@+id/btn_back3"
         android:layout_width="265dp"
-        android:layout_height="46dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="120dp"
         android:background="@drawable/text_view_boarder"
         android:text="MENÜ"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnStartResult"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintTop_toBottomOf="@+id/btnStartResult" />
 
 </android.support.constraint.ConstraintLayout>
