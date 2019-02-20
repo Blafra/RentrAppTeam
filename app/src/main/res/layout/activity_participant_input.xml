@@ -155,7 +155,7 @@
         android:layout_marginRight="28dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:hint="10"
+        android:hint="Anzahl Mitarbeiter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPIQ3"

@@ -420,11 +420,10 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-    //average calculation
+    //Calculate average of a specific question for a survey
     private double getAverageOfQuestion(int questionID) {
         double average;
         int sum = 0;
-        int i = 0;
         double counter = (double) surveys.size();
         HashMap<String, Result> resultMap = new HashMap<>();
 

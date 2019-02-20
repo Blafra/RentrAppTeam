@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.franzi.rentrapp.Model.SpecificSurvey;
 import com.example.franzi.rentrapp.R;
@@ -40,7 +42,7 @@ public class ParticipantInput extends AppCompatActivity implements View.OnClickL
 
     RadioGroup rg;
     EditText answerQ2;
-    Switch s;
+    Switch aSwitch;
     EditText answerQ3;
 
     Button btnNext;
@@ -75,15 +77,27 @@ public class ParticipantInput extends AppCompatActivity implements View.OnClickL
         answerQ2 = findViewById(R.id.iPIQ2);
 
         tv3 = findViewById(R.id.tvPIQ3);
-        s = findViewById(R.id.iPIQ3_1);
+        aSwitch = findViewById(R.id.iPIQ3_1);
+
         answerQ3 = findViewById(R.id.iPIQ3_2);
         answerQ3.setInputType(InputType.TYPE_CLASS_NUMBER);
+        answerQ3.setVisibility(View.INVISIBLE);
+
+        //On Change Listener für Switch --> Show EditText for employee numb
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(aSwitch.isChecked()){
+                    answerQ3.setVisibility(View.VISIBLE);
+                } else{
+                    answerQ3.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
         //Show according to settings
+        adjustViewWithSettings(settingParticipantAge,settingParticipantDepartment,settingParticipantPosition);
 
-        if(!settingParticipantAge){
-
-        }
 
         btnNext = findViewById(R.id.btn_nextPI);
         btnNext.setOnClickListener(this);
@@ -93,6 +107,10 @@ public class ParticipantInput extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_nextPI:
+
+                if(!filledOutCompletely()){
+                    Toast.makeText(this,"Bitte alle Felder ausfüllen",Toast.LENGTH_LONG);
+                }
 
                 getAnswers();
 
@@ -107,43 +125,99 @@ public class ParticipantInput extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    private boolean filledOutCompletely() {
+
+        //Check if department is filled out
+        if(settingParticipantDepartment){
+            if(answerQ2.equals("")){
+                return  false;
+            }
+        }
+
+        //Check if numb employees is filled out
+        if(settingParticipantPosition){
+            if(aSwitch.isChecked()){
+                if(answerQ3.equals("")){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     public void getAnswers(){
 
         //Antworten sollten dem Specific Survey mitgegeben werden
 
         //Get Age Groupe
-        ArrayList<RadioButton> radioButtons = new ArrayList<>();
-        RadioButton r1 = findViewById(R.id.radioButton);
-        RadioButton r2 = findViewById(R.id.radioButton2);
-        RadioButton r3 = findViewById(R.id.radioButton3);
-        RadioButton r4 = findViewById(R.id.radioButton4);
+        if(settingParticipantAge) {
 
-        radioButtons.add(r1);
-        radioButtons.add(r2);
-        radioButtons.add(r3);
-        radioButtons.add(r4);
+            ArrayList<RadioButton> radioButtons = new ArrayList<>();
+            RadioButton r1 = findViewById(R.id.radioButton);
+            RadioButton r2 = findViewById(R.id.radioButton2);
+            RadioButton r3 = findViewById(R.id.radioButton3);
+            RadioButton r4 = findViewById(R.id.radioButton4);
 
-        int i = 1;
-        for(RadioButton rb : radioButtons){
-            if(rb.isChecked()){
-                ss.setParticipantAgeGroup(i);
+            radioButtons.add(r1);
+            radioButtons.add(r2);
+            radioButtons.add(r3);
+            radioButtons.add(r4);
+
+            int i = 1;
+            for (RadioButton rb : radioButtons) {
+                if (rb.isChecked()) {
+                    ss.setParticipantAgeGroup(i);
+                }
             }
+        } else{
+            ss.setParticipantAgeGroup(0);
         }
 
         //Get Department
 
-        EditText answerQ2 = findViewById(R.id.iPIQ2);
-        ss.setParticipantDepartment(answerQ2.getText().toString());
+        if(settingParticipantDepartment){
+            EditText answerQ2 = findViewById(R.id.iPIQ2);
+            ss.setParticipantDepartment(answerQ2.getText().toString());
+        }else{
+            ss.setParticipantDepartment("Not Asked");
+        }
 
         //Get manager info & numb employees
 
-        Switch s = findViewById(R.id.iPIQ3_1);
+        if(settingParticipantPosition){
+            Switch s = findViewById(R.id.iPIQ3_1);
 
-        if(s.isChecked()){
-            ss.setManager(true);
-            String value= answerQ3.getText().toString();
-            ss.setNumbEmployees(Integer.parseInt(value));
+            if(s.isChecked()){
+                ss.setManager(true);
+                String value= answerQ3.getText().toString();
+                ss.setNumbEmployees(Integer.parseInt(value));
+            }
+        } else {
+            ss.setManager(false);
+            ss.setNumbEmployees(0);
         }
 
+
     }
+
+    private void adjustViewWithSettings(boolean settingParticipantAge, boolean settingParticipantDepartment, boolean settingParticipantPosition) {
+
+        if(!settingParticipantAge){
+            tv1.setVisibility(View.INVISIBLE);
+            rg.setVisibility(View.INVISIBLE);
+        }
+
+        if(!settingParticipantDepartment){
+            tv2.setVisibility(View.INVISIBLE);
+            answerQ2.setVisibility(View.INVISIBLE);
+        }
+
+        if(!settingParticipantPosition){
+            tv3.setVisibility(View.INVISIBLE);
+            answerQ3.setVisibility(View.INVISIBLE);
+            aSwitch.setVisibility(View.INVISIBLE);
+        }
+    }
+
 }

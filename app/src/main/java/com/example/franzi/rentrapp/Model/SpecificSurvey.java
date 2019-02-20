@@ -26,7 +26,7 @@ public class SpecificSurvey implements Parcelable {
     private boolean settingParticipantDepartment;
     private boolean settingParticipantPosition;
 
-    private int participantAgeGroup;
+    private int participantAgeGroup;                //0: Agegroup was not asked, 1: 16-25, 2: 26-35, 3: 36-50, 4: 50+
     private String participantDepartment;
     private boolean isManager;
     private int numbEmployees;
