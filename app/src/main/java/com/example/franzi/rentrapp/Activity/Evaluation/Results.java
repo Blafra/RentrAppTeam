@@ -30,6 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
+import org.w3c.dom.Text;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +44,7 @@ import java.util.Map;
 public class Results extends AppCompatActivity implements View.OnClickListener {
 
 
-    final List<SpecificSurvey> surveys = new ArrayList<>();
+    final List<SpecificSurvey> specificSurveys = new ArrayList<>();
     final List<Result> surveyResults = new ArrayList<>();
     final List<Question> questions = new ArrayList<>();
     String generalsurveyID;
@@ -62,7 +64,7 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
     //Charts (Gesamt & Kategorien)
     BarChart stackedChart;
     BarChart stackedChartCategories;
-   // int[] colorClassArray = new int[]{Color.LTGRAY, Color.DKGRAY};
+    // int[] colorClassArray = new int[]{Color.LTGRAY, Color.DKGRAY};
 
     //Ergebnisse für alle drei gewählte Fragen und jeweils Wert dazu (value)
     TextView resultChoiceQ1;
@@ -95,6 +97,8 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
     TextView systemstatusValue;
     TextView numberOfParticipantsValue;
     TextView responsibiltyValue;
+    TextView numberOfManagers;
+    TextView frequentAgeGroup;
 
 
     Button back;
@@ -106,7 +110,7 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_results);
-         df = new DecimalFormat("#.00");
+        df = new DecimalFormat("#.00");
 
         generalsurveyID = getIntent().getExtras().getString("surveyCode");
 
@@ -190,7 +194,8 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
         systemstatusValue = (TextView) findViewById(R.id.tvSystemstatusValue);
         numberOfParticipantsValue = (TextView) findViewById(R.id.tvNumberOfParticipantsValue);
         responsibiltyValue = (TextView) findViewById(R.id.tvResponsibilityValue);
-
+        numberOfManagers = (TextView) findViewById(R.id.tvNumberManagersValue);
+        frequentAgeGroup = (TextView)findViewById(R.id.tvAgeValue);
 
     }
 
@@ -215,7 +220,7 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
         this.finish();
     }
 
-    //retrieve data
+    //#################################################retrieve data
     private void getSurvey() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference mRef = database.getReference();
@@ -295,7 +300,7 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
                     SpecificSurvey specificSurvey = sn.getValue(SpecificSurvey.class);
                     if (specificSurvey != null) {
                         if (specificSurvey.getSurveyID().equals(generalsurveyID)) {
-                            surveys.add(specificSurvey);
+                            specificSurveys.add(specificSurvey);
                         }
                     } else {
                         Toast.makeText(getApplication().getBaseContext(), "Es wurden noch keine Umfragen zum SurveyCode durchgeführt", Toast.LENGTH_SHORT).show();
@@ -312,9 +317,11 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
                 Log.d("CHECK", "value"+getAverageOfQuestion(1));
                 //Put Max 3 and Min 3 Questions in Lists
                 getMinMaxQuestions(0);
-
-                Integer noPart = (Integer) surveys.size();
+                Integer noPart = (Integer) specificSurveys.size();
                 numberOfParticipantsValue.setText(noPart.toString());
+                numberOfManagers.setText(getNumberOfManager().toString());
+                setFrequentAgeGroup();
+
             }
 
             @Override
@@ -324,14 +331,11 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
         });
 
     }
+    //###########################################retrieve data
 
 
-    //bar chart
-    private double getAverageOverall() {
 
-        return ((averageIndividuell + averageOrganisatorisch + averageSystem) / 3);
-    }
-
+    // Methods to set data in UI
     private void setCategories() {
         BarDataSet barDataSet2 = new BarDataSet(dataValuesCategoryValues(), "");
         barDataSet2.setDrawIcons(false);
@@ -375,27 +379,12 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
         resultChoiceQ3.setText(generalSurvey.getFocusQuestionThree());
 
     }
-        private void setFocusQuestionValues() {
+    private void setFocusQuestionValues() {
 
-            resultChoiceQ1Value.setText(String.valueOf(df.format(getFocusQuestionValue(generalSurvey.getFocusQuestionOne()))));
-            resultChoiceQ2Value.setText(String.valueOf(df.format(getFocusQuestionValue(generalSurvey.getFocusQuestionTwo()))));
-            resultChoiceQ3Value.setText(String.valueOf(df.format(getFocusQuestionValue(generalSurvey.getFocusQuestionThree()))));
-        }
-
-
-    private double getFocusQuestionValue(String focusQuestion){
-        double value = 0.0;
-        for(Question question : questions){
-            if(question.getQuestionText().equals(focusQuestion)){
-                value = getAverageOfQuestion(question.getQuestionID());
-            }
-        }
-
-        return value;
-
+        resultChoiceQ1Value.setText(String.valueOf(df.format(getFocusQuestionValue(generalSurvey.getFocusQuestionOne()))));
+        resultChoiceQ2Value.setText(String.valueOf(df.format(getFocusQuestionValue(generalSurvey.getFocusQuestionTwo()))));
+        resultChoiceQ3Value.setText(String.valueOf(df.format(getFocusQuestionValue(generalSurvey.getFocusQuestionThree()))));
     }
-
-
 
     private void setQuestionData() {
         try{
@@ -419,35 +408,40 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-
-    //average calculation
-    private double getAverageOfQuestion(int questionID) {
-        double average;
-        int sum = 0;
-        int i = 0;
-        double counter = (double) surveys.size();
-        HashMap<String, Result> resultMap = new HashMap<>();
-
-        for (SpecificSurvey survey : surveys) {
-            resultMap = survey.getResult();
-            if (resultMap != null) {
-
-                for (Map.Entry<String, Result> entry : resultMap.entrySet()) {
-                    if (entry.getValue().getQuestionID() == questionID) {
-                        sum = sum + entry.getValue().getResultValue();
-                    }
-                }
-            }
-
+    private void setFrequentAgeGroup(){
+        if(getMostFrequentAgeGroup() == 1){
+            frequentAgeGroup.setText("16-25");
         }
-
-        average = sum / counter;
-        Log.d("SURVEYSIZE", "surveySize" + surveys.size());
-        Log.d("COUNTERQUESTION", "questioncounter" + counter);
-
-        return average;
+        else if(getMostFrequentAgeGroup() == 2){
+            frequentAgeGroup.setText("26-35");
+        }
+        else if(getMostFrequentAgeGroup() == 3){
+            frequentAgeGroup.setText("36-50");
+        }
+        else if(getMostFrequentAgeGroup() == 4){
+            frequentAgeGroup.setText("50+");
+        }
+        else if(getMostFrequentAgeGroup() == -1){
+            frequentAgeGroup.setText("nicht eindeutig");
+        }
     }
 
+
+
+
+    //Methods to get data for UI
+
+    private double getFocusQuestionValue(String focusQuestion){
+        double value = 0.0;
+        for(Question question : questions){
+            if(question.getQuestionText().equals(focusQuestion)){
+                value = getAverageOfQuestion(question.getQuestionID());
+            }
+        }
+
+        return value;
+
+    }
 
     private String getQuestion(int i) {
 
@@ -461,6 +455,132 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
         return questionText;
     }
 
+    private Integer getNumberOfManager(){
+        Integer counter = 0;
+        if(generalSurvey.isParticipantPosition()){
+            for(SpecificSurvey specificSurvey : specificSurveys){
+                if(specificSurvey.isManager()){
+                    counter++;
+                }
+
+            }
+        }
+        return counter;
+    }
+
+    private int getMostFrequentAgeGroup(){
+        int amountNo3 =0;
+        int amountNo1 =0;
+        int amountNo2=0;
+        int amountNo4=0;
+        int ageGroup;
+
+        if(generalSurvey.isParticipantAge()){
+            for(SpecificSurvey specificSurvey:specificSurveys){
+                ageGroup = specificSurvey.getParticipantAgeGroup();
+
+                if(ageGroup == 1){
+                    amountNo1++;
+                }
+                else if(ageGroup == 2){
+                    amountNo2++;
+                }
+                else if(ageGroup == 3){
+                    amountNo3++;
+                }
+                else if(ageGroup == 4){
+                    amountNo4++;
+                }
+            }
+        }
+
+        if(amountNo1 > amountNo2 && amountNo1 > amountNo3 && amountNo1 > amountNo4){
+            return 1;
+        }
+        else if(amountNo2 > amountNo1 && amountNo2 > amountNo3&& amountNo2 > amountNo4){
+            return 2;
+        }
+        else if(amountNo3 > amountNo1 && amountNo3 > amountNo2&& amountNo3 > amountNo4){
+            return 3;
+        }
+        else if(amountNo4 > amountNo1 && amountNo4 > amountNo2&& amountNo4> amountNo3){
+            return 4;
+        }
+        else{
+            return -1;
+        }
+    }
+
+
+
+
+
+    //Method to calculate averages
+    private double getAverageOverall() {
+
+        return ((averageIndividuell + averageOrganisatorisch + averageSystem) / 3);
+    }
+
+
+    //Calculate average of a specific question for a survey
+    private double getAverageOfQuestion(int questionID) {
+        double average;
+        int sum = 0;
+        double counter = (double) specificSurveys.size();
+        HashMap<String, Result> resultMap = new HashMap<>();
+
+        for (SpecificSurvey survey : specificSurveys) {
+            resultMap = survey.getResult();
+            if (resultMap != null) {
+
+                for (Map.Entry<String, Result> entry : resultMap.entrySet()) {
+                    if (entry.getValue().getQuestionID() == questionID) {
+                        sum = sum + entry.getValue().getResultValue();
+                    }
+                }
+            }
+
+        }
+
+        average = sum / counter;
+        Log.d("SURVEYSIZE", "surveySize" + specificSurveys.size());
+        Log.d("COUNTERQUESTION", "questioncounter" + counter);
+
+        return average;
+    }
+
+    private double getAverageOfCategory(String questionCategory) {
+        double average;
+        int sum = 0;
+        int i = 0;
+        double counter = 0;
+        HashMap<String, Result> resultMap = new HashMap<>();
+
+        for (SpecificSurvey survey : specificSurveys) {
+            resultMap = survey.getResult();
+
+            for (Map.Entry<String, Result> entry : resultMap.entrySet()) {
+
+                if (entry.getValue().getQuestionCategory().equals(questionCategory)) {
+                    sum = sum + entry.getValue().getResultValue();
+                    counter = counter + 1;
+                    i++;
+                }
+
+            }
+
+
+        }
+
+        Log.d("COUNTER", "counter: " + counter);
+
+        average = sum / counter;
+
+        return average;
+    }
+
+
+    //set Min and Max Values
 
     private void getMinMaxQuestions(int prevRun) {
 
@@ -474,7 +594,7 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
         int run = prevRun;
 
         //Get first Survey form list to ensure all Questions will be looked at
-        resultMap = surveys.get(0).getResult();
+        resultMap = specificSurveys.get(0).getResult();
 
         if (resultMap != null) {
 
@@ -513,7 +633,7 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
         }
 
 
-}
+    }
 
     private boolean checkIfIdInList(int qID) {
 
@@ -535,34 +655,4 @@ public class Results extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-
-    private double getAverageOfCategory(String questionCategory) {
-        double average;
-        int sum = 0;
-        int i = 0;
-        double counter = 0;
-        HashMap<String, Result> resultMap = new HashMap<>();
-
-        for (SpecificSurvey survey : surveys) {
-            resultMap = survey.getResult();
-
-            for (Map.Entry<String, Result> entry : resultMap.entrySet()) {
-
-                if (entry.getValue().getQuestionCategory().equals(questionCategory)) {
-                    sum = sum + entry.getValue().getResultValue();
-                    counter = counter + 1;
-                    i++;
-                }
-
-            }
-
-
-        }
-
-        Log.d("COUNTER", "counter: " + counter);
-
-        average = sum / counter;
-
-        return average;
-    }
 }

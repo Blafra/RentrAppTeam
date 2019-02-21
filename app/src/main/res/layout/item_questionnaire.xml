@@ -48,7 +48,7 @@
                     android:layout_width="112dp"
                     android:layout_height="match_parent"
                     android:layout_weight="20"
-                    android:text="Stimme voll zu"
+                    android:text="Stimme gar nicht zu"
                     android:textSize="18sp" />
 
                 <RadioButton
@@ -80,7 +80,7 @@
                     android:layout_width="112dp"
                     android:layout_height="match_parent"
                     android:layout_weight="20"
-                    android:text="Stimme gar nicht zu"
+                    android:text="Stimme voll zu"
                     android:textSize="18sp" />
 
 
