@@ -20,45 +20,44 @@
         <activity android:name=".Activity.Menue">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         //SetUp
         <activity
             android:name=".Activity.SetUp.CreateNewSurvey"
-            android:windowSoftInputMode="stateHidden"
-            android:parentActivityName=".Activity.Menue"/>
+            android:parentActivityName=".Activity.Menue"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Activity.SetUp.CreateNewSurvey2"
-            android:windowSoftInputMode="stateHidden"
-            android:parentActivityName=".Activity.SetUp.CreateNewSurvey"/>
-
+            android:parentActivityName=".Activity.SetUp.CreateNewSurvey"
+            android:windowSoftInputMode="stateHidden" />
         //Execution
         <activity
             android:name=".Activity.Execution.Start"
-            android:parentActivityName=".Activity.Menue"/>
+            android:parentActivityName=".Activity.Menue" />
         <activity
             android:name=".Activity.Execution.ParticipantInput"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity android:name=".Activity.Execution.Questionnaire"/>
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Activity.Execution.Questionnaire" />
         <activity
             android:name=".Activity.Execution.Individuell"
-            android:parentActivityName=".Activity.Execution.ParticipantInput"/>
+            android:parentActivityName=".Activity.Execution.ParticipantInput" />
         <activity
             android:name=".Activity.Execution.Organisatorisch"
-            android:parentActivityName=".Activity.Execution.Individuell"/>
+            android:parentActivityName=".Activity.Execution.Individuell" />
         <activity
             android:name=".Activity.Execution.System"
-            android:parentActivityName=".Activity.Execution.Organisatorisch"/>
-
+            android:parentActivityName=".Activity.Execution.Organisatorisch" />
         //Evaluation
         <activity
             android:name=".Activity.Evaluation.StartResult"
-            android:parentActivityName=".Activity.Menue"></activity>
+            android:parentActivityName=".Activity.Menue" />
         <activity
             android:name=".Activity.Evaluation.Results"
-            android:parentActivityName=".Activity.Evaluation.StartResult"></activity>
+            android:parentActivityName=".Activity.Evaluation.StartResult" />
+        <activity android:name=".SurveySuccessfullyCreated"></activity>
     </application>
 
 </manifest>

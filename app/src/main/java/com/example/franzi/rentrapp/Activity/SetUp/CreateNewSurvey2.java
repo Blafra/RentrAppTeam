@@ -23,6 +23,7 @@ import com.example.franzi.rentrapp.Controller.WriteToDB;
 import com.example.franzi.rentrapp.Model.Question;
 import com.example.franzi.rentrapp.Model.Survey;
 import com.example.franzi.rentrapp.R;
+import com.example.franzi.rentrapp.SurveySuccessfullyCreated;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -113,6 +114,9 @@ public class CreateNewSurvey2 extends AppCompatActivity implements View.OnClickL
             //Create new survey
             case R.id.btnNext:
                 createNewSurvey();
+                Intent intent = new Intent(this,SurveySuccessfullyCreated.class);
+                startActivity(intent);
+                this.finish();
                 break;
 
 
