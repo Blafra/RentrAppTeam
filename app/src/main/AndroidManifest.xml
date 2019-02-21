@@ -20,11 +20,11 @@
         <activity android:name=".Activity.Menue">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         //SetUp
+
         <activity
             android:name=".Activity.SetUp.CreateNewSurvey"
             android:parentActivityName=".Activity.Menue"
@@ -49,6 +49,10 @@
             android:parentActivityName=".Activity.Execution.Individuell" />
         <activity
             android:name=".Activity.Execution.System"
+            android:parentActivityName=".Activity.Execution.Organisatorisch" />
+        //Evaluation
+            android:parentActivityName=".Activity.Execution.Organisatorisch"/>
+
             android:parentActivityName=".Activity.Execution.Organisatorisch" />
         //Evaluation
         <activity
