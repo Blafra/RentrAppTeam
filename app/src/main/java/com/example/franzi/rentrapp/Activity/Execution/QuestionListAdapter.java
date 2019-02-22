@@ -86,24 +86,24 @@ public class QuestionListAdapter extends ArrayAdapter<Question> {
 
                     if (radioButton1.getId() == checkedID) {
 
-                        question.setSelectedValue(5);
-                        selectedAnswers.add(5);
+                        question.setSelectedValue(1);
+                        selectedAnswers.add(1);
                     }
                     if (radioButton2.getId() == checkedID) {
-                        question.setSelectedValue(4);
-                        selectedAnswers.add(4);
+                        question.setSelectedValue(2);
+                        selectedAnswers.add(2);
                     }
                     if (radioButton3.getId() == checkedID) {
                         question.setSelectedValue(3);
                         selectedAnswers.add(3);
                     }
                     if (radioButton4.getId() == checkedID) {
-                        question.setSelectedValue(2);
-                        selectedAnswers.add(2);
+                        question.setSelectedValue(4);
+                        selectedAnswers.add(4);
                     }
                     if (radioButton5.getId() == checkedID) {
-                        question.setSelectedValue(1);
-                        selectedAnswers.add(1);
+                        question.setSelectedValue(5);
+                        selectedAnswers.add(5);
                     }
 
 

@@ -194,6 +194,7 @@
                         android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
+                        android:paddingRight="30dp"
                         android:textSize="18dp" />
                 </LinearLayout>
 
@@ -220,6 +221,7 @@
                         android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
+                        android:paddingRight="30dp"
                         android:textSize="18dp" />
                 </LinearLayout>
 
@@ -246,6 +248,7 @@
                         android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
+                        android:paddingRight="30dp"
                         android:textSize="18dp" />
                 </LinearLayout>
 
@@ -304,6 +307,7 @@
                         android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
+                        android:paddingRight="30dp"
                         android:textSize="18dp" />
                 </LinearLayout>
 
@@ -330,6 +334,7 @@
                         android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
+                        android:paddingRight="30dp"
                         android:textSize="18dp" />
                 </LinearLayout>
 
@@ -356,6 +361,7 @@
                         android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
+                        android:paddingRight="30dp"
                         android:textSize="18dp" />
                 </LinearLayout>
 
@@ -415,6 +421,7 @@
                         android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
+                        android:paddingRight="30dp"
                         android:textSize="18dp" />
                 </LinearLayout>
 
@@ -441,6 +448,7 @@
                         android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
+                        android:paddingRight="30dp"
                         android:textSize="18dp" />
                 </LinearLayout>
 
@@ -467,6 +475,7 @@
                         android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
+                        android:paddingRight="30dp"
                         android:textSize="18dp" />
                 </LinearLayout>
 
@@ -515,6 +524,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="25"
                         android:padding="2dip"
+                        android:paddingRight="10dp"
                         android:textSize="18sp" />
 
                     <TextView
@@ -532,6 +542,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="25"
                         android:padding="2dip"
+                        android:paddingRight="10dp"
                         android:textSize="18sp" />
                 </LinearLayout>
 
@@ -555,6 +566,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="25"
                         android:padding="2dip"
+                        android:paddingRight="10dp"
                         android:textSize="18sp" />
 
 
@@ -573,6 +585,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="25"
                         android:padding="2dip"
+                        android:paddingRight="10dp"
                         android:textSize="18sp" />
                 </LinearLayout>
 
@@ -596,6 +609,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="25"
                         android:padding="2dip"
+                        android:paddingRight="10dp"
                         android:textSize="18sp" />
 
 
@@ -605,7 +619,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="25"
                         android:padding="2dip"
-                        android:text="Manager:"
+                        android:text=" "
                         android:textSize="18sp" />
 
                     <TextView
@@ -614,55 +628,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="25"
                         android:padding="2dip"
+                        android:paddingRight="10dp"
                         android:text=" "
                         android:textSize="18sp" />
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="100">
-
-                    <TextView
-                        android:id="@+id/tvAge"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="25"
-                        android:padding="2dip"
-                        android:text="Altersgruppe:"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvAgeValue"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="25"
-                        android:padding="2dip"
-                        android:textSize="18sp" />
-
-
-                    <TextView
-                        android:id="@+id/tvExtraField"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="25"
-                        android:padding="2dip"
-                        android:text=""
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvExtraFieldValue"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="25"
-                        android:padding="2dip"
-                        android:text=" "
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-
 
             </LinearLayout>
+
 
             <Button
                 android:id="@+id/btn_back"

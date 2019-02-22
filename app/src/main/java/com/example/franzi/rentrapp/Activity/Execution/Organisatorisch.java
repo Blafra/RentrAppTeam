@@ -49,6 +49,7 @@ public class Organisatorisch extends AppCompatActivity implements View.OnClickLi
             }
         }
 
+
         TextView textView = (TextView) findViewById(R.id.tvCategories);
         textView.setText("ORGANISATORISCH");
 

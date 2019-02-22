@@ -11,7 +11,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.franzi.rentrapp.Activity.Menue;
 import com.example.franzi.rentrapp.Model.Result;
 import com.example.franzi.rentrapp.Model.Question;
 import com.example.franzi.rentrapp.Model.SpecificSurvey;
@@ -67,6 +66,7 @@ public class System extends AppCompatActivity implements View.OnClickListener  {
 
     @Override
     public void onClick(View v) {
+
         if (adapter.filledOutCompletely() == true) {
             List<Result> resultList = new ArrayList<>();
             for(Question question : surveyQuestions){
@@ -79,14 +79,15 @@ public class System extends AppCompatActivity implements View.OnClickListener  {
             ss.saveSpecificSurvey();
             Result.storeResults(ss.getSpecificSurveyID(), resultList);
 
-
-          Intent intent = new Intent(this, Menue.class);
-           // intent.putExtra("Specific_Survey4", ss);
-
+            Intent intent = new Intent(this, SpecificSurveyDone.class);
             startActivity(intent);
+            this.finish();
+
         } else {
             Toast.makeText(getApplication().getBaseContext(), "Es sind nicht alle Fragen beantwortet", Toast.LENGTH_SHORT).show();
+            return;
         }
+
 
     }
 }

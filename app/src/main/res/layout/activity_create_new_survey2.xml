@@ -157,7 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/iFocusQuestion2" />
 
     <Button
-        android:id="@+id/btnNext"
+        android:id="@+id/btnGenerateSurvey"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -191,7 +191,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnNext"
+        app:layout_constraintTop_toBottomOf="@+id/btnGenerateSurvey"
         app:layout_constraintWidth_percent="0.65" />
 
     <Button

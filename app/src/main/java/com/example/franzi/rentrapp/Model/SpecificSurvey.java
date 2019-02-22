@@ -28,6 +28,8 @@ public class SpecificSurvey implements Parcelable {
 
     private int participantAgeGroup;                //0: Agegroup was not asked, 1: 16-25, 2: 26-35, 3: 36-50, 4: 50+
     private String participantDepartment;
+
+
     private boolean isManager;
     private int numbEmployees;
 
@@ -110,6 +112,15 @@ public class SpecificSurvey implements Parcelable {
 
     //Getter Setter
 
+
+    public boolean isManager() {
+        return isManager;
+    }
+
+    public void setManager(boolean manager) {
+        isManager = manager;
+    }
+
     public boolean isSettingParticipantAge() {
         return settingParticipantAge;
     }
@@ -150,13 +161,7 @@ public class SpecificSurvey implements Parcelable {
         this.participantDepartment = participantDepartment;
     }
 
-    public boolean isManager() {
-        return isManager;
-    }
 
-    public void setManager(boolean manager) {
-        isManager = manager;
-    }
 
     public int getNumbEmployees() {
         return numbEmployees;

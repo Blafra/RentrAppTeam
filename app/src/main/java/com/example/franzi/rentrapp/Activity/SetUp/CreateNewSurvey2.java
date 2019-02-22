@@ -96,7 +96,7 @@ public class CreateNewSurvey2 extends AppCompatActivity implements View.OnClickL
         dropdown3.setAdapter(adapter);
 
         //Set On Click Listeners for buttons
-        Button btn = (Button) findViewById(R.id.btnNext);
+        Button btn = (Button) findViewById(R.id.btnGenerateSurvey);
         Button btn2 = (Button) findViewById(R.id.btnCns2Back);
         Button btn3 = (Button) findViewById(R.id.btnCns2Menue);
 
@@ -111,7 +111,7 @@ public class CreateNewSurvey2 extends AppCompatActivity implements View.OnClickL
         switch (v.getId()){
 
             //Create new survey
-            case R.id.btnNext:
+            case R.id.btnGenerateSurvey:
                 createNewSurvey();
                 break;
 

@@ -60,7 +60,7 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
 
 
         //Set On Click Listeners for buttons
-        Button btn = (Button) findViewById(R.id.btnNext);
+        Button btn = (Button) findViewById(R.id.btnGenerateSurvey);
         Button btn2 = (Button) findViewById(R.id.btnMenue);
 
         btn.setOnClickListener(this);
@@ -73,7 +73,7 @@ public class CreateNewSurvey extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()){
 
             //Weiter Button
-            case R.id.btnNext:
+            case R.id.btnGenerateSurvey:
 
                 getUserInput();
                 if(filledOutCompletely()!=true){

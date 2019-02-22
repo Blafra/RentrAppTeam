@@ -54,7 +54,8 @@
                     android:layout_weight="30"
                     android:gravity="center"
                     android:text="Stimme gar nicht zu"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    />
 
                 <RadioButton
                     android:id="@+id/rbtnValue3"
@@ -62,7 +63,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="20"
                     android:text=""
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    />
 
                 <RadioButton
                     android:id="@+id/rbtnValue4"
