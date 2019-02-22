@@ -93,11 +93,18 @@ public class Start extends AppCompatActivity implements View.OnClickListener {
 
 
                 //Go to next page and add survey Code
+                if(!ss.isSettingParticipantAge() & !ss.isSettingParticipantDepartment() & !ss.isSettingParticipantPosition()){
+                    Intent intent = new Intent(this, Individuell.class);
+                    intent.putExtra("Specific_Survey1", ss);
+                    startActivity(intent);
+                    break;
+                } else {
+                    Intent intent2 = new Intent(this, ParticipantInput.class);
+                    intent2.putExtra("Specific_Survey1", ss);
+                    startActivity(intent2);
+                    break;
+                }
 
-                Intent intent = new Intent(this, ParticipantInput.class);
-                intent.putExtra("Specific_Survey1", ss);
-                startActivity(intent);
-                break;
 
             case R.id.btn_back:
 
