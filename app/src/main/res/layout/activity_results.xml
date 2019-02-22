@@ -164,7 +164,6 @@
                     android:id="@+id/tvChoice3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="2dip"
@@ -192,6 +191,7 @@
                         android:id="@+id/tvResultChoiceQ1Value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
                         android:textSize="18dp" />
@@ -217,6 +217,7 @@
                         android:id="@+id/tvResultChoiceQ2Value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
                         android:textSize="18dp" />
@@ -242,6 +243,7 @@
                         android:id="@+id/tvResultChoiceQ3Value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
                         android:textSize="18dp" />
@@ -299,6 +301,7 @@
                         android:id="@+id/tvResultBestQ1Value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
                         android:textSize="18dp" />
@@ -324,6 +327,7 @@
                         android:id="@+id/tvResultBestQ2Value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
                         android:textSize="18dp" />
@@ -349,6 +353,7 @@
                         android:id="@+id/tvResultBestQ3Value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
                         android:textSize="18dp" />
@@ -407,6 +412,7 @@
                         android:id="@+id/tvResultWorstQ1Value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
                         android:textSize="18dp" />
@@ -432,6 +438,7 @@
                         android:id="@+id/tvResultWorstQ2Value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
                         android:textSize="18dp" />
@@ -457,6 +464,7 @@
                         android:id="@+id/tvResultWorstQ3Value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
                         android:layout_weight="80"
                         android:padding="2dip"
                         android:textSize="18dp" />
@@ -592,16 +600,16 @@
 
 
                     <TextView
-                        android:id="@+id/tvResponsibility"
+                        android:id="@+id/tvNumberManagers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="25"
                         android:padding="2dip"
-                        android:text="Alterdurchschnitt:"
+                        android:text="Manager:"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/tvResponsibilityValue"
+                        android:id="@+id/tvNumberManagersValue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="25"
@@ -609,6 +617,49 @@
                         android:text=" "
                         android:textSize="18sp" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/tvAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:text="Altersgruppe:"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvAgeValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:textSize="18sp" />
+
+
+                    <TextView
+                        android:id="@+id/tvExtraField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:text=""
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvExtraFieldValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="25"
+                        android:padding="2dip"
+                        android:text=" "
+                        android:textSize="18sp" />
+                </LinearLayout>
+
 
 
             </LinearLayout>
@@ -635,11 +686,3 @@
 
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
-
-
-
-
-
-
-
-
